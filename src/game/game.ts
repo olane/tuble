@@ -1,4 +1,4 @@
-import type { GameState, GuessResult, RouteHint, CodeHint, LetterStatus, RidershipComparison } from "./types";
+import type { GameState, GuessResult, RouteHint, CodeHint, LetterStatus, Comparison } from "./types";
 import { findRoute, getAllStationIds, graph } from "./pathfinding";
 import stationCodes from "../data/station-codes.json";
 import ridershipData from "../data/ridership.json";
@@ -100,11 +100,13 @@ export function makeGuess(state: GameState, stationId: string): GameState {
 
   const ridership = getRidership(stationId);
   const targetRidership = getRidership(state.targetId);
-  let ridershipComparison: RidershipComparison = "equal";
-  if (ridership > targetRidership) ridershipComparison = "higher";
-  else if (ridership < targetRidership) ridershipComparison = "lower";
+  const ridershipComparison = compare(ridership, targetRidership);
 
-  const result: GuessResult = { stationId, correct, hint, codeHint, ridership, ridershipComparison };
+  const zone = graph.stations[stationId]?.zone ?? "?";
+  const targetZone = graph.stations[state.targetId]?.zone ?? "?";
+  const zoneComparison = compareZones(zone, targetZone);
+
+  const result: GuessResult = { stationId, correct, hint, codeHint, ridership, ridershipComparison, zone, zoneComparison };
   const guesses = [...state.guesses, result];
 
   let status: GameState["status"] = "playing";
@@ -131,6 +133,26 @@ const riderships = ridershipData as Record<string, number>;
 
 function getRidership(stationId: string): number {
   return riderships[stationId] ?? 0;
+}
+
+function parseZones(zone: string): number[] {
+  const matches = zone.match(/\d+/g);
+  return matches ? matches.map(Number) : [0];
+}
+
+function compare(a: number, b: number): Comparison {
+  if (a > b) return "higher";
+  if (a < b) return "lower";
+  return "equal";
+}
+
+function compareZones(guessZone: string, targetZone: string): Comparison {
+  const guessNums = parseZones(guessZone);
+  const targetNums = parseZones(targetZone);
+  // If any zone number overlaps, they're equal
+  if (guessNums.some((g) => targetNums.includes(g))) return "equal";
+  // Otherwise compare by the minimum zone number
+  return compare(Math.min(...guessNums), Math.min(...targetNums));
 }
 
 /**

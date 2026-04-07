@@ -33,10 +33,11 @@ export default function Settings({ difficulty, onChangeDifficulty }: SettingsPro
               <li><span className="code-tile present inline-tile">Y</span> Right letter, wrong position</li>
               <li><span className="code-tile absent inline-tile">X</span> Letter not in the code</li>
             </ul>
-            <h3>Ridership</h3>
+            <h3>Zone &amp; ridership</h3>
             <p>
-              Each guess shows the station's average daily ridership. The arrow tells
-              you whether the target station is busier (▲) or quieter (▼).
+              Each guess shows the station's zone and average daily ridership. The
+              arrows tell you whether the target is in a higher (▲) or lower (▼)
+              zone, and whether it's busier or quieter.
             </p>
             <h3>Difficulty</h3>
             <ul className="difficulty-key">

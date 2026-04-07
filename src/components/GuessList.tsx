@@ -4,6 +4,12 @@ import linesData from "../data/lines.json";
 
 const lines = linesData as Record<string, { name: string; colour: string }>;
 
+function comparisonArrow(c: "higher" | "lower" | "equal"): string {
+  if (c === "higher") return "\u25BC";
+  if (c === "lower") return "\u25B2";
+  return "=";
+}
+
 function formatRidership(n: number): string {
   if (n >= 1000) return Math.round(n / 1000) + "k";
   return String(n);
@@ -123,20 +129,36 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                 <div className="guess-total">
                   {guess.hint.totalStops} {guess.hint.totalStops === 1 ? "stop" : "stops"} away
                 </div>
-                {guess.ridership != null && (
-                  <div
-                    className="guess-ridership"
-                    title={
-                      guess.ridershipComparison === "higher"
-                        ? "Target station is quieter"
-                        : guess.ridershipComparison === "lower"
-                          ? "Target station is busier"
-                          : "Same ridership as target"
-                    }
-                  >
-                    {formatRidership(guess.ridership)}/day {guess.ridershipComparison === "higher" ? "\u25BC" : guess.ridershipComparison === "lower" ? "\u25B2" : "="}
-                  </div>
-                )}
+                <div className="guess-stats">
+                  {guess.zone && (
+                    <span
+                      className="guess-zone"
+                      title={
+                        guess.zoneComparison === "higher"
+                          ? "Target is in a lower zone"
+                          : guess.zoneComparison === "lower"
+                            ? "Target is in a higher zone"
+                            : "Same zone as target"
+                      }
+                    >
+                      Zone {guess.zone} {comparisonArrow(guess.zoneComparison)}
+                    </span>
+                  )}
+                  {guess.ridership != null && (
+                    <span
+                      className="guess-ridership"
+                      title={
+                        guess.ridershipComparison === "higher"
+                          ? "Target station is quieter"
+                          : guess.ridershipComparison === "lower"
+                            ? "Target station is busier"
+                            : "Same ridership as target"
+                      }
+                    >
+                      {formatRidership(guess.ridership)}/day {comparisonArrow(guess.ridershipComparison)}
+                    </span>
+                  )}
+                </div>
               </div>
             </div>
           )}
