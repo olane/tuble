@@ -7,9 +7,10 @@ interface GuessListProps {
   guesses: GuessResult[];
   getStationName: (id: string) => string | undefined;
   revealStations: boolean;
+  showLines: boolean;
 }
 
-export default function GuessList({ guesses, getStationName, revealStations }: GuessListProps) {
+export default function GuessList({ guesses, getStationName, revealStations, showLines }: GuessListProps) {
   if (guesses.length === 0) return null;
 
   return (
@@ -35,21 +36,23 @@ export default function GuessList({ guesses, getStationName, revealStations }: G
               <div className="route-segments">
                 {guess.hint.segments.map((seg, j) => (
                   <div key={j} className="segment">
-                    <div className="segment-lines">
-                      {seg.lines.map((lineId, k) => (
-                        <>
-                          {k > 0 && <span key={`sep-${k}`} className="line-separator">/</span>}
-                          <span
-                            key={lineId}
-                            className="line-badge"
-                            style={{ backgroundColor: lines[lineId]?.colour ?? "#666" }}
-                            title={lines[lineId]?.name ?? lineId}
-                          >
-                            {lines[lineId]?.name ?? lineId}
-                          </span>
-                        </>
-                      ))}
-                    </div>
+                    {showLines && (
+                      <div className="segment-lines">
+                        {seg.lines.map((lineId, k) => (
+                          <>
+                            {k > 0 && <span key={`sep-${k}`} className="line-separator">/</span>}
+                            <span
+                              key={lineId}
+                              className="line-badge"
+                              style={{ backgroundColor: lines[lineId]?.colour ?? "#666" }}
+                              title={lines[lineId]?.name ?? lineId}
+                            >
+                              {lines[lineId]?.name ?? lineId}
+                            </span>
+                          </>
+                        ))}
+                      </div>
+                    )}
                     <div className="segment-stops">
                       {seg.stops} {seg.stops === 1 ? "stop" : "stops"}
                     </div>

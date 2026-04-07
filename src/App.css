@@ -23,6 +23,131 @@
   color: #666;
 }
 
+/* Bottom bar buttons (shared style) */
+.bottom-btn {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  color: #666;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.bottom-btn:hover {
+  color: #333;
+  border-color: #999;
+}
+
+/* Settings modal */
+.settings-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.settings-modal {
+  position: relative;
+  background: #fff;
+  border-radius: 12px;
+  padding: 1.5rem 1.5rem 1.25rem;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  text-align: left;
+  font-size: 0.9rem;
+  color: #333;
+  line-height: 1.5;
+}
+
+.settings-modal h2 {
+  margin: 0 0 0.75rem;
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+.settings-modal h3 {
+  margin: 1rem 0 0.25rem;
+  font-size: 1rem;
+}
+
+.settings-modal p {
+  margin: 0 0 0.5rem;
+}
+
+.settings-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.75rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: #999;
+  cursor: pointer;
+  line-height: 1;
+  padding: 0;
+}
+
+.settings-close:hover {
+  color: #333;
+}
+
+.hint-key {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.hint-key li {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.inline-tile {
+  width: 1.6rem;
+  height: 1.6rem;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+}
+
+/* Difficulty toggle */
+.difficulty-toggle {
+  display: inline-flex;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.difficulty-btn {
+  padding: 0.3rem 0.75rem;
+  font-size: 0.8rem;
+  border: none;
+  background: #fff;
+  color: #666;
+  cursor: pointer;
+  font-family: inherit;
+  font-weight: 500;
+}
+
+.difficulty-btn + .difficulty-btn {
+  border-left: 1px solid #ccc;
+}
+
+.difficulty-btn.active {
+  background: #0098d4;
+  color: #fff;
+}
+
 /* Station input / autocomplete */
 .station-input {
   position: relative;
@@ -217,22 +342,11 @@
   font-size: 0.9rem;
 }
 
-/* Reset button */
-.reset-button {
+/* Bottom buttons */
+.bottom-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
   margin-top: 1.5rem;
-  padding: 0.4rem 1rem;
-  font-size: 0.8rem;
-  color: #999;
-  background: none;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  cursor: pointer;
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
 }
 
-.reset-button:hover {
-  color: #666;
-  border-color: #999;
-}

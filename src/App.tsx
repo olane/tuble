@@ -7,16 +7,19 @@ import {
   getStationList,
   createGame,
 } from "./game/game";
+import { loadDifficulty, saveDifficulty, type Difficulty } from "./game/settings";
 import { getStationName } from "./game/pathfinding";
 import StationInput from "./components/StationInput";
 import GuessList from "./components/GuessList";
 import GameOver from "./components/GameOver";
+import Settings from "./components/Settings";
 import "./App.css";
 
 const dateKey = getTodayKey();
 
 function App() {
   const [gameState, setGameState] = useState(() => loadOrCreateGame(dateKey));
+  const [difficulty, setDifficulty] = useState<Difficulty>(loadDifficulty);
   const stations = useMemo(() => getStationList(), []);
   const guessedIds = useMemo(
     () => new Set(gameState.guesses.map((g) => g.stationId)),
@@ -31,6 +34,11 @@ function App() {
     },
     [gameState]
   );
+
+  const handleDifficulty = useCallback((d: Difficulty) => {
+    setDifficulty(d);
+    saveDifficulty(d);
+  }, []);
 
   const handleReset = useCallback(() => {
     const fresh = createGame(dateKey);
@@ -49,7 +57,12 @@ function App() {
         </p>
       </header>
 
-      <GuessList guesses={gameState.guesses} getStationName={(id) => getStationName(id) ?? id} revealStations={gameState.status !== "playing"} />
+      <GuessList
+        guesses={gameState.guesses}
+        getStationName={(id) => getStationName(id) ?? id}
+        revealStations={gameState.status !== "playing"}
+        showLines={difficulty === "easy" || gameState.status !== "playing"}
+      />
 
       {gameState.status === "playing" && (
         <StationInput
@@ -61,9 +74,12 @@ function App() {
 
       <GameOver state={gameState} targetName={targetName} />
 
-      <button className="reset-button" onClick={handleReset}>
-        Reset
-      </button>
+      <div className="bottom-buttons">
+        <Settings difficulty={difficulty} onChangeDifficulty={handleDifficulty} />
+        <button className="bottom-btn" onClick={handleReset}>
+          Reset
+        </button>
+      </div>
     </div>
   );
 }
