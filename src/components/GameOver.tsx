@@ -1,4 +1,6 @@
+import { useState } from "react";
 import type { GameState } from "../game/types";
+import { getTodayKey } from "../game/game";
 
 interface GameOverProps {
   state: GameState;
@@ -13,10 +15,44 @@ function formatRidership(n: number): string {
   return String(n);
 }
 
+function buildShareText(state: GameState): string {
+  const dateKey = getTodayKey();
+  const won = state.status === "won";
+  const score = won ? `${state.guesses.length}/6` : "X/6";
+
+  const rows = state.guesses.map((guess) => {
+    const codePart = guess.codeHint?.letters
+      .map((l) => {
+        if (l.status === "correct") return "\uD83D\uDFE9";
+        if (l.status === "present") return "\uD83D\uDFE8";
+        return "\u2B1C";
+      })
+      .join("") ?? "";
+
+    const trains = guess.correct
+      ? "\u2705"
+      : guess.hint.segments.map(() => "\uD83D\uDE83").join("");
+
+    return `${codePart} ${trains}`;
+  });
+
+  return `Tuble ${dateKey} ${score}\n${rows.join("\n")}`;
+}
+
 export default function GameOver({ state, targetName, targetCode, targetZone, targetRidership }: GameOverProps) {
+  const [copied, setCopied] = useState(false);
+
   if (state.status === "playing") return null;
 
   const won = state.status === "won";
+
+  function handleShare() {
+    const text = buildShareText(state);
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  }
 
   return (
     <div className="game-over-card">
@@ -35,6 +71,9 @@ export default function GameOver({ state, targetName, targetCode, targetZone, ta
         <span>Zone {targetZone}</span>
         <span>{formatRidership(targetRidership)} riders/day</span>
       </div>
+      <button className="share-btn" onClick={handleShare}>
+        {copied ? "Copied!" : "Share"}
+      </button>
       <p className="game-over-comeback">Come back tomorrow for a new puzzle!</p>
     </div>
   );
