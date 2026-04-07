@@ -1,5 +1,6 @@
-import type { GameState, GuessResult, RouteHint } from "./types";
+import type { GameState, GuessResult, RouteHint, CodeHint, LetterStatus } from "./types";
 import { findRoute, getAllStationIds, graph } from "./pathfinding";
+import stationCodes from "../data/station-codes.json";
 
 const MAX_GUESSES = 6;
 const STORAGE_KEY = "tuble-game";
@@ -80,8 +81,9 @@ export function makeGuess(state: GameState, stationId: string): GameState {
   const hints: RouteHint[] = findRoute(stationId, state.targetId);
   // Use the first route as the hint
   const hint = hints[0];
+  const codeHint = compareStationCodes(stationId, state.targetId);
 
-  const result: GuessResult = { stationId, correct, hint };
+  const result: GuessResult = { stationId, correct, hint, codeHint };
   const guesses = [...state.guesses, result];
 
   let status: GameState["status"] = "playing";
@@ -101,6 +103,60 @@ export function getStationList(): { id: string; name: string }[] {
   return Object.entries(graph.stations)
     .map(([id, station]) => ({ id, name: station.name }))
     .sort((a, b) => a.name.localeCompare(b.name));
+}
+
+const codes = stationCodes as Record<string, string>;
+
+/**
+ * Get the 3-letter code for a station.
+ */
+export function getStationCode(id: string): string | undefined {
+  return codes[id];
+}
+
+/**
+ * Wordle-style comparison of two station codes.
+ * Green = correct letter in correct position.
+ * Yellow = letter exists in target code but wrong position.
+ * Grey = letter not in target code.
+ */
+function compareStationCodes(guessId: string, targetId: string): CodeHint {
+  const guessCode = codes[guessId];
+  const targetCode = codes[targetId];
+
+  if (!guessCode || !targetCode) {
+    return { letters: [] };
+  }
+
+  const guess = guessCode.split("");
+  const target = targetCode.split("");
+  const result: { char: string; status: LetterStatus }[] = guess.map((c) => ({
+    char: c,
+    status: "absent" as LetterStatus,
+  }));
+
+  // Track which target letters are still available for "present" matching
+  const remaining = [...target];
+
+  // First pass: mark correct (green)
+  for (let i = 0; i < guess.length; i++) {
+    if (guess[i] === target[i]) {
+      result[i].status = "correct";
+      remaining[i] = "";
+    }
+  }
+
+  // Second pass: mark present (yellow)
+  for (let i = 0; i < guess.length; i++) {
+    if (result[i].status === "correct") continue;
+    const idx = remaining.indexOf(guess[i]);
+    if (idx !== -1) {
+      result[i].status = "present";
+      remaining[idx] = "";
+    }
+  }
+
+  return { letters: result };
 }
 
 // --- localStorage persistence ---

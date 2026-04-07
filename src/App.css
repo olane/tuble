@@ -1,42 +1,233 @@
-#root {
-  max-width: 1280px;
+.app {
+  max-width: 480px;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 1rem;
+}
+
+/* Header */
+.app-header {
   text-align: center;
+  margin-bottom: 1.5rem;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.app-header h1 {
+  margin: 0;
+  font-size: 2rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.guess-counter {
+  margin: 0.25rem 0 0;
+  font-size: 0.9rem;
+  color: #666;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+/* Station input / autocomplete */
+.station-input {
+  position: relative;
+  margin-top: 1rem;
 }
 
-.card {
-  padding: 2em;
+.station-input input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  outline: none;
+  font-family: inherit;
 }
 
-.read-the-docs {
-  color: #888;
+.station-input input:focus {
+  border-color: #0098d4;
+}
+
+.station-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+  max-height: 240px;
+  overflow-y: auto;
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.station-dropdown li {
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+}
+
+.station-dropdown li.highlighted {
+  background: #e8f4fd;
+}
+
+/* Guess list */
+.guess-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.guess-row {
+  background: #fff;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.guess-row.correct {
+  background: #e6f9e6;
+  border: 2px solid #2ecc71;
+}
+
+.guess-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.4rem;
+}
+
+.guess-station {
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Wordle-style code tiles */
+.code-tiles {
+  display: flex;
+  gap: 3px;
+}
+
+.code-tile {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  font-weight: 700;
+  font-size: 0.95rem;
+  border-radius: 4px;
+  color: #fff;
+}
+
+.code-tile.correct {
+  background: #6aaa64;
+}
+
+.code-tile.present {
+  background: #c9b458;
+}
+
+.code-tile.absent {
+  background: #787c7e;
+}
+
+.guess-correct-label {
+  color: #2ecc71;
+  font-weight: 600;
+}
+
+.guess-hint {
+  font-size: 0.85rem;
+}
+
+.route-segments {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.segment {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.segment-lines {
+  display: flex;
+  gap: 0.25rem;
+  flex-wrap: wrap;
+}
+
+.line-badge {
+  display: inline-block;
+  padding: 0.15rem 0.5rem;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.segment-stops {
+  color: #666;
+  white-space: nowrap;
+}
+
+.segment-arrow {
+  color: #444;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.guess-total {
+  margin-top: 0.3rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Game over card */
+.game-over-card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 1.25rem 1rem;
+  margin-top: 0.75rem;
+  text-align: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.game-over-card h2 {
+  margin: 0 0 0.5rem;
+  font-size: 1.25rem;
+}
+
+.game-over-answer {
+  font-size: 1.1rem;
+  margin: 0 0 0.5rem;
+}
+
+.game-over-comeback {
+  color: #666;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Reset button */
+.reset-button {
+  margin-top: 1.5rem;
+  padding: 0.4rem 1rem;
+  font-size: 0.8rem;
+  color: #999;
+  background: none;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  cursor: pointer;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reset-button:hover {
+  color: #666;
+  border-color: #999;
 }

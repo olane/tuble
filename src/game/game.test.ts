@@ -64,7 +64,15 @@ describe("makeGuess", () => {
     expect(next.guesses[0].stationId).toBe(wrongId);
     expect(next.guesses[0].correct).toBe(false);
     expect(next.guesses[0].hint.segments.length).toBeGreaterThan(0);
+    expect(next.guesses[0].codeHint.letters).toHaveLength(3);
     expect(next.status).toBe("playing");
+  });
+
+  it("returns correct code hint letters for exact match", () => {
+    const next = makeGuess(game, game.targetId);
+    for (const l of next.guesses[0].codeHint.letters) {
+      expect(l.status).toBe("correct");
+    }
   });
 
   it("wins when guessing the target", () => {

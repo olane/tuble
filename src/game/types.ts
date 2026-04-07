@@ -31,10 +31,17 @@ export interface RouteHint {
   totalStops: number;
 }
 
+export type LetterStatus = "correct" | "present" | "absent";
+
+export interface CodeHint {
+  letters: { char: string; status: LetterStatus }[];
+}
+
 export interface GuessResult {
   stationId: string;
   correct: boolean;
   hint: RouteHint;
+  codeHint: CodeHint;
 }
 
 export interface GameState {
