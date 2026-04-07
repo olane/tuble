@@ -1,11 +1,11 @@
-export type Difficulty = "easy" | "hard";
+export type Difficulty = "easy" | "medium" | "hard";
 
 const STORAGE_KEY = "tuble-difficulty";
 
 export function loadDifficulty(): Difficulty {
   try {
     const val = localStorage.getItem(STORAGE_KEY);
-    if (val === "easy" || val === "hard") return val;
+    if (val === "easy" || val === "medium" || val === "hard") return val;
   } catch {
     // ignore
   }

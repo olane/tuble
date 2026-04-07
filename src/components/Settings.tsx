@@ -46,16 +46,23 @@ export default function Settings({ difficulty, onChangeDifficulty }: SettingsPro
               you whether the target station is busier (▲) or quieter (▼).
             </p>
             <h3>Difficulty</h3>
-            <p>
-              On <strong>Easy</strong>, tube line names are shown on each route
-              segment. On <strong>Hard</strong>, they're hidden until the game ends.
-            </p>
+            <ul className="difficulty-key">
+              <li><strong>Easy</strong> — tube line names shown on each segment</li>
+              <li><strong>Medium</strong> — lines hidden, but interchange zones shown</li>
+              <li><strong>Hard</strong> — lines and zones hidden until the game ends</li>
+            </ul>
             <div className="difficulty-toggle">
               <button
                 className={`difficulty-btn ${difficulty === "easy" ? "active" : ""}`}
                 onClick={() => onChangeDifficulty("easy")}
               >
                 Easy
+              </button>
+              <button
+                className={`difficulty-btn ${difficulty === "medium" ? "active" : ""}`}
+                onClick={() => onChangeDifficulty("medium")}
+              >
+                Medium
               </button>
               <button
                 className={`difficulty-btn ${difficulty === "hard" ? "active" : ""}`}

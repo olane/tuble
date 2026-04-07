@@ -97,6 +97,17 @@
   color: #333;
 }
 
+.difficulty-key {
+  list-style: none;
+  padding: 0;
+  margin: 0.25rem 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.difficulty-key li {
+  margin: 0.2rem 0;
+}
+
 .hint-key {
   list-style: none;
   padding: 0;
@@ -301,6 +312,15 @@
 
 .segment-chevron {
   color: #999;
+}
+
+.segment-zone {
+  font-size: 0.75rem;
+  color: #888;
+  white-space: nowrap;
+  padding: 0.1rem 0.4rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 .segment-stops {

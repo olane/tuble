@@ -9,7 +9,7 @@ import {
   randomGame,
 } from "./game/game";
 import { loadDifficulty, saveDifficulty, type Difficulty } from "./game/settings";
-import { getStationName } from "./game/pathfinding";
+import { getStationName, graph } from "./game/pathfinding";
 import StationInput from "./components/StationInput";
 import GuessList from "./components/GuessList";
 import GameOver from "./components/GameOver";
@@ -67,8 +67,10 @@ function App() {
       <GuessList
         guesses={gameState.guesses}
         getStationName={(id) => getStationName(id) ?? id}
+        getStationZone={(id) => graph.stations[id]?.zone}
         revealStations={gameState.status !== "playing"}
         showLines={difficulty === "easy" || gameState.status !== "playing"}
+        showZones={difficulty !== "hard" || gameState.status !== "playing"}
       />
 
       {gameState.status === "playing" && (

@@ -17,8 +17,10 @@ const MARKER_COLOURS = [
 interface GuessListProps {
   guesses: GuessResult[];
   getStationName: (id: string) => string | undefined;
+  getStationZone: (id: string) => string | undefined;
   revealStations: boolean;
   showLines: boolean;
+  showZones: boolean;
 }
 
 /**
@@ -56,7 +58,7 @@ function buildSharedMarkers(guesses: GuessResult[]): Map<string, string> {
   return markers;
 }
 
-export default function GuessList({ guesses, getStationName, revealStations, showLines }: GuessListProps) {
+export default function GuessList({ guesses, getStationName, getStationZone, revealStations, showLines, showZones }: GuessListProps) {
   if (guesses.length === 0) return null;
 
   const sharedMarkers = useMemo(() => buildSharedMarkers(guesses), [guesses]);
@@ -115,15 +117,24 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                             ? "change at " + (getStationName(seg.endStationId) ?? seg.endStationId)
                             : getStationName(seg.endStationId) ?? seg.endStationId}
                         </div>
-                      ) : marker ? (
-                        <div className="segment-marker">
-                          <span
-                            className="station-marker"
-                            style={{ backgroundColor: marker }}
-                            title="Shared interchange"
-                          />
-                        </div>
-                      ) : null}
+                      ) : (
+                        <>
+                          {isInterchange && showZones && (
+                            <span className="segment-zone" title="Zone of interchange station">
+                              Zone {getStationZone(seg.endStationId) ?? "?"}
+                            </span>
+                          )}
+                          {marker && (
+                            <div className="segment-marker">
+                              <span
+                                className="station-marker"
+                                style={{ backgroundColor: marker }}
+                                title="Shared interchange"
+                              />
+                            </div>
+                          )}
+                        </>
+                      )}
                     </div>
                   );
                 })}
