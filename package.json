@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "build-graph": "tsx scripts/build-graph.ts"
   },
   "dependencies": {
     "react": "^19.1.0",

@@ -1,0 +1,50 @@
+{
+  "bakerloo": {
+    "name": "Bakerloo",
+    "colour": "#B36305"
+  },
+  "central": {
+    "name": "Central",
+    "colour": "#E32017"
+  },
+  "circle": {
+    "name": "Circle",
+    "colour": "#FFD300"
+  },
+  "district": {
+    "name": "District",
+    "colour": "#00782A"
+  },
+  "elizabeth": {
+    "name": "Elizabeth line",
+    "colour": "#6950A1"
+  },
+  "hammersmith-city": {
+    "name": "Hammersmith & City",
+    "colour": "#F3A9BB"
+  },
+  "jubilee": {
+    "name": "Jubilee",
+    "colour": "#A0A5A9"
+  },
+  "metropolitan": {
+    "name": "Metropolitan",
+    "colour": "#9B0056"
+  },
+  "northern": {
+    "name": "Northern",
+    "colour": "#000000"
+  },
+  "piccadilly": {
+    "name": "Piccadilly",
+    "colour": "#003688"
+  },
+  "victoria": {
+    "name": "Victoria",
+    "colour": "#0098D4"
+  },
+  "waterloo-city": {
+    "name": "Waterloo & City",
+    "colour": "#95CDBA"
+  }
+}
