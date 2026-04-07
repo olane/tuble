@@ -372,3 +372,15 @@
   margin-top: 1.5rem;
 }
 
+.app-footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.7rem;
+  color: #999;
+}
+
+.app-footer a {
+  color: #999;
+  text-decoration: underline;
+}
+

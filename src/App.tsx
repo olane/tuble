@@ -80,6 +80,10 @@ function App() {
           Reset
         </button>
       </div>
+
+      <footer className="app-footer">
+        Built by <a href="https://github.com/olane">Oli</a>. Inspired heavily by <a href="https://loconundrum.aaronc.cc/">Loconundrum</a>.
+      </footer>
     </div>
   );
 }
