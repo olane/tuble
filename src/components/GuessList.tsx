@@ -36,15 +36,18 @@ export default function GuessList({ guesses, getStationName, revealStations }: G
                 {guess.hint.segments.map((seg, j) => (
                   <div key={j} className="segment">
                     <div className="segment-lines">
-                      {seg.lines.map((lineId) => (
-                        <span
-                          key={lineId}
-                          className="line-badge"
-                          style={{ backgroundColor: lines[lineId]?.colour ?? "#666" }}
-                          title={lines[lineId]?.name ?? lineId}
-                        >
-                          {lines[lineId]?.name ?? lineId}
-                        </span>
+                      {seg.lines.map((lineId, k) => (
+                        <>
+                          {k > 0 && <span key={`sep-${k}`} className="line-separator">/</span>}
+                          <span
+                            key={lineId}
+                            className="line-badge"
+                            style={{ backgroundColor: lines[lineId]?.colour ?? "#666" }}
+                            title={lines[lineId]?.name ?? lineId}
+                          >
+                            {lines[lineId]?.name ?? lineId}
+                          </span>
+                        </>
                       ))}
                     </div>
                     <div className="segment-stops">
