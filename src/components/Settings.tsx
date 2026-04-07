@@ -33,13 +33,6 @@ export default function Settings({ difficulty, onChangeDifficulty }: SettingsPro
               <li><span className="code-tile present inline-tile">Y</span> Right letter, wrong position</li>
               <li><span className="code-tile absent inline-tile">X</span> Letter not in the code</li>
             </ul>
-            <h3>Shared interchanges</h3>
-            <p>
-              If two of your guesses route through the same interchange station,
-              a matching coloured <span className="station-marker inline-marker" style={{ backgroundColor: "#3498db" }} /> marker
-              appears on both routes — so you know they pass through the same point,
-              even though the station name is hidden.
-            </p>
             <h3>Ridership</h3>
             <p>
               Each guess shows the station's average daily ridership. The arrow tells
@@ -48,8 +41,8 @@ export default function Settings({ difficulty, onChangeDifficulty }: SettingsPro
             <h3>Difficulty</h3>
             <ul className="difficulty-key">
               <li><strong>Easy</strong> — tube line names shown on each segment</li>
-              <li><strong>Medium</strong> — lines hidden, but interchange zones shown</li>
-              <li><strong>Hard</strong> — lines and zones hidden until the game ends</li>
+              <li><strong>Medium</strong> — lines hidden, but if two guesses share the same segment the line is revealed</li>
+              <li><strong>Hard</strong> — lines hidden until the game ends</li>
             </ul>
             <div className="difficulty-toggle">
               <button
