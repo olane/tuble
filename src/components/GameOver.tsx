@@ -18,7 +18,7 @@ function formatRidership(n: number): string {
 function buildShareText(state: GameState): string {
   const dateKey = getTodayKey();
   const won = state.status === "won";
-  const score = won ? `${state.guesses.length}/6` : "X/6";
+  const score = won ? `${state.guesses.length}/${state.maxGuesses}` : `X/${state.maxGuesses}`;
 
   const rows = state.guesses.map((guess) => {
     const codePart = guess.codeHint?.letters
