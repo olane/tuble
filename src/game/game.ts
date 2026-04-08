@@ -3,7 +3,7 @@ import { findRoute, getAllStationIds, graph } from "./pathfinding";
 import stationCodes from "../data/station-codes.json";
 import ridershipData from "../data/ridership.json";
 
-const MAX_GUESSES = 6;
+const MAX_GUESSES = 8;
 const STORAGE_KEY = "tuble-game";
 
 /**
