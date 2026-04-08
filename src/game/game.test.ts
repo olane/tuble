@@ -42,7 +42,7 @@ describe("createGame", () => {
     const game = createGame("2026-04-07");
     expect(game.status).toBe("playing");
     expect(game.guesses).toEqual([]);
-    expect(game.maxGuesses).toBe(6);
+    expect(game.maxGuesses).toBe(8);
     expect(game.targetId).toBe(getTargetForDate("2026-04-07"));
   });
 });
@@ -88,10 +88,10 @@ describe("makeGuess", () => {
     const wrongIds = allIds.filter((id) => id !== game.targetId);
 
     let state = game;
-    for (let i = 0; i < 6; i++) {
+    for (let i = 0; i < 8; i++) {
       state = makeGuess(state, wrongIds[i]);
     }
-    expect(state.guesses).toHaveLength(6);
+    expect(state.guesses).toHaveLength(8);
     expect(state.status).toBe("lost");
   });
 
