@@ -1,6 +1,7 @@
 import { useMemo } from "react";
 import type { GuessResult } from "../game/types";
 import linesData from "../data/lines.json";
+import RouteMap, { getRevealedSegments } from "./RouteMap";
 
 const lines = linesData as Record<string, { name: string; colour: string }>;
 
@@ -65,6 +66,7 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
   if (guesses.length === 0) return null;
 
   const sharedSegments = useMemo(() => buildSharedSegments(guesses), [guesses]);
+  const revealedKeys = useMemo(() => getRevealedSegments(guesses), [guesses]);
 
   return (
     <div className="guess-list">
@@ -86,6 +88,12 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
             <div className="guess-correct-label">Correct!</div>
           ) : (
             <div className="guess-hint">
+              <RouteMap
+                guessId={guess.stationId}
+                segments={guess.hint.segments}
+                sharedLines={guess.sharedLines ?? []}
+                revealedKeys={revealedKeys}
+              />
               <div className="route-segments">
                 {guess.hint.segments.map((seg, j) => {
                   const shouldShowLines = showLines

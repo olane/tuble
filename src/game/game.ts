@@ -106,7 +106,11 @@ export function makeGuess(state: GameState, stationId: string): GameState {
   const targetZone = graph.stations[state.targetId]?.zone ?? "?";
   const zoneComparison = compareZones(zone, targetZone);
 
-  const result: GuessResult = { stationId, correct, hint, codeHint, ridership, ridershipComparison, zone, zoneComparison };
+  const guessLines = new Set(graph.stations[stationId]?.lines ?? []);
+  const targetLines = graph.stations[state.targetId]?.lines ?? [];
+  const sharedLines = targetLines.filter((l) => guessLines.has(l));
+
+  const result: GuessResult = { stationId, correct, hint, codeHint, ridership, ridershipComparison, zone, zoneComparison, sharedLines };
   const guesses = [...state.guesses, result];
 
   let status: GameState["status"] = "playing";
