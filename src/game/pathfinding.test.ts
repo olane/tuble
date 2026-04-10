@@ -21,13 +21,13 @@ describe("findRoute", () => {
     const result = findRoute("bank", "st-pauls");
     expect(result).toHaveLength(1);
     expect(result[0].totalStops).toBe(1);
-    expect(result[0].segments).toEqual([{ lines: ["central"], stops: 1, endStationId: "st-pauls" }]);
+    expect(result[0].segments).toMatchObject([{ lines: ["central"], stops: 1, endStationId: "st-pauls" }]);
   });
 
   it("finds a route with multiple options and merges parallel lines", () => {
     // Victoria to Canary Wharf: district/circle share the same segment shape
     const result = findRoute("victoria", "canary-wharf");
-    expect(result).toEqual([
+    expect(result).toMatchObject([
       {
         segments: [
           { lines: ["circle", "district"], stops: 2, endStationId: "westminster" },
@@ -48,12 +48,16 @@ describe("findRoute", () => {
   it("finds a single line route from Oxford Circus to Bank", () => {
     // this route ends up with multiple hops if you don't penalise changes
     const result = findRoute("oxford-circus", "bank");
-    expect(result).toContainEqual({
-      segments: [
-        { lines: ["central"], stops: 5, endStationId: "bank" },
-      ],
-      totalStops: 5,
-    });
+    expect(result).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          segments: expect.arrayContaining([
+            expect.objectContaining({ lines: ["central"], stops: 5, endStationId: "bank" }),
+          ]),
+          totalStops: 5,
+        }),
+      ])
+    );
   });
 
   it("every segment has valid lines", () => {

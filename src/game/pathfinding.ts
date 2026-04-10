@@ -177,7 +177,7 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
   }
 
   // Convert paths to single-line segments first
-  interface RawSegment { line: string; stops: number; endStationId: string }
+  interface RawSegment { line: string; stops: number; endStationId: string; path: string[] }
   const rawRoutes: { segments: RawSegment[]; totalStops: number }[] = [];
   const seenRaw = new Set<string>();
 
@@ -188,8 +188,9 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
       if (last && last.line === edge.line) {
         last.stops++;
         last.endStationId = edge.stationId;
+        last.path.push(edge.stationId);
       } else {
-        segments.push({ line: edge.line, stops: 1, endStationId: edge.stationId });
+        segments.push({ line: edge.line, stops: 1, endStationId: edge.stationId, path: [edge.stationId] });
       }
     }
     const key = JSON.stringify(segments);
@@ -221,6 +222,7 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
       lines: [s.line],
       stops: s.stops,
       endStationId: s.endStationId,
+      path: s.path,
     }));
     // Merge lines from other routes in the same shape group
     for (let r = 1; r < group.length; r++) {

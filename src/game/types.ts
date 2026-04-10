@@ -23,6 +23,7 @@ export interface RouteSegment {
   lines: string[];
   stops: number;
   endStationId: string;
+  path: string[];
 }
 
 /** The hint shown to the player after a guess */
