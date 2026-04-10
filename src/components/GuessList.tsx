@@ -91,8 +91,9 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
               <RouteMap
                 guessId={guess.stationId}
                 segments={guess.hint.segments}
-                sharedLines={guess.sharedLines ?? []}
                 revealedKeys={revealedKeys}
+                showLines={showLines}
+                revealMatchedSegments={revealMatchedSegments}
               />
               <div className="route-segments">
                 {guess.hint.segments.map((seg, j) => {

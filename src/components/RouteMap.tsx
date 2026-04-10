@@ -165,8 +165,9 @@ function buildSegmentKey(
 interface RouteMapProps {
   guessId: string;
   segments: RouteSegment[];
-  sharedLines: string[];
   revealedKeys: Set<string>;
+  showLines: boolean;
+  revealMatchedSegments: boolean;
 }
 
 export function getRevealedSegments(
@@ -192,10 +193,10 @@ export function getRevealedSegments(
 export default function RouteMap({
   guessId,
   segments,
-  sharedLines,
   revealedKeys,
+  showLines,
+  revealMatchedSegments,
 }: RouteMapProps) {
-  const sharedSet = new Set(sharedLines);
   const geo = computeRouteGeometry(guessId, segments);
 
   return (
@@ -209,12 +210,11 @@ export default function RouteMap({
           const fromId =
             j === 0 ? guessId : segments[j - 1].endStationId;
           const segKey = buildSegmentKey(fromId, seg);
-          const revealedByShared = seg.lines.find((l) => sharedSet.has(l));
-          const revealedByCross = revealedKeys.has(segKey);
-          const lineColor =
-            revealedByShared || revealedByCross
-              ? lines[seg.lines[0]]?.colour ?? "#999"
-              : "#D4C5A9";
+          const revealedByCross = revealMatchedSegments && revealedKeys.has(segKey);
+          const revealed = showLines || revealedByCross;
+          const lineColor = revealed
+            ? lines[seg.lines[0]]?.colour ?? "#999"
+            : "#D4C5A9";
           const pts = geo.segmentPoints[j];
           const d = pointsToSvgPath(pts);
           const { point: mid, angle: localAngle } = polylineMidpoint(pts);

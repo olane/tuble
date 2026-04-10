@@ -49,7 +49,6 @@ export interface GuessResult {
   ridershipComparison: Comparison;
   zone: string;
   zoneComparison: Comparison;
-  sharedLines: string[];
 }
 
 export interface GameState {
