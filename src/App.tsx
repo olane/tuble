@@ -87,6 +87,7 @@ function App() {
 
       <GameOver
         state={gameState}
+        difficulty={difficulty}
         targetName={targetName}
         targetCode={targetCode}
         targetZone={targetZone}

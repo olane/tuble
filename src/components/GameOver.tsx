@@ -1,9 +1,11 @@
 import { useState } from "react";
 import type { GameState } from "../game/types";
+import type { Difficulty } from "../game/settings";
 import { getTodayKey } from "../game/game";
 
 interface GameOverProps {
   state: GameState;
+  difficulty: Difficulty;
   targetName: string;
   targetCode: string;
   targetZone: string;
@@ -15,10 +17,11 @@ function formatRidership(n: number): string {
   return String(n);
 }
 
-function buildShareText(state: GameState): string {
+function buildShareText(state: GameState, difficulty: Difficulty): string {
   const dateKey = getTodayKey();
   const won = state.status === "won";
   const score = won ? `${state.guesses.length}/${state.maxGuesses}` : `X/${state.maxGuesses}`;
+  const diffLabel = difficulty === "easy" ? "🟢" : difficulty === "medium" ? "🟡" : "🔴";
 
   const rows = state.guesses.map((guess) => {
     const codePart = guess.codeHint?.letters
@@ -30,16 +33,21 @@ function buildShareText(state: GameState): string {
       .join("") ?? "";
 
     const trains = guess.correct
-      ? "\u2705"
+      ? `\u2705 ${score}`
       : guess.hint.segments.map(() => "\uD83D\uDE83").join("");
 
     return `${codePart} ${trains}`;
   });
 
-  return `Tuble ${dateKey} ${score}\n${rows.join("\n")}`;
+
+  if (!won) {
+    rows[rows.length - 1] += "\u274C";
+  }
+
+  return `Tuble ${dateKey}\n${rows.join("\n")}\n${diffLabel} ${difficulty} mode`;
 }
 
-export default function GameOver({ state, targetName, targetCode, targetZone, targetRidership }: GameOverProps) {
+export default function GameOver({ state, difficulty, targetName, targetCode, targetZone, targetRidership }: GameOverProps) {
   const [copied, setCopied] = useState(false);
 
   if (state.status === "playing") return null;
@@ -47,7 +55,7 @@ export default function GameOver({ state, targetName, targetCode, targetZone, ta
   const won = state.status === "won";
 
   function handleShare() {
-    const text = buildShareText(state);
+    const text = buildShareText(state, difficulty);
     navigator.clipboard.writeText(text).then(() => {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
