@@ -6,6 +6,7 @@ const lines = linesData as Record<string, { name: string; colour: string }>;
 const meta = metadataData as Record<string, { lat: number; lon: number; borough: string }>;
 
 const HOP_LENGTH = 20;
+const MIN_SEGMENT_LENGTH = 50;
 const LINE_THICKNESS = 10;
 const NODE_RADIUS = 9;
 const TARGET_RADIUS = 12;
@@ -44,6 +45,22 @@ function computeRouteGeometry(guessId: string, segments: RouteSegment[]) {
         x: prev.x + Math.cos(angle) * HOP_LENGTH,
         y: prev.y + Math.sin(angle) * HOP_LENGTH,
       });
+    }
+
+    // Stretch short segments so labels and nodes don't overlap
+    const start = pts[0];
+    const end = pts[pts.length - 1];
+    const dx = end.x - start.x;
+    const dy = end.y - start.y;
+    const segLen = Math.sqrt(dx * dx + dy * dy);
+    if (segLen > 0 && segLen < MIN_SEGMENT_LENGTH) {
+      const scale = MIN_SEGMENT_LENGTH / segLen;
+      for (let i = 1; i < pts.length; i++) {
+        pts[i] = {
+          x: start.x + (pts[i].x - start.x) * scale,
+          y: start.y + (pts[i].y - start.y) * scale,
+        };
+      }
     }
 
     allPoints.push(pts);
@@ -151,16 +168,19 @@ export default function RouteMap({
               : "#D4C5A9";
           const pts = geo.segmentPoints[j];
           const d = pointsToSvgPath(pts);
-          const midIdx = Math.floor(pts.length / 2);
-          const mid = pts[midIdx];
-          const before = pts[Math.max(0, midIdx - 1)];
-          const after = pts[Math.min(pts.length - 1, midIdx + 1)];
-          const localAngle = Math.atan2(
-            after.y - before.y,
-            after.x - before.x
+          const start = pts[0];
+          const end = pts[pts.length - 1];
+          const mid = {
+            x: (start.x + end.x) / 2,
+            y: (start.y + end.y) / 2,
+          };
+          const segAngle = Math.atan2(
+            end.y - start.y,
+            end.x - start.x
           );
-          const perp1 = localAngle - Math.PI / 2;
-          const perp2 = localAngle + Math.PI / 2;
+          // Pick the perpendicular side that points more upward
+          const perp1 = segAngle - Math.PI / 2;
+          const perp2 = segAngle + Math.PI / 2;
           const perpAngle =
             Math.sin(perp1) < Math.sin(perp2) ? perp1 : perp2;
           const labelOffset = 16;
