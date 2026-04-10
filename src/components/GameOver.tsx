@@ -56,10 +56,14 @@ export default function GameOver({ state, difficulty, targetName, targetCode, ta
 
   function handleShare() {
     const text = buildShareText(state, difficulty);
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
+    if (navigator.share && "ontouchstart" in window) {
+      navigator.share({ text }).catch(() => {});
+    } else {
+      navigator.clipboard.writeText(text).then(() => {
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      });
+    }
   }
 
   return (
