@@ -103,9 +103,9 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                   return (
                     <div key={j} className="segment">
                       <span className="segment-chevron">&#x25B8;</span>
-                      {shouldShowLines && (
-                        <div className="segment-lines">
-                          {seg.lines.map((lineId, k) => (
+                      <div className="segment-lines">
+                        {shouldShowLines ? (
+                          seg.lines.map((lineId, k) => (
                             <>
                               {k > 0 && <span key={`sep-${k}`} className="line-separator">/</span>}
                               <span
@@ -117,9 +117,11 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                                 {lines[lineId]?.name ?? lineId}
                               </span>
                             </>
-                          ))}
-                        </div>
-                      )}
+                          ))
+                        ) : (
+                          <span className="line-badge line-badge-hidden">???</span>
+                        )}
+                      </div>
                       <div className="segment-stops">
                         {seg.stops} {seg.stops === 1 ? "stop" : "stops"}
                       </div>
