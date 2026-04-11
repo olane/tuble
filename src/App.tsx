@@ -55,6 +55,20 @@ function App() {
     saveGame(dateKey, fresh);
   }, []);
 
+  const revealedTargetLines = useMemo(() => {
+    const targetLines = new Set(graph.stations[gameState.targetId]?.lines ?? []);
+    const revealed = new Set<string>();
+    for (const guess of gameState.guesses) {
+      const guessLines = graph.stations[guess.stationId]?.lines ?? [];
+      for (const line of guessLines) {
+        if (targetLines.has(line)) {
+          revealed.add(line);
+        }
+      }
+    }
+    return revealed;
+  }, [gameState.guesses, gameState.targetId]);
+
   const targetName = getStationName(gameState.targetId) ?? gameState.targetId;
   const targetCode = getStationCode(gameState.targetId) ?? "???";
   const targetZone = graph.stations[gameState.targetId]?.zone ?? "?";
@@ -75,6 +89,7 @@ function App() {
         revealStations={gameState.status !== "playing"}
         showLines={difficulty === "easy" || gameState.status !== "playing"}
         revealMatchedSegments={difficulty === "medium"}
+        revealedTargetLines={revealedTargetLines}
       />
 
       {gameState.status === "playing" && (

@@ -44,7 +44,7 @@ export default function Settings({ difficulty, onChangeDifficulty }: SettingsPro
             <h3>Difficulty</h3>
             <ul className="difficulty-key">
               <li><strong>Easy</strong> — tube line names shown on each segment</li>
-              <li><strong>Medium</strong> — lines hidden, but if two guesses share the same segment the line is revealed</li>
+              <li><strong>Medium</strong> — lines hidden, but intermediate segments are revealed when shared across guesses. The target's line is only revealed when you guess a station on that line</li>
               <li><strong>Hard</strong> — lines hidden until the game ends</li>
             </ul>
             <div className="difficulty-toggle">
