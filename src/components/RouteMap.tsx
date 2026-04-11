@@ -202,9 +202,9 @@ export default function RouteMap({
   return (
     <div className="route-visualizer-wrapper">
       <svg
-        width={geo.width}
-        height={Math.max(geo.height, 50)}
+        viewBox={`0 0 ${geo.width} ${Math.max(geo.height, 50)}`}
         className="route-svg"
+        style={{ width: geo.width, maxWidth: "100%" }}
       >
         {segments.map((seg, j) => {
           const fromId =
