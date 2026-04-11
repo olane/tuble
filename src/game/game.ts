@@ -137,7 +137,7 @@ function getRidership(stationId: string): number {
 
 function parseZones(zone: string): number[] {
   const matches = zone.match(/\d+/g);
-  return matches ? matches.map(Number) : [0];
+  return matches ? matches.map(Number) : [Infinity];
 }
 
 function compare(a: number, b: number): Comparison {
