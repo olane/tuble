@@ -168,6 +168,7 @@ interface RouteMapProps {
   revealedKeys: Set<string>;
   showLines: boolean;
   revealMatchedSegments: boolean;
+  revealedTargetLines: Set<string>;
 }
 
 export function getRevealedSegments(
@@ -196,6 +197,7 @@ export default function RouteMap({
   revealedKeys,
   showLines,
   revealMatchedSegments,
+  revealedTargetLines,
 }: RouteMapProps) {
   const geo = computeRouteGeometry(guessId, segments);
 
@@ -210,10 +212,15 @@ export default function RouteMap({
           const fromId =
             j === 0 ? guessId : segments[j - 1].endStationId;
           const segKey = buildSegmentKey(fromId, seg);
-          const revealedByCross = revealMatchedSegments && revealedKeys.has(segKey);
-          const revealed = showLines || revealedByCross;
+          const isLastSegment = j === segments.length - 1;
+          const revealedByCross = revealMatchedSegments && !isLastSegment && revealedKeys.has(segKey);
+          const revealedByGuess = revealMatchedSegments && isLastSegment && seg.lines.some(l => revealedTargetLines.has(l));
+          const revealed = showLines || revealedByCross || revealedByGuess;
+          const revealedLine = revealedByGuess
+            ? seg.lines.find(l => revealedTargetLines.has(l))
+            : undefined;
           const lineColor = revealed
-            ? lines[seg.lines[0]]?.colour ?? "#999"
+            ? lines[revealedLine ?? seg.lines[0]]?.colour ?? "#999"
             : "#D4C5A9";
           const pts = geo.segmentPoints[j];
           const d = pointsToSvgPath(pts);

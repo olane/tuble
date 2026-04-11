@@ -22,6 +22,7 @@ interface GuessListProps {
   revealStations: boolean;
   showLines: boolean;
   revealMatchedSegments: boolean;
+  revealedTargetLines: Set<string>;
 }
 
 /**
@@ -62,7 +63,7 @@ function buildSharedSegments(guesses: GuessResult[]): Set<string> {
   return shared;
 }
 
-export default function GuessList({ guesses, getStationName, revealStations, showLines, revealMatchedSegments }: GuessListProps) {
+export default function GuessList({ guesses, getStationName, revealStations, showLines, revealMatchedSegments, revealedTargetLines }: GuessListProps) {
   if (guesses.length === 0) return null;
 
   const sharedSegments = useMemo(() => buildSharedSegments(guesses), [guesses]);
@@ -94,11 +95,14 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                 revealedKeys={revealedKeys}
                 showLines={showLines}
                 revealMatchedSegments={revealMatchedSegments}
+                revealedTargetLines={revealedTargetLines}
               />
               <div className="route-segments">
                 {guess.hint.segments.map((seg, j) => {
+                  const isLastSegment = j === guess.hint.segments.length - 1;
                   const shouldShowLines = showLines
-                    || (revealMatchedSegments && sharedSegments.has(segmentKey(seg)));
+                    || (revealMatchedSegments && !isLastSegment && sharedSegments.has(segmentKey(seg)));
+                  const perLineReveal = !shouldShowLines && revealMatchedSegments && isLastSegment;
 
                   return (
                     <div key={j} className="segment">
@@ -116,6 +120,24 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                               >
                                 {lines[lineId]?.name ?? lineId}
                               </span>
+                            </>
+                          ))
+                        ) : perLineReveal && seg.lines.some(l => revealedTargetLines.has(l)) ? (
+                          seg.lines.map((lineId, k) => (
+                            <>
+                              {k > 0 && <span key={`sep-${k}`} className="line-separator">/</span>}
+                              {revealedTargetLines.has(lineId) ? (
+                                <span
+                                  key={lineId}
+                                  className="line-badge"
+                                  style={{ backgroundColor: lines[lineId]?.colour ?? "#666" }}
+                                  title={lines[lineId]?.name ?? lineId}
+                                >
+                                  {lines[lineId]?.name ?? lineId}
+                                </span>
+                              ) : (
+                                <span key={`hidden-${k}`} className="line-badge line-badge-hidden">???</span>
+                              )}
                             </>
                           ))
                         ) : (
