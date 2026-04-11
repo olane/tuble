@@ -56,18 +56,18 @@ function App() {
   }, []);
 
   const revealedTargetLines = useMemo(() => {
-    const targetLines = new Set(graph.stations[gameState.targetId]?.lines ?? []);
     const revealed = new Set<string>();
     for (const guess of gameState.guesses) {
-      const guessLines = graph.stations[guess.stationId]?.lines ?? [];
-      for (const line of guessLines) {
-        if (targetLines.has(line)) {
+      if (guess.correct) continue;
+      // Only reveal when the route is a direct connection (no interchange)
+      if (guess.hint.segments.length === 1) {
+        for (const line of guess.hint.segments[0].lines) {
           revealed.add(line);
         }
       }
     }
     return revealed;
-  }, [gameState.guesses, gameState.targetId]);
+  }, [gameState.guesses]);
 
   const targetName = getStationName(gameState.targetId) ?? gameState.targetId;
   const targetCode = getStationCode(gameState.targetId) ?? "???";
