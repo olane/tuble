@@ -28,7 +28,7 @@ function geoAngle(fromId: string, toId: string): number {
   return Math.round(angle / (Math.PI / 4)) * (Math.PI / 4);
 }
 
-function computeRouteGeometry(guessId: string, segments: RouteSegment[]) {
+export function computeRouteGeometry(guessId: string, segments: RouteSegment[]) {
   const allPoints: Point[][] = [];
   let cursor: Point = { x: 0, y: 0 };
   let prevId = guessId;
