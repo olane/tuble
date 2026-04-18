@@ -16,11 +16,24 @@ import StationInput from "./components/StationInput";
 import GuessList from "./components/GuessList";
 import GameOver from "./components/GameOver";
 import Settings from "./components/Settings";
+import RouteTestPage from "./pages/RouteTestPage";
+import RouteGalleryPage from "./pages/RouteGalleryPage";
 import "./App.css";
 
 const dateKey = getTodayKey();
 
-function App() {
+export default function App() {
+  const path = window.location.pathname.replace(/\/$/, "");
+  if (path === "/test") {
+    return <RouteTestPage params={new URLSearchParams(window.location.search)} />;
+  }
+  if (path === "/gallery") {
+    return <RouteGalleryPage />;
+  }
+  return <GamePage />;
+}
+
+function GamePage() {
   const [gameState, setGameState] = useState(() => loadOrCreateGame(dateKey));
   const [difficulty, setDifficulty] = useState<Difficulty>(loadDifficulty);
   const stations = useMemo(() => getStationList(), []);
@@ -126,5 +139,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

@@ -465,3 +465,101 @@
   text-decoration: underline;
 }
 
+/* Route test / gallery pages */
+.app-gallery {
+  max-width: 1200px;
+}
+
+.route-test-error {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e0b0b0;
+  background: #fbeaea;
+  border-radius: 6px;
+  color: #802020;
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.route-test-hint {
+  margin: 0.5rem 0 0;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+.route-test-hint-block {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.route-test-hint-label {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.5rem;
+}
+
+.route-test-segments {
+  font-size: 0.85rem;
+  color: #444;
+  margin: 0.75rem 0 0;
+  padding-left: 1.25rem;
+}
+
+.route-test-segments li {
+  margin: 0.15rem 0;
+}
+
+.route-test-nav {
+  margin-top: 1.5rem;
+  text-align: center;
+  font-size: 0.85rem;
+  color: #666;
+}
+
+.route-test-nav a {
+  color: #666;
+}
+
+.route-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 1rem;
+}
+
+.route-gallery-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.route-gallery-card-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.route-gallery-card-label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #333;
+}
+
+.route-gallery-card-link {
+  font-size: 0.75rem;
+  color: #666;
+  text-decoration: none;
+}
+
+.route-gallery-card-link:hover {
+  text-decoration: underline;
+}
+
+.route-gallery-card-meta {
+  font-size: 0.75rem;
+  color: #888;
+}
+
