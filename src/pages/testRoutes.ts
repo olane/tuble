@@ -45,4 +45,13 @@ export const TEST_ROUTES: TestRoute[] = [
   // --- Branching edge cases ---
   { label: "Northern via Bank branch", from: "london-bridge", to: "kings-cross-st-pancras" },
   { label: "Central with split", from: "stratford", to: "ealing-broadway" },
+
+  // --- Same-line branch changes (require swapping trains on one line) ---
+  { label: "Northern branch change (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
+  { label: "Northern Mill Hill East spur", from: "mill-hill-east", to: "morden" },
+  { label: "Central east↔west (West Ruislip → Epping)", from: "west-ruislip", to: "epping" },
+  { label: "Central Hainault loop (Hainault → Ealing Broadway)", from: "hainault", to: "ealing-broadway" },
+  { label: "Metropolitan branch change (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
+  { label: "District branch change (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
+  { label: "Piccadilly branch change (Heathrow T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
 ];

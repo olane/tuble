@@ -1,13 +1,18 @@
 import type { TubeGraph, RouteSegment, RouteHint } from "./types";
 import graphData from "../data/tube-graph.json";
 
-const graph: TubeGraph = graphData as TubeGraph;
+// Cast via `unknown` because the committed tube-graph.json is a snapshot
+// that may be produced by an older build without `branches` on each edge.
+// Runtime validation in findRoute throws if an edge is missing branches,
+// which is exactly what we want — regenerate the data.
+const graph: TubeGraph = graphData as unknown as TubeGraph;
 
 export { graph };
 
 interface HeapEntry {
   stationId: string;
   line: string | null;
+  branch: string | null;
   cost: number;
 }
 
@@ -61,42 +66,61 @@ class MinHeap {
 }
 
 const LINE_CHANGE_PENALTY = 2.5;
+const BRANCH_CHANGE_PENALTY = 2.0;
 
-function stateKey(stationId: string, line: string | null): string {
-  return `${stationId}:${line ?? "*"}`;
+function stateKey(stationId: string, line: string | null, branch: string | null): string {
+  return `${stationId}\t${line ?? ""}\t${branch ?? ""}`;
 }
 
-function parseStateKey(key: string): { stationId: string; line: string | null } {
-  const i = key.lastIndexOf(":");
-  const line = key.slice(i + 1);
-  return { stationId: key.slice(0, i), line: line === "*" ? null : line };
+function parseStateKey(key: string): {
+  stationId: string;
+  line: string | null;
+  branch: string | null;
+} {
+  const [stationId, line, branch] = key.split("\t");
+  return {
+    stationId,
+    line: line === "" ? null : line,
+    branch: branch === "" ? null : branch,
+  };
 }
 
 /**
  * Dijkstra shortest path(s) from `fromId` to `toId`.
- * Each stop costs 1, and each line change costs an additional 2.5.
- * Returns all equally-weighted optimal routes.
- * Throws if no path exists.
+ *
+ * Cost model: 1 per stop, +2.5 for a full line change, +2.0 for a same-line
+ * branch change (e.g. staying on the Northern line but swapping from the
+ * Edgware branch to the High Barnet branch at Camden Town).
+ *
+ * The traveller is "uncommitted" (branch = null) while on a trunk edge that
+ * is shared by multiple services, and commits to a specific branch only when
+ * they take a branch-exclusive edge.
+ *
+ * Returns all equally-weighted optimal routes. Throws if no path exists.
  */
-export function findRoute(fromId: string, toId: string): RouteHint[] {
+export function findRoute(
+  fromId: string,
+  toId: string,
+  g: TubeGraph = graph
+): RouteHint[] {
   if (fromId === toId) {
     return [{ segments: [], totalStops: 0 }];
   }
 
-  if (!graph.adjacency[fromId]) {
+  if (!g.adjacency[fromId]) {
     throw new Error(`Unknown station: ${fromId}`);
   }
-  if (!graph.adjacency[toId]) {
+  if (!g.adjacency[toId]) {
     throw new Error(`Unknown station: ${toId}`);
   }
 
-  // Track best cost and all optimal parents for each (station, line) state
+  // Track best cost and all optimal parents for each (station, line, branch) state
   const best = new Map<string, number>();
   const parents = new Map<string, string[]>();
 
-  const startKey = stateKey(fromId, null);
+  const startKey = stateKey(fromId, null, null);
   const queue = new MinHeap();
-  queue.push({ stationId: fromId, line: null, cost: 0 });
+  queue.push({ stationId: fromId, line: null, branch: null, cost: 0 });
   best.set(startKey, 0);
   parents.set(startKey, []);
 
@@ -105,7 +129,7 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
   while (queue.size > 0) {
     const current = queue.pop();
 
-    const key = stateKey(current.stationId, current.line);
+    const key = stateKey(current.stationId, current.line, current.branch);
 
     // Once we've exceeded the best target cost, we're done
     if (current.cost > bestTargetCost) break;
@@ -119,29 +143,65 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
       continue;
     }
 
-    for (const edge of graph.adjacency[current.stationId] ?? []) {
-      const isChange =
-        current.line !== null && current.line !== edge.line;
-      const nextCost = current.cost + 1 + (isChange ? LINE_CHANGE_PENALTY : 0);
+    for (const edge of g.adjacency[current.stationId] ?? []) {
+      const edgeBranches = edge.branches;
+      if (!edgeBranches || edgeBranches.length === 0) {
+        throw new Error(
+          `Edge ${current.stationId} -> ${edge.to} (${edge.line}) has no branches — regenerate tube-graph.json`
+        );
+      }
 
+      const sameLine = current.line === edge.line;
+      let penalty: number;
+      let nextBranch: string | null;
+
+      if (current.line === null) {
+        // Fresh start — no penalty, commit to a branch if the edge is branch-exclusive.
+        penalty = 0;
+        nextBranch = edgeBranches.length === 1 ? edgeBranches[0] : null;
+      } else if (!sameLine) {
+        // Full line change.
+        penalty = LINE_CHANGE_PENALTY;
+        nextBranch = edgeBranches.length === 1 ? edgeBranches[0] : null;
+      } else if (current.branch === null) {
+        // On the line's trunk without having committed to a branch — any
+        // service can carry us, so no penalty. Commit if the edge is
+        // branch-exclusive.
+        penalty = 0;
+        nextBranch = edgeBranches.length === 1 ? edgeBranches[0] : null;
+      } else if (edgeBranches.includes(current.branch)) {
+        // Same line, same branch — continuing the same train.
+        penalty = 0;
+        nextBranch = current.branch;
+      } else {
+        // Same line but the current branch doesn't cover this edge: we must
+        // switch trains. If the new edge is trunk (multi-branch), stay
+        // uncommitted; otherwise commit to the new branch.
+        penalty = BRANCH_CHANGE_PENALTY;
+        nextBranch = edgeBranches.length === 1 ? edgeBranches[0] : null;
+      }
+
+      const nextCost = current.cost + 1 + penalty;
       if (nextCost > bestTargetCost) continue;
 
-      const nextKey = stateKey(edge.to, edge.line);
+      const nextKey = stateKey(edge.to, edge.line, nextBranch);
       const prevBest = best.get(nextKey) ?? Infinity;
 
       if (nextCost < prevBest) {
-        // Found a strictly better path — replace parents
         best.set(nextKey, nextCost);
         parents.set(nextKey, [key]);
-        queue.push({ stationId: edge.to, line: edge.line, cost: nextCost });
+        queue.push({
+          stationId: edge.to,
+          line: edge.line,
+          branch: nextBranch,
+          cost: nextCost,
+        });
       } else if (nextCost === prevBest) {
-        // Found an equally good path — add parent
         parents.get(nextKey)!.push(key);
       }
     }
   }
 
-  // Collect all target state keys that achieved the best cost
   const targetKeys: string[] = [];
   for (const [key, cost] of best) {
     const { stationId } = parseStateKey(key);
@@ -154,19 +214,24 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
     throw new Error(`No route found from ${fromId} to ${toId}`);
   }
 
-  // Reconstruct all paths by walking backwards through parents
-  const allPaths: { line: string; stationId: string }[][] = [];
+  // Reconstruct all paths by walking backwards through parents.
+  // Each path element records the line and branch used to *enter* this station.
+  interface Step {
+    line: string;
+    branch: string | null;
+    stationId: string;
+  }
+  const allPaths: Step[][] = [];
 
-  function reconstruct(key: string, path: { line: string; stationId: string }[]) {
+  function reconstruct(key: string, path: Step[]) {
     const parentList = parents.get(key);
     if (!parentList || parentList.length === 0) {
-      // Reached the start
       allPaths.push([...path].reverse());
       return;
     }
-    const { stationId, line } = parseStateKey(key);
+    const { stationId, line, branch } = parseStateKey(key);
     for (const parentKey of parentList) {
-      path.push({ line: line!, stationId });
+      path.push({ line: line!, branch, stationId });
       reconstruct(parentKey, path);
       path.pop();
     }
@@ -176,36 +241,66 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
     reconstruct(targetKey, []);
   }
 
-  // Convert paths to single-line segments first
-  interface RawSegment { line: string; stops: number; endStationId: string; path: string[] }
+  // Split into segments. A new segment begins when either the line changes
+  // or the committed branch changes. A transition from null→concrete (or
+  // concrete→null) on the same line is NOT a split, because uncommitted
+  // trunk travel is the same train as the branch-committed continuation.
+  interface RawSegment {
+    line: string;
+    branch: string | null;
+    stops: number;
+    startStationId: string;
+    endStationId: string;
+    path: string[];
+  }
   const rawRoutes: { segments: RawSegment[]; totalStops: number }[] = [];
   const seenRaw = new Set<string>();
 
-  for (const edges of allPaths) {
+  for (const steps of allPaths) {
     const segments: RawSegment[] = [];
-    for (const edge of edges) {
+    let prevStation = fromId;
+    for (const step of steps) {
       const last = segments[segments.length - 1];
-      if (last && last.line === edge.line) {
-        last.stops++;
-        last.endStationId = edge.stationId;
-        last.path.push(edge.stationId);
+      const sameLine = last && last.line === step.line;
+      const branchCompatible =
+        sameLine &&
+        (last!.branch === null ||
+          step.branch === null ||
+          last!.branch === step.branch);
+
+      if (sameLine && branchCompatible) {
+        last!.stops++;
+        last!.endStationId = step.stationId;
+        last!.path.push(step.stationId);
+        if (last!.branch === null && step.branch !== null) {
+          last!.branch = step.branch;
+        }
       } else {
-        segments.push({ line: edge.line, stops: 1, endStationId: edge.stationId, path: [edge.stationId] });
+        segments.push({
+          line: step.line,
+          branch: step.branch,
+          stops: 1,
+          startStationId: prevStation,
+          endStationId: step.stationId,
+          path: [step.stationId],
+        });
       }
+      prevStation = step.stationId;
     }
     const key = JSON.stringify(segments);
     if (!seenRaw.has(key)) {
       seenRaw.add(key);
-      rawRoutes.push({ segments, totalStops: edges.length });
+      rawRoutes.push({ segments, totalStops: steps.length });
     }
   }
 
-  // Merge routes that only differ by which line is used on a segment.
-  // Shape key: stops and endStationIds, ignoring lines.
+  // Merge routes that only differ in which parallel line was used on a
+  // segment. Shape key: (stops, endStationId, branch) per segment — branch
+  // is included so same-line-different-branch routes stay distinct.
   const shapeGroups = new Map<string, typeof rawRoutes>();
   for (const route of rawRoutes) {
     const shapeKey = route.segments
-      .map((s) => `${s.stops}:${s.endStationId}`)
+      .map((s) => `${s.stops}:${s.endStationId}:${s.branch ?? ""}`)
       .join("|");
     let group = shapeGroups.get(shapeKey);
     if (!group) {
@@ -218,13 +313,17 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
   const hints: RouteHint[] = [];
   for (const group of shapeGroups.values()) {
     const base = group[0];
-    const segments: RouteSegment[] = base.segments.map((s) => ({
-      lines: [s.line],
-      stops: s.stops,
-      endStationId: s.endStationId,
-      path: s.path,
-    }));
-    // Merge lines from other routes in the same shape group
+    const segments: RouteSegment[] = base.segments.map((s) => {
+      const seg: RouteSegment = {
+        lines: [s.line],
+        stops: s.stops,
+        endStationId: s.endStationId,
+        path: s.path,
+      };
+      const towards = deriveTowards(g, s.branch, s.startStationId, s.endStationId);
+      if (towards) seg.towards = towards;
+      return seg;
+    });
     for (let r = 1; r < group.length; r++) {
       for (let i = 0; i < segments.length; i++) {
         const line = group[r].segments[i].line;
@@ -233,7 +332,6 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
         }
       }
     }
-    // Sort lines alphabetically for stable output
     for (const seg of segments) {
       seg.lines.sort();
     }
@@ -241,6 +339,61 @@ export function findRoute(fromId: string, toId: string): RouteHint[] {
   }
 
   return hints;
+}
+
+/**
+ * Parse a branch slug like "northern:edgware-morden-via-charing-cross" and
+ * return the human-friendly name of the terminus the traveller is heading
+ * toward on this segment. Returns undefined if the branch is unknown or if
+ * direction can't be inferred from just the start and end stations.
+ */
+function deriveTowards(
+  g: TubeGraph,
+  branch: string | null,
+  startStationId: string,
+  endStationId: string
+): string | undefined {
+  if (!branch) return undefined;
+  const colon = branch.indexOf(":");
+  if (colon < 0) return undefined;
+  const rest = branch.slice(colon + 1).replace(/-via-[a-z0-9-]+$/, "");
+
+  const slugs = Object.keys(g.stations);
+  let termA: string | null = null;
+  let termB: string | null = null;
+  if (slugs.includes(rest)) {
+    // Single-terminus loop (e.g. Piccadilly T4 loop).
+    termA = rest;
+    termB = rest;
+  } else {
+    for (const s of slugs) {
+      if (rest.startsWith(s + "-")) {
+        const remainder = rest.slice(s.length + 1);
+        if (slugs.includes(remainder)) {
+          termA = s;
+          termB = remainder;
+          break;
+        }
+      }
+    }
+  }
+  if (!termA || !termB) return undefined;
+
+  let target: string | null = null;
+  if (termA === termB) {
+    target = termA;
+  } else if (endStationId === termA) {
+    target = termA;
+  } else if (endStationId === termB) {
+    target = termB;
+  } else if (startStationId === termA) {
+    target = termB;
+  } else if (startStationId === termB) {
+    target = termA;
+  } else {
+    return undefined;
+  }
+  return g.stations[target]?.name;
 }
 
 /**

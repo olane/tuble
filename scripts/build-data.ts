@@ -29,6 +29,7 @@ interface Station {
 interface Edge {
   to: string;
   line: string;
+  branches: string[];
 }
 
 async function fetchJson<T>(url: string): Promise<T> {
@@ -98,6 +99,40 @@ interface TflRouteSequence {
   stopPointSequences: TflStopPointSequence[];
 }
 
+/**
+ * Derive a stable branch slug for a single TfL stopPointSequence. The slug is
+ * a canonical identifier for the train service that runs end-to-end on that
+ * sequence, so edges shared by multiple services list multiple branches.
+ *
+ * Strategy: sort the two terminus slugs lexicographically, then add a `via-*`
+ * suffix for lines whose services share termini but diverge through the
+ * middle (Northern via Bank/Charing Cross, Central via the Hainault loop).
+ */
+function deriveBranchSlug(lineId: string, stopSlugs: string[]): string {
+  const a = stopSlugs[0];
+  const b = stopSlugs[stopSlugs.length - 1];
+  const [lo, hi] = a < b ? [a, b] : [b, a];
+  const via = deriveVia(lineId, stopSlugs);
+  return via ? `${lineId}:${lo}-${hi}-${via}` : `${lineId}:${lo}-${hi}`;
+}
+
+function deriveVia(lineId: string, stopSlugs: string[]): string | null {
+  if (lineId === "northern") {
+    if (stopSlugs.includes("bank")) return "via-bank";
+    if (stopSlugs.includes("charing-cross")) return "via-charing-cross";
+  }
+  if (lineId === "central") {
+    // Hainault-loop services traverse Hainault as a non-terminal stop;
+    // straight services terminate there (or don't touch it).
+    const last = stopSlugs.length - 1;
+    const hainaultMid = stopSlugs.some(
+      (s, i) => s === "hainault" && i !== 0 && i !== last
+    );
+    if (hainaultMid) return "via-hainault";
+  }
+  return null;
+}
+
 async function buildGraphAndLines(): Promise<{
   stations: Record<string, Station>;
   adjacency: Map<string, Edge[]>;
@@ -115,7 +150,7 @@ async function buildGraphAndLines(): Promise<{
     { name: string; zone: string; lines: Set<string> }
   >();
   const tflIdToParentId = new Map<string, string>();
-  const edgeSet = new Set<string>();
+  const lineSequences: { lineId: string; stopParentIds: string[] }[] = [];
   const adjacency = new Map<string, Edge[]>();
 
   for (const line of lines) {
@@ -134,7 +169,7 @@ async function buildGraphAndLines(): Promise<{
 
       for (const seq of routeSeq.stopPointSequences) {
         const stops = seq.stopPoint;
-        if (!stops || stops.length === 0) continue;
+        if (!stops || stops.length < 2) continue;
 
         for (const stop of stops) {
           const parentId = stop.topMostParentId || stop.parentId || stop.stationId;
@@ -152,18 +187,10 @@ async function buildGraphAndLines(): Promise<{
           }
         }
 
-        for (let i = 0; i < stops.length - 1; i++) {
-          const fromParent = tflIdToParentId.get(stops[i].stationId)!;
-          const toParent = tflIdToParentId.get(stops[i + 1].stationId)!;
-          if (fromParent === toParent) continue;
-
-          const keyA = `${fromParent}|${toParent}|${line.id}`;
-          const keyB = `${toParent}|${fromParent}|${line.id}`;
-          if (!edgeSet.has(keyA)) {
-            edgeSet.add(keyA);
-            edgeSet.add(keyB);
-          }
-        }
+        const parentIds = stops.map(
+          (s) => tflIdToParentId.get(s.stationId)!
+        );
+        lineSequences.push({ lineId: line.id, stopParentIds: parentIds });
       }
     }
   }
@@ -192,17 +219,45 @@ async function buildGraphAndLines(): Promise<{
     adjacency.set(slug, []);
   }
 
-  // Build adjacency list
-  for (const key of edgeSet) {
-    const [fromParentId, toParentId, lineId] = key.split("|");
-    const fromSlug = parentIdToSlug.get(fromParentId);
-    const toSlugVal = parentIdToSlug.get(toParentId);
-    if (!fromSlug || !toSlugVal) continue;
-
-    const existing = adjacency.get(fromSlug)!;
-    if (!existing.some((e) => e.to === toSlugVal && e.line === lineId)) {
-      existing.push({ to: toSlugVal, line: lineId });
+  // Walk each sequence, derive a branch slug, and attach it to every edge
+  // the sequence traverses (in both directions).
+  const edgeBranches = new Map<string, Set<string>>();
+  const addBranch = (key: string, branch: string) => {
+    let set = edgeBranches.get(key);
+    if (!set) {
+      set = new Set();
+      edgeBranches.set(key, set);
     }
+    set.add(branch);
+  };
+
+  for (const seq of lineSequences) {
+    const stopSlugs: string[] = [];
+    for (const parentId of seq.stopParentIds) {
+      const slug = parentIdToSlug.get(parentId);
+      if (!slug) continue;
+      if (stopSlugs.length === 0 || stopSlugs[stopSlugs.length - 1] !== slug) {
+        stopSlugs.push(slug);
+      }
+    }
+    if (stopSlugs.length < 2) continue;
+
+    const branchSlug = deriveBranchSlug(seq.lineId, stopSlugs);
+    for (let i = 0; i < stopSlugs.length - 1; i++) {
+      const from = stopSlugs[i];
+      const to = stopSlugs[i + 1];
+      addBranch(`${from}|${to}|${seq.lineId}`, branchSlug);
+      addBranch(`${to}|${from}|${seq.lineId}`, branchSlug);
+    }
+  }
+
+  // Build adjacency list
+  for (const [key, branchSet] of edgeBranches) {
+    const [from, to, lineId] = key.split("|");
+    const edges = adjacency.get(from);
+    if (!edges) continue;
+    if (edges.some((e) => e.to === to && e.line === lineId)) continue;
+    edges.push({ to, line: lineId, branches: [...branchSet].sort() });
   }
 
   const linesData: Record<string, { name: string; colour: string }> = {};
@@ -449,23 +504,34 @@ function buildRidership(
 // ── Main ────────────────────────────────────────────────────────────
 
 async function main() {
-  const csvPath = process.argv[2];
-  if (!csvPath) {
-    console.error("Usage: npx tsx scripts/build-data.ts <footfall.csv>");
+  const args = process.argv.slice(2);
+  const graphOnly = args.includes("--graph-only");
+  const csvPath = args.find((a) => !a.startsWith("--"));
+
+  if (!graphOnly && !csvPath) {
+    console.error(
+      "Usage: npx tsx scripts/build-data.ts <footfall.csv> [--graph-only]"
+    );
+    console.error("       npx tsx scripts/build-data.ts --graph-only");
     process.exit(1);
   }
 
   mkdirSync(OUT_DIR, { recursive: true });
 
   const { stations, adjacency, linesData } = await buildGraphAndLines();
-  const metadata = await buildMetadata(stations);
-  const ridership = buildRidership(csvPath, stations);
-
   writeJson("tube-graph.json", {
     stations,
     adjacency: Object.fromEntries(adjacency),
   });
   writeJson("lines.json", linesData);
+
+  if (graphOnly) {
+    console.log("\n✓ Graph-only rebuild complete.");
+    return;
+  }
+
+  const metadata = await buildMetadata(stations);
+  const ridership = buildRidership(csvPath!, stations);
   const sortedMetadata = Object.fromEntries(
     Object.entries(metadata).sort(([a], [b]) => a.localeCompare(b))
   );
