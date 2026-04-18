@@ -26,7 +26,7 @@ export default function Settings({ difficulty, onChangeDifficulty }: SettingsPro
               Elizabeth line stations are included (but not Overground or DLR).
               After each guess you'll see the shortest route from your guess to
               the target, broken into segments with stop counts. Routes are
-              chosen by fewest stops, but changing lines adds a penalty of 1.5
+              chosen by fewest stops, but changing lines adds a penalty of 2
               stops.
             </p>
             <p>The 3-letter station code gives you a Wordle-style hint:</p>

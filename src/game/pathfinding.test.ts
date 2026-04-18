@@ -71,17 +71,20 @@ describe("findRoute", () => {
     }
   });
 
-  it("can find a route between every pair of stations", () => {
+  // Sampled smoke test — the full all-pairs sweep lives in
+  // pathfinding.all-pairs.test.ts and runs via `npm run test:all-pairs`.
+  it("can find a route for a random sample of station pairs", () => {
     const ids = getAllStationIds();
-    for (const from of ids) {
-      for (const to of ids) {
-        if (from === to) continue;
-        const result = findRoute(from, to);
-        expect(result.length, `${from} -> ${to}`).toBeGreaterThan(0);
-        expect(result[0].totalStops, `${from} -> ${to}`).toBeGreaterThan(0);
-      }
+    const sampleCount = 500;
+    for (let i = 0; i < sampleCount; i++) {
+      const from = ids[Math.floor(Math.random() * ids.length)];
+      let to = ids[Math.floor(Math.random() * ids.length)];
+      while (to === from) to = ids[Math.floor(Math.random() * ids.length)];
+      const result = findRoute(from, to);
+      expect(result.length, `${from} -> ${to}`).toBeGreaterThan(0);
+      expect(result[0].totalStops, `${from} -> ${to}`).toBeGreaterThan(0);
     }
-  }, 30_000);
+  });
 });
 
 describe("getStationName", () => {

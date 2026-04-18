@@ -8,8 +8,9 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "vitest run",
-    "test:watch": "vitest",
+    "test": "vitest run --exclude '**/*.all-pairs.test.ts' --exclude '**/node_modules/**'",
+    "test:watch": "vitest --exclude '**/*.all-pairs.test.ts' --exclude '**/node_modules/**'",
+    "test:all-pairs": "vitest run src/game/pathfinding.all-pairs.test.ts",
     "test:visual": "vitest run tests/visual",
     "test:visual:update": "UPDATE_VISUAL_BASELINES=1 vitest run tests/visual",
     "build-data": "tsx scripts/build-data.ts"
