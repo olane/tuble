@@ -60,7 +60,7 @@ class MinHeap {
   }
 }
 
-const LINE_CHANGE_PENALTY = 2;
+const LINE_CHANGE_PENALTY = 2.5;
 
 function stateKey(stationId: string, line: string | null): string {
   return `${stationId}:${line ?? "*"}`;
@@ -74,7 +74,7 @@ function parseStateKey(key: string): { stationId: string; line: string | null } 
 
 /**
  * Dijkstra shortest path(s) from `fromId` to `toId`.
- * Each stop costs 1, and each line change costs an additional 2.
+ * Each stop costs 1, and each line change costs an additional 2.5.
  * Returns all equally-weighted optimal routes.
  * Throws if no path exists.
  */
