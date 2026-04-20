@@ -305,7 +305,7 @@ export function findRoute(
   const shapeGroups = new Map<string, typeof rawRoutes>();
   for (const route of rawRoutes) {
     const shapeKey = route.segments
-      .map((s) => `${s.stops}:${s.endStationId}:${s.line}`)
+      .map((s) => `${s.stops}:${s.endStationId}`)
       .join("|");
     let group = shapeGroups.get(shapeKey);
     if (!group) {
