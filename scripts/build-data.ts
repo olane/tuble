@@ -695,21 +695,31 @@ function buildRidership(
     return s.toLowerCase().replace(/[^a-z0-9]/g, "");
   }
 
-  const csvByNorm: Record<string, string> = {};
+  // Group CSV entries by normalised name (stripping mode suffixes like
+  // " DLR", " EL") so entries like "Canary Wharf", "Canary Wharf DLR",
+  // and "Canary Wharf EL" all sum into one station.
+  const csvByNorm: Record<string, string[]> = {};
   for (const name of Object.keys(avgs)) {
-    csvByNorm[norm(name)] = name;
+    const key = norm(name.replace(/\s+(DLR|EL)$/i, ""));
+    (csvByNorm[key] ??= []).push(name);
   }
 
-  const manual: Record<string, string> = {
-    "edgware-road-bakerloo": "Edgware Road B",
-    "edgware-road-circle-line": "Edgware Road C&H",
-    "shepherds-bush-central": "Shepherds Bush",
-    "hammersmith-handc-line": "Hammersmith C&H",
-    "burnham-berks": "Burnham Bucks",
-    woolwich: "Woolwich Elizabeth Line",
-    "custom-house": "Custom House Elizabeth Line",
-    watford: "Watford Met",
+  const manual: Record<string, string[]> = {
+    "edgware-road-bakerloo": ["Edgware Road B"],
+    "edgware-road-circle-line": ["Edgware Road C&H"],
+    "shepherds-bush-central": ["Shepherds Bush"],
+    "hammersmith-handc-line": ["Hammersmith C&H"],
+    "burnham-berks": ["Burnham Bucks"],
+    woolwich: ["Woolwich Elizabeth Line"],
+    "custom-house-for-excel": ["Custom House Elizabeth Line", "Custom House DLR"],
+    "cutty-sark-for-maritime-greenwich": ["Cutty Sark"],
+    "west-silvertown": ["W Silvertown"],
+    watford: ["Watford Met"],
   };
+
+  function sumAvgs(names: string[]): number {
+    return names.reduce((sum, n) => sum + (avgs[n] ?? 0), 0);
+  }
 
   const result: Record<string, number> = {};
   const unmatched: string[] = [];
@@ -717,9 +727,9 @@ function buildRidership(
   for (const [id, station] of Object.entries(stations)) {
     const n = norm(station.name);
     if (csvByNorm[n]) {
-      result[id] = avgs[csvByNorm[n]];
-    } else if (manual[id] && avgs[manual[id]] !== undefined) {
-      result[id] = avgs[manual[id]];
+      result[id] = sumAvgs(csvByNorm[n]);
+    } else if (manual[id]) {
+      result[id] = sumAvgs(manual[id]);
     } else {
       unmatched.push(`${id} (${station.name})`);
     }
