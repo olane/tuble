@@ -4,10 +4,24 @@ import { findRoute, getStationName, graph } from "../game/pathfinding";
 import type { RouteHint } from "../game/types";
 import { TEST_ROUTES, type TestRoute } from "./testRoutes";
 
+const LINE_CHANGE_PENALTY = 2.5;
+const BRANCH_CHANGE_PENALTY = 2.0;
+
 interface ResolvedRoute {
   route: TestRoute;
   hint: RouteHint | null;
   error: string | null;
+}
+
+function computeCost(hint: RouteHint): number {
+  let cost = hint.totalStops;
+  for (let i = 1; i < hint.segments.length; i++) {
+    const prevLines = hint.segments[i - 1].lines;
+    const currLines = hint.segments[i].lines;
+    const sameLine = prevLines.some((l) => currLines.includes(l));
+    cost += sameLine ? BRANCH_CHANGE_PENALTY : LINE_CHANGE_PENALTY;
+  }
+  return cost;
 }
 
 function resolve(route: TestRoute): ResolvedRoute {
@@ -63,7 +77,8 @@ export default function RouteGalleryPage() {
                   />
                   <div className="route-gallery-card-meta">
                     {hint.totalStops} stops · {hint.segments.length}{" "}
-                    {hint.segments.length === 1 ? "segment" : "segments"}
+                    {hint.segments.length === 1 ? "segment" : "segments"}{" "}
+                    · cost {computeCost(hint)}
                   </div>
                 </>
               )}
