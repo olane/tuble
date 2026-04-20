@@ -65,7 +65,7 @@ class MinHeap {
   }
 }
 
-const LINE_CHANGE_PENALTY = 2.5;
+const LINE_CHANGE_PENALTY = 3.5;
 const BRANCH_CHANGE_PENALTY = 2.0;
 
 function stateKey(stationId: string, line: string | null, branch: string | null): string {
@@ -88,7 +88,7 @@ function parseStateKey(key: string): {
 /**
  * Dijkstra shortest path(s) from `fromId` to `toId`.
  *
- * Cost model: 1 per stop, +2.5 for a full line change, +2.0 for a same-line
+ * Cost model: 1 per stop, +3.5 for a full line change, +2.0 for a same-line
  * branch change (e.g. staying on the Northern line but swapping from the
  * Edgware branch to the High Barnet branch at Camden Town).
  *
@@ -342,6 +342,9 @@ export function findRoute(
     }
     hints.push({ segments, totalStops: base.totalStops });
   }
+
+  // Prefer routes with fewer changes (segments) when total cost is tied
+  hints.sort((a, b) => a.segments.length - b.segments.length);
 
   return hints;
 }

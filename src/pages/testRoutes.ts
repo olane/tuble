@@ -14,13 +14,14 @@ export const TEST_ROUTES: TestRoute[] = [
   { label: "1 stop, same line", from: "oxford-circus", to: "tottenham-court-road" },
   { label: "OSI pair (Bank ↔ Monument)", from: "bank", to: "monument" },
   { label: "2 stops, same line", from: "victoria", to: "westminster" },
+  { label: "Paddington to Liv Street", from: "paddington", to: "liverpool-street" },
 
   // --- Single-line end-to-end (some use Elizabeth line as a shortcut) ---
   { label: "Bakerloo end-to-end", from: "elephant-and-castle", to: "harrow-and-wealdstone" },
   { label: "Victoria end-to-end", from: "brixton", to: "walthamstow-central" },
   { label: "Metropolitan far north", from: "aldgate", to: "amersham" },
   { label: "Piccadilly end-to-end (via Elizabeth)", from: "heathrow-terminal-5", to: "cockfosters" },
-  { label: "Central end-to-end (via Elizabeth)", from: "west-ruislip", to: "epping" },
+  { label: "Central end-to-end", from: "west-ruislip", to: "epping" },
   { label: "Jubilee end-to-end (via Elizabeth/Met)", from: "stanmore", to: "stratford" },
   { label: "District long haul (via Elizabeth)", from: "richmond", to: "upminster" },
 
@@ -30,7 +31,6 @@ export const TEST_ROUTES: TestRoute[] = [
   { label: "Parallel lines: Jubilee / DLR", from: "canning-town", to: "canary-wharf" },
 
   // --- Multi-interchange ---
-  { label: "1 change", from: "paddington", to: "liverpool-street" },
   { label: "2 changes across centre", from: "wimbledon", to: "walthamstow-central" },
   { label: "Heathrow → Canary Wharf", from: "heathrow-terminal-5", to: "canary-wharf" },
   { label: "Richmond → Stratford", from: "richmond", to: "stratford" },
@@ -43,9 +43,6 @@ export const TEST_ROUTES: TestRoute[] = [
 
   // --- Branching edge cases ---
   { label: "Northern via Bank branch", from: "london-bridge", to: "kings-cross-st-pancras" },
-  { label: "Central with split (via Elizabeth)", from: "stratford", to: "ealing-broadway" },
-
-  // --- Same-line branch changes (different TfL through-routes) ---
   { label: "Northern: change at Camden Town (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
   { label: "Metropolitan: change at Harrow (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
   { label: "District: change at Turnham Green (Richmond → Ealing Broadway)", from: "richmond", to: "ealing-broadway" },
