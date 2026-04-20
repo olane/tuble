@@ -106,23 +106,6 @@ function pointsToSvgPath(points: Point[]): string {
     .join(" ");
 }
 
-/** Minimum distance from a point to any segment of a polyline. */
-function minDistToPolyline(p: Point, pts: Point[]): number {
-  let min = Infinity;
-  for (let i = 1; i < pts.length; i++) {
-    const ax = pts[i - 1].x, ay = pts[i - 1].y;
-    const bx = pts[i].x, by = pts[i].y;
-    const dx = bx - ax, dy = by - ay;
-    const lenSq = dx * dx + dy * dy;
-    let t = lenSq > 0 ? ((p.x - ax) * dx + (p.y - ay) * dy) / lenSq : 0;
-    t = Math.max(0, Math.min(1, t));
-    const cx = ax + t * dx, cy = ay + t * dy;
-    const dist = Math.sqrt((p.x - cx) ** 2 + (p.y - cy) ** 2);
-    if (dist < min) min = dist;
-  }
-  return min;
-}
-
 /** Walk along a polyline to find the point and local direction at half the total length. */
 function polylineMidpoint(pts: Point[]): { point: Point; angle: number } {
   if (pts.length < 2) return { point: pts[0], angle: 0 };
@@ -154,6 +137,19 @@ function polylineMidpoint(pts: Point[]): { point: Point; angle: number } {
 
   return { point: pts[pts.length - 1], angle: 0 };
 }
+
+/** Return "white" or "black" depending on which contrasts better with the given hex colour. */
+function contrastingTextColor(hex: string): string {
+  const raw = hex.replace("#", "");
+  const r = parseInt(raw.substring(0, 2), 16);
+  const g = parseInt(raw.substring(2, 4), 16);
+  const b = parseInt(raw.substring(4, 6), 16);
+  // Relative luminance (sRGB)
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.5 ? "#000" : "#fff";
+}
+
+const LABEL_BOX_SIZE = 16;
 
 function buildSegmentKey(
   fromId: string,
@@ -224,25 +220,9 @@ export default function RouteMap({
             : "#D4C5A9";
           const pts = geo.segmentPoints[j];
           const d = pointsToSvgPath(pts);
-          const { point: mid, angle: localAngle } = polylineMidpoint(pts);
-          // Offset perpendicular to the local direction, picking the side
-          // furthest from the polyline to avoid overlapping the path
-          const perp1 = localAngle - Math.PI / 2;
-          const perp2 = localAngle + Math.PI / 2;
-          const labelOffset = LINE_THICKNESS / 2 + 12;
-          const cand1 = {
-            x: mid.x + Math.cos(perp1) * labelOffset,
-            y: mid.y + Math.sin(perp1) * labelOffset,
-          };
-          const cand2 = {
-            x: mid.x + Math.cos(perp2) * labelOffset,
-            y: mid.y + Math.sin(perp2) * labelOffset,
-          };
-          // Pick whichever candidate is further from the nearest point on the polyline
-          const dist1 = minDistToPolyline(cand1, pts);
-          const dist2 = minDistToPolyline(cand2, pts);
-          const labelX = dist1 >= dist2 ? cand1.x : cand2.x;
-          const labelY = dist1 >= dist2 ? cand1.y : cand2.y;
+          const { point: mid } = polylineMidpoint(pts);
+          const textColor = contrastingTextColor(lineColor);
+          const half = LABEL_BOX_SIZE / 2;
 
           return (
             <g key={j}>
@@ -254,12 +234,21 @@ export default function RouteMap({
                 strokeLinecap="butt"
                 strokeLinejoin="round"
               />
+              <rect
+                x={mid.x - half}
+                y={mid.y - half}
+                width={LABEL_BOX_SIZE}
+                height={LABEL_BOX_SIZE}
+                rx={2}
+                fill={lineColor}
+              />
               <text
-                x={labelX}
-                y={labelY}
+                x={mid.x}
+                y={mid.y}
                 textAnchor="middle"
                 dominantBaseline="central"
                 className="route-stops-text"
+                style={{ fill: textColor }}
               >
                 {seg.stops}
               </text>
