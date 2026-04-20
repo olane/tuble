@@ -110,6 +110,8 @@ function GamePage() {
           stations={stations}
           guessedIds={guessedIds}
           onGuess={handleGuess}
+          guessNumber={gameState.guesses.length + 1}
+          maxGuesses={gameState.maxGuesses}
         />
       )}
 

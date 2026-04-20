@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import type { GameState } from "../game/types";
 import type { Difficulty } from "../game/settings";
 import { getTodayKey } from "../game/game";
@@ -49,6 +49,13 @@ function buildShareText(state: GameState, difficulty: Difficulty): string {
 
 export default function GameOver({ state, difficulty, targetName, targetCode, targetZone, targetRidership }: GameOverProps) {
   const [copied, setCopied] = useState(false);
+  const cardRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (state.status !== "playing") {
+      cardRef.current?.scrollIntoView({ behavior: "smooth", block: "end" });
+    }
+  }, [state.status]);
 
   if (state.status === "playing") return null;
 
@@ -67,7 +74,7 @@ export default function GameOver({ state, difficulty, targetName, targetCode, ta
   }
 
   return (
-    <div className="game-over-card">
+    <div className="game-over-card" ref={cardRef}>
       <h2>{won ? "You got it!" : "Not this time"}</h2>
       <p className="game-over-answer">
         {won
