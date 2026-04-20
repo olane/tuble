@@ -2531,14 +2531,14 @@
         "to": "kennington",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "borough",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -2591,14 +2591,14 @@
         "to": "kennington",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "embankment",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
@@ -2628,42 +2628,42 @@
         "to": "temple",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "westminster",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "westminster",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "temple",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "waterloo",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "charing-cross",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -2686,14 +2686,14 @@
         "to": "embankment",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "leicester-square",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -2716,14 +2716,14 @@
         "to": "green-park",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "leicester-square",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -2746,14 +2746,14 @@
         "to": "bond-street",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "tottenham-court-road",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
@@ -2806,14 +2806,14 @@
         "to": "edgware-road-circle-line",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "great-portland-street",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
@@ -2848,16 +2848,14 @@
         "to": "finchley-road",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "great-portland-street",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -2919,7 +2917,6 @@
         "to": "edgware-road-circle-line",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line",
           "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
@@ -2927,35 +2924,35 @@
         "to": "bayswater",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "bayswater",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "edgware-road-circle-line",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "bond-street",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:paddington-whitechapel"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "acton-main-line",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-paddington"
+          "elizabeth:reading-stratford"
         ]
       },
       {
@@ -3179,7 +3176,7 @@
         "to": "ruislip-gardens",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3188,14 +3185,14 @@
         "to": "west-ruislip",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "south-ruislip",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3204,14 +3201,14 @@
         "to": "ruislip-gardens",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "northolt",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3220,14 +3217,14 @@
         "to": "south-ruislip",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "greenford",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3236,14 +3233,14 @@
         "to": "northolt",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "perivale",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3252,14 +3249,14 @@
         "to": "greenford",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "hanger-lane",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3268,14 +3265,14 @@
         "to": "perivale",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "north-acton",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3284,14 +3281,14 @@
         "to": "hanger-lane",
         "line": "central",
         "branches": [
-          "central:north-acton-west-ruislip"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "east-acton",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
@@ -3307,14 +3304,14 @@
         "to": "north-acton",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "white-city",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3323,14 +3320,14 @@
         "to": "east-acton",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "shepherds-bush-central",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3339,14 +3336,14 @@
         "to": "white-city",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "holland-park",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3355,14 +3352,14 @@
         "to": "shepherds-bush-central",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "notting-hill-gate",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3371,42 +3368,42 @@
         "to": "holland-park",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "queensway",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "high-street-kensington",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "bayswater",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "high-street-kensington",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "bayswater",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -3415,14 +3412,14 @@
         "to": "notting-hill-gate",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "lancaster-gate",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3431,14 +3428,14 @@
         "to": "queensway",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "marble-arch",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3447,14 +3444,14 @@
         "to": "lancaster-gate",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "bond-street",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3463,28 +3460,28 @@
         "to": "marble-arch",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "oxford-circus",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "tottenham-court-road",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:paddington-whitechapel"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "paddington",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:paddington-whitechapel"
+          "elizabeth:reading-stratford"
         ]
       },
       {
@@ -3507,42 +3504,42 @@
         "to": "oxford-circus",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "holborn",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "farringdon",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:paddington-whitechapel"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "bond-street",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:paddington-whitechapel"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "leicester-square",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "goodge-street",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -3551,28 +3548,28 @@
         "to": "tottenham-court-road",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "chancery-lane",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "covent-garden",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "russell-square",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -3581,14 +3578,14 @@
         "to": "holborn",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "st-pauls",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3597,14 +3594,14 @@
         "to": "chancery-lane",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "bank",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3613,28 +3610,28 @@
         "to": "st-pauls",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "liverpool-street",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "london-bridge",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "moorgate",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
@@ -3650,49 +3647,49 @@
         "to": "bank",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "bethnal-green",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "moorgate",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "aldgate",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
-        ]
-      },
-      {
-        "to": "whitechapel",
-        "line": "elizabeth",
-        "branches": [
-          "elizabeth:paddington-whitechapel"
-        ]
-      },
-      {
-        "to": "farringdon",
-        "line": "elizabeth",
-        "branches": [
-          "elizabeth:paddington-whitechapel"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "stratford",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:liverpool-street-stratford"
+          "elizabeth:liverpool-street-shenfield"
+        ]
+      },
+      {
+        "to": "whitechapel",
+        "line": "elizabeth",
+        "branches": [
+          "elizabeth:reading-stratford"
+        ]
+      },
+      {
+        "to": "farringdon",
+        "line": "elizabeth",
+        "branches": [
+          "elizabeth:reading-stratford"
         ]
       },
       {
@@ -3713,16 +3710,14 @@
         "to": "moorgate",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "aldgate",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -3731,14 +3726,14 @@
         "to": "liverpool-street",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "mile-end",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3747,28 +3742,28 @@
         "to": "bethnal-green",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "stratford",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "stepney-green",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "bow-road",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -3791,35 +3786,35 @@
         "to": "mile-end",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "leyton",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "maryland",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
-        ]
-      },
-      {
-        "to": "whitechapel",
-        "line": "elizabeth",
-        "branches": [
-          "elizabeth:stratford-whitechapel"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "liverpool-street",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:liverpool-street-stratford"
+          "elizabeth:liverpool-street-shenfield"
+        ]
+      },
+      {
+        "to": "whitechapel",
+        "line": "elizabeth",
+        "branches": [
+          "elizabeth:reading-stratford"
         ]
       },
       {
@@ -3835,14 +3830,14 @@
         "to": "stratford",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "leytonstone",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -3851,18 +3846,18 @@
         "to": "leyton",
         "line": "central",
         "branches": [
-          "central:leytonstone-north-acton"
-        ]
-      },
-      {
-        "to": "snaresbrook",
-        "line": "central",
-        "branches": [
-          "central:leytonstone-woodford"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "wanstead",
+        "line": "central",
+        "branches": [
+          "central:hainault-west-ruislip"
+        ]
+      },
+      {
+        "to": "snaresbrook",
         "line": "central",
         "branches": [
           "central:hainault-leytonstone"
@@ -3874,14 +3869,14 @@
         "to": "leytonstone",
         "line": "central",
         "branches": [
-          "central:leytonstone-woodford"
+          "central:hainault-leytonstone"
         ]
       },
       {
         "to": "south-woodford",
         "line": "central",
         "branches": [
-          "central:leytonstone-woodford"
+          "central:hainault-leytonstone"
         ]
       }
     ],
@@ -3890,14 +3885,14 @@
         "to": "snaresbrook",
         "line": "central",
         "branches": [
-          "central:leytonstone-woodford"
+          "central:hainault-leytonstone"
         ]
       },
       {
         "to": "woodford",
         "line": "central",
         "branches": [
-          "central:leytonstone-woodford"
+          "central:hainault-leytonstone"
         ]
       }
     ],
@@ -3906,7 +3901,14 @@
         "to": "south-woodford",
         "line": "central",
         "branches": [
-          "central:leytonstone-woodford"
+          "central:hainault-leytonstone"
+        ]
+      },
+      {
+        "to": "roding-valley",
+        "line": "central",
+        "branches": [
+          "central:hainault-leytonstone"
         ]
       },
       {
@@ -3914,13 +3916,6 @@
         "line": "central",
         "branches": [
           "central:epping-woodford"
-        ]
-      },
-      {
-        "to": "roding-valley",
-        "line": "central",
-        "branches": [
-          "central:hainault-woodford"
         ]
       }
     ],
@@ -4002,14 +3997,14 @@
         "to": "leytonstone",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "redbridge",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -4018,14 +4013,14 @@
         "to": "wanstead",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "gants-hill",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -4034,14 +4029,14 @@
         "to": "redbridge",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "newbury-park",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -4050,14 +4045,14 @@
         "to": "gants-hill",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "barkingside",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -4066,14 +4061,14 @@
         "to": "newbury-park",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "fairlop",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -4082,14 +4077,14 @@
         "to": "barkingside",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "hainault",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       }
     ],
@@ -4098,14 +4093,14 @@
         "to": "fairlop",
         "line": "central",
         "branches": [
-          "central:hainault-leytonstone"
+          "central:hainault-west-ruislip"
         ]
       },
       {
         "to": "grange-hill",
         "line": "central",
         "branches": [
-          "central:hainault-woodford"
+          "central:hainault-leytonstone"
         ]
       }
     ],
@@ -4114,14 +4109,14 @@
         "to": "woodford",
         "line": "central",
         "branches": [
-          "central:hainault-woodford"
+          "central:hainault-leytonstone"
         ]
       },
       {
         "to": "chigwell",
         "line": "central",
         "branches": [
-          "central:hainault-woodford"
+          "central:hainault-leytonstone"
         ]
       }
     ],
@@ -4130,14 +4125,14 @@
         "to": "roding-valley",
         "line": "central",
         "branches": [
-          "central:hainault-woodford"
+          "central:hainault-leytonstone"
         ]
       },
       {
         "to": "grange-hill",
         "line": "central",
         "branches": [
-          "central:hainault-woodford"
+          "central:hainault-leytonstone"
         ]
       }
     ],
@@ -4146,14 +4141,14 @@
         "to": "chigwell",
         "line": "central",
         "branches": [
-          "central:hainault-woodford"
+          "central:hainault-leytonstone"
         ]
       },
       {
         "to": "hainault",
         "line": "central",
         "branches": [
-          "central:hainault-woodford"
+          "central:hainault-leytonstone"
         ]
       }
     ],
@@ -4169,21 +4164,21 @@
         "to": "ealing-common",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "acton-main-line",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "west-ealing",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -4215,14 +4210,14 @@
         "to": "ravenscourt-park",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "barons-court",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -4236,14 +4231,14 @@
         "to": "turnham-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "barons-court",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -4462,7 +4457,6 @@
         "to": "paddington",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line",
           "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
@@ -4470,14 +4464,14 @@
         "to": "baker-street",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "paddington",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -4500,14 +4494,14 @@
         "to": "baker-street",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "euston-square",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
@@ -4528,16 +4522,14 @@
         "to": "baker-street",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "euston-square",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -4546,14 +4538,14 @@
         "to": "great-portland-street",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "kings-cross-st-pancras",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
@@ -4574,16 +4566,14 @@
         "to": "great-portland-street",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "kings-cross-st-pancras",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -4592,14 +4582,14 @@
         "to": "euston-square",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "farringdon",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
@@ -4620,44 +4610,42 @@
         "to": "euston-square",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "farringdon",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "angel",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "euston",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "russell-square",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "caledonian-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
@@ -4680,28 +4668,28 @@
         "to": "kings-cross-st-pancras",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "barbican",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "liverpool-street",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:paddington-whitechapel"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "tottenham-court-road",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:paddington-whitechapel"
+          "elizabeth:reading-stratford"
         ]
       },
       {
@@ -4722,16 +4710,14 @@
         "to": "kings-cross-st-pancras",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "barbican",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -4740,14 +4726,14 @@
         "to": "farringdon",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "moorgate",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
@@ -4768,16 +4754,14 @@
         "to": "farringdon",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "moorgate",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -4786,14 +4770,14 @@
         "to": "barbican",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "liverpool-street",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
@@ -4814,30 +4798,28 @@
         "to": "barbican",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "liverpool-street",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "bank",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "old-street",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -4846,22 +4828,21 @@
         "to": "liverpool-street",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "tower-hill",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "liverpool-street",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -4870,28 +4851,28 @@
         "to": "aldgate",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "monument",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "monument",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "aldgate-east",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -4900,28 +4881,28 @@
         "to": "tower-hill",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "cannon-street",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "cannon-street",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "tower-hill",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -4930,28 +4911,28 @@
         "to": "monument",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "mansion-house",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "mansion-house",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "monument",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -4960,28 +4941,28 @@
         "to": "cannon-street",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "blackfriars",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "blackfriars",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "cannon-street",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -4990,28 +4971,28 @@
         "to": "mansion-house",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "temple",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "temple",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "mansion-house",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -5020,28 +5001,28 @@
         "to": "blackfriars",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "embankment",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "embankment",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "blackfriars",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -5050,28 +5031,28 @@
         "to": "embankment",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "st-jamess-park",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "st-jamess-park",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "embankment",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5094,28 +5075,28 @@
         "to": "westminster",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "victoria",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "victoria",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "westminster",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -5124,28 +5105,28 @@
         "to": "st-jamess-park",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "sloane-square",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "sloane-square",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "st-jamess-park",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5168,28 +5149,28 @@
         "to": "victoria",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "south-kensington",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "south-kensington",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "victoria",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -5198,42 +5179,42 @@
         "to": "sloane-square",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "gloucester-road",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "gloucester-road",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "sloane-square",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "gloucester-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "knightsbridge",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -5242,42 +5223,42 @@
         "to": "south-kensington",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "high-street-kensington",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "earls-court",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "south-kensington",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "earls-court",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "south-kensington",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -5286,28 +5267,28 @@
         "to": "gloucester-road",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "notting-hill-gate",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "earls-court",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "notting-hill-gate",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5316,28 +5297,28 @@
         "to": "notting-hill-gate",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "paddington",
         "line": "circle",
         "branches": [
-          "circle:edgware-road-circle-line-edgware-road-circle-line"
+          "circle:edgware-road-circle-line-hammersmith-handc-line"
         ]
       },
       {
         "to": "notting-hill-gate",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "paddington",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5346,28 +5327,28 @@
         "to": "ealing-broadway",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "acton-town",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "north-ealing",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "acton-town",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -5376,36 +5357,35 @@
         "to": "ealing-common",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "chiswick-park",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "ealing-common",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
-        ]
-      },
-      {
-        "to": "turnham-green",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "south-ealing",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "turnham-green",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -5414,14 +5394,14 @@
         "to": "acton-town",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "turnham-green",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5430,14 +5410,14 @@
         "to": "chiswick-park",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "stamford-brook",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -5451,14 +5431,14 @@
         "to": "acton-town",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "hammersmith-handc-line",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -5467,14 +5447,14 @@
         "to": "turnham-green",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "ravenscourt-park",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5483,14 +5463,14 @@
         "to": "stamford-brook",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "hammersmith-handc-line",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5499,28 +5479,28 @@
         "to": "hammersmith-handc-line",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "west-kensington",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "hammersmith-handc-line",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "earls-court",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -5529,14 +5509,14 @@
         "to": "barons-court",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "earls-court",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5545,28 +5525,28 @@
         "to": "west-kensington",
         "line": "district",
         "branches": [
-          "district:earls-court-turnham-green"
-        ]
-      },
-      {
-        "to": "gloucester-road",
-        "line": "district",
-        "branches": [
-          "district:earls-court-upminster"
-        ]
-      },
-      {
-        "to": "west-brompton",
-        "line": "district",
-        "branches": [
-          "district:earls-court-wimbledon"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "high-street-kensington",
         "line": "district",
         "branches": [
-          "district:earls-court-edgware-road-circle-line"
+          "district:ealing-broadway-edgware-road-circle-line"
+        ]
+      },
+      {
+        "to": "west-brompton",
+        "line": "district",
+        "branches": [
+          "district:upminster-wimbledon"
+        ]
+      },
+      {
+        "to": "gloucester-road",
+        "line": "district",
+        "branches": [
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5580,14 +5560,14 @@
         "to": "barons-court",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "gloucester-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -5596,14 +5576,14 @@
         "to": "tower-hill",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "whitechapel",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5626,28 +5606,28 @@
         "to": "aldgate-east",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "stepney-green",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "stratford",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:stratford-whitechapel"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "liverpool-street",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:paddington-whitechapel"
+          "elizabeth:reading-stratford"
         ]
       },
       {
@@ -5677,14 +5657,14 @@
         "to": "whitechapel",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "mile-end",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5707,14 +5687,14 @@
         "to": "mile-end",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "bromley-by-bow",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5737,14 +5717,14 @@
         "to": "bow-road",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "west-ham",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5767,14 +5747,14 @@
         "to": "bromley-by-bow",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "plaistow",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5811,14 +5791,14 @@
         "to": "west-ham",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "upton-park",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5841,14 +5821,14 @@
         "to": "plaistow",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "east-ham",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5871,14 +5851,14 @@
         "to": "upton-park",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "barking",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5901,14 +5881,14 @@
         "to": "east-ham",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "upney",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
@@ -5924,14 +5904,14 @@
         "to": "barking",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "becontree",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -5940,14 +5920,14 @@
         "to": "upney",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "dagenham-heathway",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -5956,14 +5936,14 @@
         "to": "becontree",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "dagenham-east",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -5972,14 +5952,14 @@
         "to": "dagenham-heathway",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "elm-park",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -5988,14 +5968,14 @@
         "to": "dagenham-east",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "hornchurch",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6004,14 +5984,14 @@
         "to": "elm-park",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "upminster-bridge",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6020,14 +6000,14 @@
         "to": "hornchurch",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "upminster",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6036,7 +6016,7 @@
         "to": "upminster-bridge",
         "line": "district",
         "branches": [
-          "district:earls-court-upminster"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6086,7 +6066,7 @@
         "to": "wimbledon-park",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6095,14 +6075,14 @@
         "to": "wimbledon",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "southfields",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6111,14 +6091,14 @@
         "to": "wimbledon-park",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "east-putney",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6127,14 +6107,14 @@
         "to": "southfields",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "putney-bridge",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6143,14 +6123,14 @@
         "to": "east-putney",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "parsons-green",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6159,14 +6139,14 @@
         "to": "putney-bridge",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "fulham-broadway",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6175,14 +6155,14 @@
         "to": "parsons-green",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "west-brompton",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6191,14 +6171,14 @@
         "to": "fulham-broadway",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       },
       {
         "to": "earls-court",
         "line": "district",
         "branches": [
-          "district:earls-court-wimbledon"
+          "district:upminster-wimbledon"
         ]
       }
     ],
@@ -6216,7 +6196,7 @@
         "to": "brentwood",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6225,14 +6205,14 @@
         "to": "shenfield",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "harold-wood",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6241,14 +6221,14 @@
         "to": "brentwood",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "gidea-park",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6257,14 +6237,14 @@
         "to": "harold-wood",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "romford",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6273,14 +6253,14 @@
         "to": "gidea-park",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "chadwell-heath",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6289,14 +6269,14 @@
         "to": "romford",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "goodmayes",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6305,14 +6285,14 @@
         "to": "chadwell-heath",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "seven-kings",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6321,14 +6301,14 @@
         "to": "goodmayes",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "ilford",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6337,14 +6317,14 @@
         "to": "seven-kings",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "manor-park",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6353,14 +6333,14 @@
         "to": "ilford",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "forest-gate",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6369,14 +6349,14 @@
         "to": "manor-park",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "maryland",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6385,14 +6365,14 @@
         "to": "forest-gate",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       },
       {
         "to": "stratford",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:shenfield-stratford"
+          "elizabeth:liverpool-street-shenfield"
         ]
       }
     ],
@@ -6401,14 +6381,14 @@
         "to": "paddington",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-paddington"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "ealing-broadway",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6417,14 +6397,14 @@
         "to": "ealing-broadway",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "hanwell",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6433,14 +6413,14 @@
         "to": "west-ealing",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "southall",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6449,14 +6429,14 @@
         "to": "hanwell",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "hayes-and-harlington",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6465,21 +6445,21 @@
         "to": "southall",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:acton-main-line-hayes-and-harlington"
-        ]
-      },
-      {
-        "to": "heathrow-terminals-2-and-3",
-        "line": "elizabeth",
-        "branches": [
-          "elizabeth:hayes-and-harlington-heathrow-terminals-2-and-3"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "west-drayton",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
+        ]
+      },
+      {
+        "to": "heathrow-terminals-2-and-3",
+        "line": "elizabeth",
+        "branches": [
+          "elizabeth:hayes-and-harlington-heathrow-terminal-5"
         ]
       }
     ],
@@ -6488,7 +6468,14 @@
         "to": "hayes-and-harlington",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-heathrow-terminals-2-and-3"
+          "elizabeth:hayes-and-harlington-heathrow-terminal-5"
+        ]
+      },
+      {
+        "to": "heathrow-terminal-5",
+        "line": "elizabeth",
+        "branches": [
+          "elizabeth:hayes-and-harlington-heathrow-terminal-5"
         ]
       },
       {
@@ -6499,33 +6486,25 @@
         ]
       },
       {
-        "to": "heathrow-terminal-5",
-        "line": "elizabeth",
-        "branches": [
-          "elizabeth:heathrow-terminal-5-heathrow-terminals-2-and-3"
-        ]
-      },
-      {
         "to": "heathrow-terminal-4",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:heathrow-terminal-4-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "hatton-cross",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-heathrow-terminals-2-and-3",
-          "piccadilly:hatton-cross-heathrow-terminal-5"
+          "piccadilly:cockfosters-uxbridge",
+          "piccadilly:hatton-cross-heathrow-terminals-2-and-3"
         ]
       },
       {
         "to": "heathrow-terminal-5",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:hatton-cross-heathrow-terminal-5",
-          "piccadilly:heathrow-terminal-5-heathrow-terminals-2-and-3"
+          "piccadilly:hatton-cross-heathrow-terminals-2-and-3"
         ]
       }
     ],
@@ -6538,17 +6517,17 @@
         ]
       },
       {
-        "to": "heathrow-terminals-2-and-3",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:heathrow-terminal-4-heathrow-terminals-2-and-3"
-        ]
-      },
-      {
         "to": "hatton-cross",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:hatton-cross-heathrow-terminal-4"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "heathrow-terminals-2-and-3",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -6557,15 +6536,14 @@
         "to": "heathrow-terminals-2-and-3",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:heathrow-terminal-5-heathrow-terminals-2-and-3"
+          "elizabeth:hayes-and-harlington-heathrow-terminal-5"
         ]
       },
       {
         "to": "heathrow-terminals-2-and-3",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:hatton-cross-heathrow-terminal-5",
-          "piccadilly:heathrow-terminal-5-heathrow-terminals-2-and-3"
+          "piccadilly:hatton-cross-heathrow-terminals-2-and-3"
         ]
       }
     ],
@@ -6574,14 +6552,14 @@
         "to": "hayes-and-harlington",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "iver",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6590,14 +6568,14 @@
         "to": "west-drayton",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "langley-berks",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6606,14 +6584,14 @@
         "to": "iver",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "slough",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6622,14 +6600,14 @@
         "to": "langley-berks",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "burnham-berks",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6638,14 +6616,14 @@
         "to": "slough",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "taplow",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6654,14 +6632,14 @@
         "to": "burnham-berks",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "maidenhead",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6670,14 +6648,14 @@
         "to": "taplow",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "twyford",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6686,14 +6664,14 @@
         "to": "maidenhead",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       },
       {
         "to": "reading",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6702,7 +6680,7 @@
         "to": "twyford",
         "line": "elizabeth",
         "branches": [
-          "elizabeth:hayes-and-harlington-reading"
+          "elizabeth:reading-stratford"
         ]
       }
     ],
@@ -6853,22 +6831,20 @@
         "to": "preston-road",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-harrow-on-the-hill",
-          "metropolitan:harrow-on-the-hill-wembley-park"
-        ]
-      },
-      {
-        "to": "willesden-green",
-        "line": "metropolitan",
-        "branches": [
-          "metropolitan:finchley-road-wembley-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "finchley-road",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-harrow-on-the-hill",
+          "metropolitan:amersham-harrow-on-the-hill"
+        ]
+      },
+      {
+        "to": "willesden-green",
+        "line": "metropolitan",
+        "branches": [
           "metropolitan:finchley-road-wembley-park"
         ]
       }
@@ -6983,25 +6959,23 @@
         ]
       },
       {
+        "to": "wembley-park",
+        "line": "metropolitan",
+        "branches": [
+          "metropolitan:amersham-harrow-on-the-hill"
+        ]
+      },
+      {
         "to": "baker-street",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-finchley-road",
-          "metropolitan:aldgate-harrow-on-the-hill"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "willesden-green",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:finchley-road-wembley-park"
-        ]
-      },
-      {
-        "to": "wembley-park",
-        "line": "metropolitan",
-        "branches": [
-          "metropolitan:aldgate-harrow-on-the-hill",
           "metropolitan:finchley-road-wembley-park"
         ]
       }
@@ -7057,14 +7031,14 @@
         "to": "hyde-park-corner",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "piccadilly-circus",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
@@ -7117,14 +7091,14 @@
         "to": "borough",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "bank",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7197,7 +7171,7 @@
         "to": "chalfont-and-latimer",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:amersham-chalfont-and-latimer"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -7206,14 +7180,14 @@
         "to": "amersham",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:amersham-chalfont-and-latimer"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "chorleywood",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:chalfont-and-latimer-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
@@ -7229,14 +7203,14 @@
         "to": "chalfont-and-latimer",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:chalfont-and-latimer-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "rickmansworth",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:chalfont-and-latimer-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -7245,14 +7219,14 @@
         "to": "chorleywood",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:chalfont-and-latimer-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "moor-park",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:chalfont-and-latimer-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -7261,14 +7235,14 @@
         "to": "rickmansworth",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:chalfont-and-latimer-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "northwood",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
@@ -7284,14 +7258,14 @@
         "to": "moor-park",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "northwood-hills",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -7300,14 +7274,14 @@
         "to": "northwood",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "pinner",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -7316,14 +7290,14 @@
         "to": "northwood-hills",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "north-harrow",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -7332,14 +7306,14 @@
         "to": "pinner",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "harrow-on-the-hill",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -7348,15 +7322,14 @@
         "to": "north-harrow",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:harrow-on-the-hill-moor-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "northwick-park",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-harrow-on-the-hill",
-          "metropolitan:harrow-on-the-hill-wembley-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
@@ -7372,16 +7345,14 @@
         "to": "harrow-on-the-hill",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-harrow-on-the-hill",
-          "metropolitan:harrow-on-the-hill-wembley-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "preston-road",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-harrow-on-the-hill",
-          "metropolitan:harrow-on-the-hill-wembley-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -7390,16 +7361,14 @@
         "to": "northwick-park",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-harrow-on-the-hill",
-          "metropolitan:harrow-on-the-hill-wembley-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       },
       {
         "to": "wembley-park",
         "line": "metropolitan",
         "branches": [
-          "metropolitan:aldgate-harrow-on-the-hill",
-          "metropolitan:harrow-on-the-hill-wembley-park"
+          "metropolitan:amersham-harrow-on-the-hill"
         ]
       }
     ],
@@ -7424,7 +7393,7 @@
         "to": "hillingdon",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -7447,14 +7416,14 @@
         "to": "uxbridge",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "ickenham",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -7477,14 +7446,14 @@
         "to": "hillingdon",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "ruislip",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -7507,14 +7476,14 @@
         "to": "ickenham",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "ruislip-manor",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -7537,14 +7506,14 @@
         "to": "ruislip",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "eastcote",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -7567,14 +7536,14 @@
         "to": "ruislip-manor",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "rayners-lane",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -7597,14 +7566,14 @@
         "to": "eastcote",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "south-harrow",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -7654,7 +7623,7 @@
         "to": "south-wimbledon",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7663,14 +7632,14 @@
         "to": "morden",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "colliers-wood",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7679,14 +7648,14 @@
         "to": "south-wimbledon",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "tooting-broadway",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7695,14 +7664,14 @@
         "to": "colliers-wood",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "tooting-bec",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7711,14 +7680,14 @@
         "to": "tooting-broadway",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "balham",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7727,14 +7696,14 @@
         "to": "tooting-bec",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "clapham-south",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7743,14 +7712,14 @@
         "to": "balham",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "clapham-common",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7759,14 +7728,14 @@
         "to": "clapham-south",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "clapham-north",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7775,14 +7744,14 @@
         "to": "clapham-common",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "stockwell",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7791,14 +7760,14 @@
         "to": "clapham-north",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "oval",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
@@ -7821,14 +7790,14 @@
         "to": "stockwell",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "kennington",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -7837,28 +7806,28 @@
         "to": "oval",
         "line": "northern",
         "branches": [
-          "northern:kennington-morden"
-        ]
-      },
-      {
-        "to": "waterloo",
-        "line": "northern",
-        "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "elephant-and-castle",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "nine-elms",
         "line": "northern",
         "branches": [
-          "northern:battersea-power-station-kennington"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
+        ]
+      },
+      {
+        "to": "waterloo",
+        "line": "northern",
+        "branches": [
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -7867,28 +7836,28 @@
         "to": "charing-cross",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "tottenham-court-road",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "piccadilly-circus",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "covent-garden",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -7897,14 +7866,14 @@
         "to": "tottenham-court-road",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "warren-street",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -7913,14 +7882,14 @@
         "to": "goodge-street",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "euston",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-charing-cross"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
@@ -7940,31 +7909,31 @@
     ],
     "euston": [
       {
-        "to": "warren-street",
-        "line": "northern",
-        "branches": [
-          "northern:euston-kennington-via-charing-cross"
-        ]
-      },
-      {
-        "to": "mornington-crescent",
-        "line": "northern",
-        "branches": [
-          "northern:camden-town-euston"
-        ]
-      },
-      {
         "to": "kings-cross-st-pancras",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "camden-town",
         "line": "northern",
         "branches": [
-          "northern:camden-town-euston"
+          "northern:edgware-morden-via-bank"
+        ]
+      },
+      {
+        "to": "warren-street",
+        "line": "northern",
+        "branches": [
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
+        ]
+      },
+      {
+        "to": "mornington-crescent",
+        "line": "northern",
+        "branches": [
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
@@ -7987,44 +7956,44 @@
         "to": "euston",
         "line": "northern",
         "branches": [
-          "northern:camden-town-euston"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "camden-town",
         "line": "northern",
         "branches": [
-          "northern:camden-town-euston"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
     "camden-town": [
       {
-        "to": "mornington-crescent",
-        "line": "northern",
-        "branches": [
-          "northern:camden-town-euston"
-        ]
-      },
-      {
-        "to": "kentish-town",
-        "line": "northern",
-        "branches": [
-          "northern:camden-town-finchley-central"
-        ]
-      },
-      {
         "to": "euston",
         "line": "northern",
         "branches": [
-          "northern:camden-town-euston"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "chalk-farm",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
+        ]
+      },
+      {
+        "to": "mornington-crescent",
+        "line": "northern",
+        "branches": [
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
+        ]
+      },
+      {
+        "to": "kentish-town",
+        "line": "northern",
+        "branches": [
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -8033,14 +8002,14 @@
         "to": "camden-town",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "tufnell-park",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -8049,14 +8018,14 @@
         "to": "kentish-town",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "archway",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -8065,14 +8034,14 @@
         "to": "tufnell-park",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "highgate",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -8081,14 +8050,14 @@
         "to": "archway",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "east-finchley",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -8097,25 +8066,18 @@
         "to": "highgate",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "finchley-central",
         "line": "northern",
         "branches": [
-          "northern:camden-town-finchley-central"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
     "finchley-central": [
-      {
-        "to": "east-finchley",
-        "line": "northern",
-        "branches": [
-          "northern:camden-town-finchley-central"
-        ]
-      },
       {
         "to": "west-finchley",
         "line": "northern",
@@ -8124,10 +8086,17 @@
         ]
       },
       {
+        "to": "east-finchley",
+        "line": "northern",
+        "branches": [
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
+        ]
+      },
+      {
         "to": "mill-hill-east",
         "line": "northern",
         "branches": [
-          "northern:finchley-central-mill-hill-east"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -8193,14 +8162,14 @@
         "to": "elephant-and-castle",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "london-bridge",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8209,14 +8178,14 @@
         "to": "moorgate",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "angel",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8225,14 +8194,14 @@
         "to": "old-street",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "kings-cross-st-pancras",
         "line": "northern",
         "branches": [
-          "northern:euston-kennington-via-bank"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8241,14 +8210,14 @@
         "to": "camden-town",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "belsize-park",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8257,14 +8226,14 @@
         "to": "chalk-farm",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "hampstead",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8273,14 +8242,14 @@
         "to": "belsize-park",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "golders-green",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8289,14 +8258,14 @@
         "to": "hampstead",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "brent-cross",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8305,14 +8274,14 @@
         "to": "golders-green",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "hendon-central",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8321,14 +8290,14 @@
         "to": "brent-cross",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "colindale",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8337,14 +8306,14 @@
         "to": "hendon-central",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "burnt-oak",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8353,14 +8322,14 @@
         "to": "colindale",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       },
       {
         "to": "edgware",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8369,7 +8338,7 @@
         "to": "burnt-oak",
         "line": "northern",
         "branches": [
-          "northern:camden-town-edgware"
+          "northern:edgware-morden-via-bank"
         ]
       }
     ],
@@ -8378,7 +8347,7 @@
         "to": "finchley-central",
         "line": "northern",
         "branches": [
-          "northern:finchley-central-mill-hill-east"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -8387,7 +8356,7 @@
         "to": "nine-elms",
         "line": "northern",
         "branches": [
-          "northern:battersea-power-station-kennington"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -8396,14 +8365,14 @@
         "to": "battersea-power-station",
         "line": "northern",
         "branches": [
-          "northern:battersea-power-station-kennington"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       },
       {
         "to": "kennington",
         "line": "northern",
         "branches": [
-          "northern:battersea-power-station-kennington"
+          "northern:battersea-power-station-mill-hill-east-via-charing-cross"
         ]
       }
     ],
@@ -8412,14 +8381,14 @@
         "to": "rayners-lane",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "sudbury-hill",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8428,14 +8397,14 @@
         "to": "south-harrow",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "sudbury-town",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8444,14 +8413,14 @@
         "to": "sudbury-hill",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "alperton",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8460,14 +8429,14 @@
         "to": "sudbury-town",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "park-royal",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8476,14 +8445,14 @@
         "to": "alperton",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "north-ealing",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8492,14 +8461,14 @@
         "to": "park-royal",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "ealing-common",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-uxbridge"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8508,14 +8477,14 @@
         "to": "south-kensington",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "hyde-park-corner",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8524,14 +8493,14 @@
         "to": "knightsbridge",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "green-park",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8540,14 +8509,14 @@
         "to": "leicester-square",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "holborn",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8556,14 +8525,14 @@
         "to": "holborn",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "kings-cross-st-pancras",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8572,14 +8541,14 @@
         "to": "kings-cross-st-pancras",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "holloway-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8588,14 +8557,14 @@
         "to": "caledonian-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "arsenal",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8604,14 +8573,14 @@
         "to": "holloway-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "finsbury-park",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8620,14 +8589,14 @@
         "to": "arsenal",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "manor-house",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
@@ -8650,14 +8619,14 @@
         "to": "finsbury-park",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "turnpike-lane",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8666,14 +8635,14 @@
         "to": "manor-house",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "wood-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8682,14 +8651,14 @@
         "to": "turnpike-lane",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "bounds-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8698,14 +8667,14 @@
         "to": "wood-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "arnos-grove",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8714,14 +8683,14 @@
         "to": "bounds-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "southgate",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8730,14 +8699,14 @@
         "to": "arnos-grove",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "oakwood",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8746,14 +8715,14 @@
         "to": "southgate",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "cockfosters",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
@@ -8762,158 +8731,143 @@
         "to": "oakwood",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-cockfosters"
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
     "hatton-cross": [
       {
-        "to": "heathrow-terminals-2-and-3",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:acton-town-heathrow-terminals-2-and-3",
-          "piccadilly:hatton-cross-heathrow-terminal-5"
-        ]
-      },
-      {
         "to": "hounslow-west",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
         ]
       },
       {
         "to": "heathrow-terminal-4",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:hatton-cross-heathrow-terminal-4"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "heathrow-terminals-2-and-3",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge",
+          "piccadilly:hatton-cross-heathrow-terminals-2-and-3"
         ]
       }
     ],
     "hounslow-west": [
       {
-        "to": "hatton-cross",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
-        ]
-      },
-      {
         "to": "hounslow-central",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "hatton-cross",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
     "hounslow-central": [
       {
-        "to": "hounslow-west",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
-        ]
-      },
-      {
         "to": "hounslow-east",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "hounslow-west",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
     "hounslow-east": [
       {
-        "to": "hounslow-central",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
-        ]
-      },
-      {
         "to": "osterley",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "hounslow-central",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
     "osterley": [
       {
-        "to": "hounslow-east",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
-        ]
-      },
-      {
         "to": "boston-manor",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "hounslow-east",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
     "boston-manor": [
       {
-        "to": "osterley",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
-        ]
-      },
-      {
         "to": "northfields",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "osterley",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
     "northfields": [
       {
-        "to": "boston-manor",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
-        ]
-      },
-      {
         "to": "south-ealing",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "boston-manor",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],
     "south-ealing": [
       {
-        "to": "northfields",
-        "line": "piccadilly",
-        "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
-        ]
-      },
-      {
         "to": "acton-town",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:acton-town-hatton-cross",
-          "piccadilly:acton-town-heathrow-terminals-2-and-3"
+          "piccadilly:cockfosters-uxbridge"
+        ]
+      },
+      {
+        "to": "northfields",
+        "line": "piccadilly",
+        "branches": [
+          "piccadilly:cockfosters-uxbridge"
         ]
       }
     ],

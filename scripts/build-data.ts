@@ -133,6 +133,77 @@ function deriveVia(lineId: string, stopSlugs: string[]): string | null {
   return null;
 }
 
+/**
+ * Chain sequences on the same line that share an endpoint into longer
+ * through-running services. For example if the TfL API returns:
+ *   [A, B, C] and [C, D, E]  (same line)
+ * we merge them into [A, B, C, D, E].
+ *
+ * Greedy: repeatedly find a pair that can be joined (the last stop of one
+ * equals the first stop of the other) and merge until no more joins are
+ * possible. Works across any number of fragments.
+ */
+function chainSequences(
+  sequences: { lineId: string; stopSlugs: string[] }[]
+): { lineId: string; stopSlugs: string[] }[] {
+  // Deduplicate: outbound [A,B,C] and inbound [C,B,A] are the same service.
+  // Canonicalise by sorting the first/last stop pair and joining all slugs.
+  const seen = new Set<string>();
+  const deduped: { lineId: string; stopSlugs: string[] }[] = [];
+  for (const seq of sequences) {
+    const first = seq.stopSlugs[0];
+    const last = seq.stopSlugs[seq.stopSlugs.length - 1];
+    const [lo, hi] = first < last ? [first, last] : [last, first];
+    const key = `${seq.lineId}|${lo}|${hi}|${seq.stopSlugs.length}`;
+    if (!seen.has(key)) {
+      seen.add(key);
+      deduped.push(seq);
+    }
+  }
+
+  // Group by line so we only try to chain within the same line.
+  const byLine = new Map<string, { stopSlugs: string[] }[]>();
+  for (const seq of deduped) {
+    let group = byLine.get(seq.lineId);
+    if (!group) {
+      group = [];
+      byLine.set(seq.lineId, group);
+    }
+    group.push({ stopSlugs: [...seq.stopSlugs] });
+  }
+
+  const result: { lineId: string; stopSlugs: string[] }[] = [];
+
+  for (const [lineId, seqs] of byLine) {
+    // Greedily chain: index sequences by their first stop slug.
+    let changed = true;
+    while (changed) {
+      changed = false;
+      const byFirst = new Map<string, number>();
+      for (let i = 0; i < seqs.length; i++) {
+        byFirst.set(seqs[i].stopSlugs[0], i);
+      }
+      for (let i = 0; i < seqs.length; i++) {
+        const tail = seqs[i].stopSlugs[seqs[i].stopSlugs.length - 1];
+        const j = byFirst.get(tail);
+        if (j !== undefined && j !== i) {
+          // Merge j onto the end of i (skip the shared stop).
+          seqs[i].stopSlugs.push(...seqs[j].stopSlugs.slice(1));
+          seqs.splice(j, 1);
+          changed = true;
+          break;
+        }
+      }
+    }
+
+    for (const seq of seqs) {
+      result.push({ lineId, stopSlugs: seq.stopSlugs });
+    }
+  }
+
+  return result;
+}
+
 async function buildGraphAndLines(): Promise<{
   stations: Record<string, Station>;
   adjacency: Map<string, Edge[]>;
@@ -231,6 +302,8 @@ async function buildGraphAndLines(): Promise<{
     set.add(branch);
   };
 
+  // Convert parentId sequences to slug sequences.
+  const slugSequences: { lineId: string; stopSlugs: string[] }[] = [];
   for (const seq of lineSequences) {
     const stopSlugs: string[] = [];
     for (const parentId of seq.stopParentIds) {
@@ -240,12 +313,21 @@ async function buildGraphAndLines(): Promise<{
         stopSlugs.push(slug);
       }
     }
-    if (stopSlugs.length < 2) continue;
+    if (stopSlugs.length >= 2) {
+      slugSequences.push({ lineId: seq.lineId, stopSlugs });
+    }
+  }
 
-    const branchSlug = deriveBranchSlug(seq.lineId, stopSlugs);
-    for (let i = 0; i < stopSlugs.length - 1; i++) {
-      const from = stopSlugs[i];
-      const to = stopSlugs[i + 1];
+  // Chain sequences on the same line that share an endpoint. The TfL API
+  // sometimes returns through-running services (e.g. Elizabeth line) as
+  // multiple short fragments. Chaining them avoids spurious branch slugs.
+  const chained = chainSequences(slugSequences);
+
+  for (const seq of chained) {
+    const branchSlug = deriveBranchSlug(seq.lineId, seq.stopSlugs);
+    for (let i = 0; i < seq.stopSlugs.length - 1; i++) {
+      const from = seq.stopSlugs[i];
+      const to = seq.stopSlugs[i + 1];
       addBranch(`${from}|${to}|${seq.lineId}`, branchSlug);
       addBranch(`${to}|${from}|${seq.lineId}`, branchSlug);
     }
