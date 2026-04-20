@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import RouteMap from "../components/RouteMap";
 import { findRoute, getStationName, graph } from "../game/pathfinding";
-import type { RouteHint } from "../game/types";
+import type { GuessResult, RouteHint } from "../game/types";
+import GuessList from "../components/GuessList";
 
 interface RouteTestPageProps {
   params: URLSearchParams;
@@ -29,6 +29,20 @@ function computeRoute(from: string, to: string): RouteResult {
   }
 }
 
+/** Build a fake GuessResult so we can render via GuessList. */
+function fakeGuess(stationId: string, hint: RouteHint): GuessResult {
+  return {
+    stationId,
+    correct: false,
+    hint,
+    codeHint: { letters: [] },
+    ridership: 0,
+    ridershipComparison: "equal",
+    zone: "",
+    zoneComparison: "equal",
+  };
+}
+
 export default function RouteTestPage({ params }: RouteTestPageProps) {
   const from = params.get("start") ?? "";
   const to = params.get("end") ?? "";
@@ -37,6 +51,12 @@ export default function RouteTestPage({ params }: RouteTestPageProps) {
 
   const fromName = getStationName(from) ?? from;
   const toName = getStationName(to) ?? to;
+
+  // Build fake guesses for each route hint so GuessList can render them
+  const guesses = useMemo(
+    () => result.hints?.map((hint) => fakeGuess(from, hint)) ?? [],
+    [result.hints, from]
+  );
 
   return (
     <div className="app">
@@ -60,32 +80,24 @@ export default function RouteTestPage({ params }: RouteTestPageProps) {
         </div>
       )}
 
-      {result.hints?.map((hint, i) => (
-        <div key={i} className="route-test-hint-block">
+      {guesses.length > 0 && (
+        <>
           <div className="route-test-hint-label">
-            Route {i + 1} of {result.hints!.length} · {hint.totalStops} stops ·{" "}
-            {hint.segments.length}{" "}
-            {hint.segments.length === 1 ? "segment" : "segments"}
+            {result.hints!.length} route{result.hints!.length === 1 ? "" : "s"} ·{" "}
+            {result.hints![0].totalStops} stops ·{" "}
+            {result.hints![0].segments.length}{" "}
+            {result.hints![0].segments.length === 1 ? "segment" : "segments"}
           </div>
-          <RouteMap
-            guessId={from}
-            segments={hint.segments}
-            revealedKeys={new Set()}
+          <GuessList
+            guesses={guesses}
+            getStationName={getStationName}
+            revealStations={true}
             showLines={true}
             revealMatchedSegments={false}
             revealedTargetLines={new Set()}
           />
-          <ol className="route-test-segments">
-            {hint.segments.map((seg, j) => (
-              <li key={j}>
-                {seg.lines.join(" / ")} — {seg.stops}{" "}
-                {seg.stops === 1 ? "stop" : "stops"} to{" "}
-                {getStationName(seg.endStationId) ?? seg.endStationId}
-              </li>
-            ))}
-          </ol>
-        </div>
-      ))}
+        </>
+      )}
 
       <div className="route-test-nav">
         <a href="/gallery">Gallery</a> · <a href="/">Back to game</a>
