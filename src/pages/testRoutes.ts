@@ -55,5 +55,6 @@ export const TEST_ROUTES: TestRoute[] = [
   // --- No branch change expected (trunk or single branch throughout) ---
   { label: "Northern: no branch change (Mill Hill East → Morden)", from: "mill-hill-east", to: "morden" },
   { label: "Piccadilly: no branch change, shared trunk (T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
+  { label: "Central: Epping → Roding Valley via Woodford (no branch change)", from: "epping", to: "roding-valley" },
   { label: "Central: Hainault loop (via Elizabeth)", from: "hainault", to: "ealing-broadway" },
 ];
