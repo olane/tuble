@@ -47,7 +47,6 @@ export const TEST_ROUTES: TestRoute[] = [
 
   // --- Same-line branch changes (different TfL through-routes) ---
   { label: "Northern: change at Camden Town (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
-  { label: "Northern: change at Camden Town (Morden → High Barnet)", from: "morden", to: "high-barnet" },
   { label: "Metropolitan: change at Harrow (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
   { label: "District: change at Turnham Green (Richmond → Ealing Broadway)", from: "richmond", to: "ealing-broadway" },
   { label: "District: change at Earl's Court (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
@@ -56,6 +55,7 @@ export const TEST_ROUTES: TestRoute[] = [
   { label: "Central: change at Woodford (Epping → Roding Valley)", from: "epping", to: "roding-valley" },
 
   // --- No branch change (same TfL through-route) ---
+  { label: "Northern: no change (Morden → High Barnet)", from: "morden", to: "high-barnet" },
   { label: "Northern: no change (Mill Hill East → Morden)", from: "mill-hill-east", to: "morden" },
   { label: "Central: Hainault loop (via Elizabeth)", from: "hainault", to: "ealing-broadway" },
 ];

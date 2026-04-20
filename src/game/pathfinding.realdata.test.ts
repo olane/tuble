@@ -47,14 +47,6 @@ describe("branch changes on real data", () => {
       expect(route.segments.length).toBeGreaterThanOrEqual(2);
     });
 
-    it("Northern: Morden → High Barnet (same-line, change at Camden Town)", () => {
-      // Morden–High Barnet IS a through-route, but Morden–Edgware is too,
-      // and they share the trunk. The route should show the branch split.
-      const route = bestRoute("morden", "high-barnet");
-      expect(allSegmentsOnLines(route, ["northern"])).toBe(true);
-      expect(route.segments).toHaveLength(2);
-    });
-
     it("Metropolitan: Chesham → Uxbridge (different routes, change at Harrow-on-the-Hill)", () => {
       // Aldgate–Chesham and Aldgate–Uxbridge are separate through-routes.
       // They share the trunk until Harrow-on-the-Hill where Uxbridge diverges.
@@ -97,6 +89,13 @@ describe("branch changes on real data", () => {
   // one train the whole way. No same-line branch change should appear.
 
   describe("through-routes — no branch change", () => {
+    it("Northern: Morden → High Barnet (single through-route)", () => {
+      // Morden–High Barnet is a TfL through-route (one train).
+      const route = bestRoute("morden", "high-barnet");
+      expect(allSegmentsOnLines(route, ["northern"])).toBe(true);
+      expect(route.segments).toHaveLength(1);
+    });
+
     it("Northern: Mill Hill East → Morden (single through-route)", () => {
       // Morden–Mill Hill East is a TfL through-route.
       const route = bestRoute("mill-hill-east", "morden");

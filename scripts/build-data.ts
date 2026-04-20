@@ -171,15 +171,16 @@ function parseThroughRoutes(
 }
 
 /**
- * Assign through-route branch slugs to edges by chaining sequence fragments.
+ * Assign through-route branch slugs to edges.
  *
- * For each through-route (e.g. "Morden → High Barnet"), we find a chain of
- * sequence fragments that connects origin to destination, then tag every edge
- * in that chain with the through-route's slug.
+ * For each through-route (e.g. "Morden → High Barnet"), we find which
+ * sequence fragments lie on its path by BFS through the fragment-endpoint
+ * graph. A fragment belongs to a through-route if both its termini are
+ * reachable from the route's origin on the way to its destination.
  *
- * When multiple chains are possible (e.g. via Bank vs via Charing Cross on
- * the Northern line), both produce the same slug (they're the same
- * through-route) — the "via" suffix in the slug disambiguates.
+ * Trunk edges (shared by multiple through-routes) naturally get multiple
+ * slugs. Branch-exclusive edges get only the slugs of through-routes that
+ * traverse them.
  */
 function assignBranchSlugs(
   throughRoutes: ThroughRoute[],
@@ -189,7 +190,6 @@ function assignBranchSlugs(
   addBranch: (key: string, branch: string) => void
 ): void {
   // Dedup sequences: outbound [A,B,C] and inbound [C,B,A] are the same.
-  // Canonicalise by sorting the first/last stop pair.
   const seen = new Set<string>();
   const dedupedSeqs: { stopSlugs: string[] }[] = [];
   for (const seq of sequences) {
@@ -203,98 +203,112 @@ function assignBranchSlugs(
     }
   }
 
-  // Index sequences by their first station for chaining
-  const seqsByFirst = new Map<string, { stopSlugs: string[] }[]>();
+  // Build a fragment-endpoint graph: nodes are fragment termini, edges
+  // connect first↔last of each fragment. Used to determine reachability
+  // between through-route termini and fragment termini.
+  const fragAdj = new Map<string, Set<string>>();
   for (const seq of dedupedSeqs) {
     const first = seq.stopSlugs[0];
-    if (!seqsByFirst.has(first)) seqsByFirst.set(first, []);
-    seqsByFirst.get(first)!.push(seq);
+    const last = seq.stopSlugs[seq.stopSlugs.length - 1];
+    if (!fragAdj.has(first)) fragAdj.set(first, new Set());
+    if (!fragAdj.has(last)) fragAdj.set(last, new Set());
+    fragAdj.get(first)!.add(last);
+    fragAdj.get(last)!.add(first);
+  }
+
+  // For each through-route, BFS through the fragment-endpoint graph to find
+  // the shortest chain of fragments from origin to destination. Only
+  // fragments on this chain get the through-route's slug.
+  //
+  // Index fragments by their termini pair for lookup after BFS.
+  const fragsByEndpoints = new Map<string, { stopSlugs: string[] }[]>();
+  for (const seq of dedupedSeqs) {
+    const first = seq.stopSlugs[0];
+    const last = seq.stopSlugs[seq.stopSlugs.length - 1];
+    for (const key of [`${first}|${last}`, `${last}|${first}`]) {
+      if (!fragsByEndpoints.has(key)) fragsByEndpoints.set(key, []);
+      fragsByEndpoints.get(key)!.push(seq);
+    }
   }
 
   for (const route of throughRoutes) {
-    // DFS to find all chains of fragments from origin to destination.
-    // Each chain is a list of sequences whose first/last stops connect.
-    // DFS to find ALL chains of fragments from origin to destination.
-    // We need all chains because the same through-route may have multiple
-    // physical paths (e.g. Northern via Bank vs via Charing Cross).
-    const allChains: [string, string][][] = [];
+    // BFS at the fragment-endpoint level: find ALL shortest paths from
+    // origin to destination. We need all paths because through-routes like
+    // "Morden→High Barnet" have multiple physical variants (via Bank, via CC).
+    const dist = new Map<string, number>();
+    const parents = new Map<string, string[]>();
+    const queue = [route.originSlug];
+    dist.set(route.originSlug, 0);
+    parents.set(route.originSlug, []);
 
-    function dfs(
-      current: string,
-      visited: Set<string>,
-      edges: [string, string][]
-    ): void {
-      if (current === route.destSlug) {
-        allChains.push([...edges]);
-        return;
-      }
-
-      for (const seq of seqsByFirst.get(current) ?? []) {
-        const last = seq.stopSlugs[seq.stopSlugs.length - 1];
-        if (visited.has(last)) continue;
-
-        const seqEdges: [string, string][] = [];
-        for (let i = 0; i < seq.stopSlugs.length - 1; i++) {
-          seqEdges.push([seq.stopSlugs[i], seq.stopSlugs[i + 1]]);
+    while (queue.length > 0) {
+      const current = queue.shift()!;
+      const d = dist.get(current)!;
+      for (const nbr of fragAdj.get(current) ?? []) {
+        const prevDist = dist.get(nbr);
+        if (prevDist === undefined) {
+          dist.set(nbr, d + 1);
+          parents.set(nbr, [current]);
+          queue.push(nbr);
+        } else if (prevDist === d + 1) {
+          parents.get(nbr)!.push(current);
         }
-
-        visited.add(last);
-        edges.push(...seqEdges);
-        dfs(last, visited, edges);
-        edges.length -= seqEdges.length;
-        visited.delete(last);
       }
     }
 
-    const visited = new Set<string>();
-    visited.add(route.originSlug);
-    dfs(route.originSlug, visited, []);
-
-    // Also try from dest → origin
-    if (allChains.length === 0) {
-      visited.clear();
-      visited.add(route.destSlug);
-      dfs(route.destSlug, visited, []);
+    let target = route.destSlug;
+    if (!dist.has(target)) {
+      // Try reverse
+      target = route.originSlug;
+      dist.clear();
+      parents.clear();
+      queue.push(route.destSlug);
+      dist.set(route.destSlug, 0);
+      parents.set(route.destSlug, []);
+      while (queue.length > 0) {
+        const current = queue.shift()!;
+        const d = dist.get(current)!;
+        for (const nbr of fragAdj.get(current) ?? []) {
+          const prevDist = dist.get(nbr);
+          if (prevDist === undefined) {
+            dist.set(nbr, d + 1);
+            parents.set(nbr, [current]);
+            queue.push(nbr);
+          } else if (prevDist === d + 1) {
+            parents.get(nbr)!.push(current);
+          }
+        }
+      }
     }
 
-    if (allChains.length === 0) {
-      console.warn(`    ⚠ No chain found for ${route.slug}`);
+    if (!dist.has(target)) {
+      console.warn(`    ⚠ No path for ${route.slug}`);
       continue;
     }
 
-    if (allChains.length === 1) {
-      // Single chain — tag all edges with the through-route slug
-      for (const [from, to] of allChains[0]) {
-        addBranch(`${from}|${to}|${lineId}`, route.slug);
-        addBranch(`${to}|${from}|${lineId}`, route.slug);
+    // Collect ALL fragment-endpoint pairs on ANY shortest path by walking
+    // backward through all parents from the target.
+    const edgePairs = new Set<string>();
+    const backtrack = [target];
+    const visited = new Set<string>();
+    while (backtrack.length > 0) {
+      const node = backtrack.pop()!;
+      if (visited.has(node)) continue;
+      visited.add(node);
+      for (const p of parents.get(node) ?? []) {
+        edgePairs.add(`${p}|${node}`);
+        edgePairs.add(`${node}|${p}`);
+        backtrack.push(p);
       }
-    } else {
-      // Multiple chains — the same through-route has different physical paths
-      // (e.g. Northern via Bank vs via Charing Cross). Create a separate slug
-      // for each chain so the router can distinguish them.
-      for (let c = 0; c < allChains.length; c++) {
-        const chain = allChains[c];
-        // Find a distinguishing station: one that's in this chain but not all others
-        const chainStations = new Set(chain.flatMap(([a, b]) => [a, b]));
-        const otherStations = new Set(
-          allChains
-            .filter((_, i) => i !== c)
-            .flatMap((ch) => ch.flatMap(([a, b]) => [a, b]))
-        );
-        let viaStation: string | null = null;
-        for (const s of chainStations) {
-          if (!otherStations.has(s)) {
-            viaStation = s;
-            break;
-          }
-        }
-        const chainSlug = viaStation
-          ? `${route.slug}-via-${viaStation}`
-          : `${route.slug}-v${c}`;
+    }
 
-        for (const [from, to] of chain) {
-          addBranch(`${from}|${to}|${lineId}`, chainSlug);
-          addBranch(`${to}|${from}|${lineId}`, chainSlug);
+    // For each fragment-endpoint pair on a shortest path, tag the fragment
+    for (const pairKey of edgePairs) {
+      const frags = fragsByEndpoints.get(pairKey) ?? [];
+      for (const frag of frags) {
+        for (let j = 0; j < frag.stopSlugs.length - 1; j++) {
+          addBranch(`${frag.stopSlugs[j]}|${frag.stopSlugs[j + 1]}|${lineId}`, route.slug);
+          addBranch(`${frag.stopSlugs[j + 1]}|${frag.stopSlugs[j]}|${lineId}`, route.slug);
         }
       }
     }
