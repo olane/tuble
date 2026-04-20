@@ -106,21 +106,11 @@ describe("branch changes on real data", () => {
       expect(route.segments[0].lines).toContain("northern");
     });
 
-    it("Central: West Ruislip → Epping via Elizabeth shortcut", () => {
-      // West Ruislip–Epping is a TfL through-route, but the best route goes
-      // via Elizabeth. The route includes a Central branch change at North
-      // Acton (switching from WR-Epping service to Ealing Broadway service
-      // to reach the Elizabeth line), then Elizabeth, then Central to Epping.
+    it("Central: West Ruislip → Epping is a single through-route", () => {
+      // West Ruislip–Epping is a TfL through-route (one train, no branch change).
       const route = bestRoute("west-ruislip", "epping");
-      // Should use Elizabeth in the middle
-      expect(route.segments.some((s) => s.lines.includes("elizabeth"))).toBe(
-        true
-      );
-      // First and last segments should be Central
+      expect(route.segments).toHaveLength(1);
       expect(route.segments[0].lines).toContain("central");
-      expect(
-        route.segments[route.segments.length - 1].lines
-      ).toContain("central");
     });
 
     it("Central: Epping → Roding Valley (change at Woodford)", () => {
@@ -159,6 +149,28 @@ describe("branch changes on real data", () => {
       const route = bestRoute("paddington", "abbey-wood");
       expect(route.segments).toHaveLength(1);
       expect(route.segments[0].lines).toContain("elizabeth");
+    });
+  });
+
+  // ── DLR ───────────────────────────────────────────────────────────
+
+  describe("DLR routing", () => {
+    it("Bank → Lewisham stays on DLR", () => {
+      const route = bestRoute("bank", "lewisham");
+      expect(route.segments.some((s) => s.lines.includes("dlr"))).toBe(true);
+    });
+
+    it("Lewisham → Beckton requires a DLR branch change", () => {
+      // Lewisham–Bank and Bank–Beckton are different DLR through-routes.
+      const route = bestRoute("lewisham", "beckton");
+      const dlrSegments = route.segments.filter((s) => s.lines.includes("dlr"));
+      expect(dlrSegments.length).toBeGreaterThanOrEqual(2);
+    });
+
+    it("Cutty Sark → Westminster uses DLR then Jubilee", () => {
+      const route = bestRoute("cutty-sark-for-maritime-greenwich", "westminster");
+      expect(route.segments.some((s) => s.lines.includes("dlr"))).toBe(true);
+      expect(route.segments.length).toBeGreaterThanOrEqual(2);
     });
   });
 

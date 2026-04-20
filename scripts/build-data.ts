@@ -84,6 +84,7 @@ const LINE_COLOURS: Record<string, string> = {
   victoria: "#0098D4",
   "waterloo-city": "#95CDBA",
   elizabeth: "#6950A1",
+  dlr: "#00A4A7",
 };
 
 interface TflStopPoint {

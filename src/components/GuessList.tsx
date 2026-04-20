@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import type { GuessResult } from "../game/types";
 import linesData from "../data/lines.json";
-import RouteMap, { getRevealedSegments } from "./RouteMap";
+import RouteMap, { getRevealedSegments, contrastingTextColor } from "./RouteMap";
 
 const lines = linesData as Record<string, { name: string; colour: string }>;
 
@@ -115,7 +115,7 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                               <span
                                 key={lineId}
                                 className="line-badge"
-                                style={{ backgroundColor: lines[lineId]?.colour ?? "#666" }}
+                                style={{ backgroundColor: lines[lineId]?.colour ?? "#666", color: contrastingTextColor(lines[lineId]?.colour ?? "#666") }}
                                 title={lines[lineId]?.name ?? lineId}
                               >
                                 {lines[lineId]?.name ?? lineId}
@@ -130,7 +130,7 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                                 <span
                                   key={lineId}
                                   className="line-badge"
-                                  style={{ backgroundColor: lines[lineId]?.colour ?? "#666" }}
+                                  style={{ backgroundColor: lines[lineId]?.colour ?? "#666", color: contrastingTextColor(lines[lineId]?.colour ?? "#666") }}
                                   title={lines[lineId]?.name ?? lineId}
                                 >
                                   {lines[lineId]?.name ?? lineId}

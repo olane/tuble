@@ -22,8 +22,8 @@ export default function Settings({ difficulty, onChangeDifficulty }: SettingsPro
             </button>
             <h2>How to play</h2>
             <p>
-              Guess the mystery station in 8 tries. All London Underground and
-              Elizabeth line stations are included (but not Overground or DLR).
+              Guess the mystery station in 8 tries. All London Underground,
+              Elizabeth line, and DLR stations are included (but not Overground).
               After each guess you'll see the shortest route from your guess to
               the target, broken into segments with stop counts. Routes are
               chosen by fewest stops, but changing lines adds a penalty of

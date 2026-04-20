@@ -42,7 +42,7 @@ async function main() {
   // 1. Fetch line list
   console.log("Fetching line list...");
   const lines = await fetchJson<{ id: string; name: string }[]>(
-    `${TFL_BASE}/Line/Mode/tube,elizabeth-line`
+    `${TFL_BASE}/Line/Mode/tube,elizabeth-line,dlr`
   );
   writeCache("lines.json", lines);
   console.log(`  ${lines.length} lines: ${lines.map((l) => l.name).join(", ")}`);
@@ -78,14 +78,21 @@ async function main() {
   if (withMetadata) {
     console.log("\nFetching station coordinates...");
     const stopPoints = await fetchJson(
-      `${TFL_BASE}/StopPoint/Mode/tube,elizabeth-line`
+      `${TFL_BASE}/StopPoint/Mode/tube,elizabeth-line,dlr`
     );
     writeCache("stoppoints.json", stopPoints);
 
     // Borough reverse geocoding from Nominatim (1 req/sec rate limit)
     // This is done here because it's slow and needs network
-    console.log("Reverse geocoding boroughs (this takes a few minutes)...");
-    const sp = (stopPoints as { stopPoints: { commonName: string; lat: number; lon: number }[] }).stopPoints;
+    // Deduplicate by commonName — the API returns multiple stop points per
+    // station (platforms, entrances, etc.) but we only need one coordinate.
+    const rawSp = (stopPoints as { stopPoints: { commonName: string; lat: number; lon: number }[] }).stopPoints;
+    const spByName = new Map<string, { commonName: string; lat: number; lon: number }>();
+    for (const s of rawSp) {
+      if (!spByName.has(s.commonName)) spByName.set(s.commonName, s);
+    }
+    const sp = [...spByName.values()];
+    console.log(`Reverse geocoding boroughs for ${sp.length} unique stations (${rawSp.length} raw stop points)...`);
     const boroughs: Record<string, string> = {};
     for (let i = 0; i < sp.length; i++) {
       const { commonName, lat, lon } = sp[i];

@@ -1,7 +1,12 @@
 {
+  "abbey-road": {
+    "lat": 51.53209,
+    "lon": 0.00383,
+    "borough": "Newham"
+  },
   "abbey-wood": {
-    "lat": 51.491247,
-    "lon": 0.121057,
+    "lat": 51.491284,
+    "lon": 0.121087,
     "borough": "Greenwich"
   },
   "acton-main-line": {
@@ -24,14 +29,19 @@
     "lon": -0.072384,
     "borough": "Tower Hamlets"
   },
+  "all-saints": {
+    "lat": 51.51113,
+    "lon": -0.01291,
+    "borough": "Tower Hamlets"
+  },
   "alperton": {
     "lat": 51.540627,
     "lon": -0.29961,
     "borough": "Brent"
   },
   "amersham": {
-    "lat": 51.674207,
-    "lon": -0.60759,
+    "lat": 51.674206,
+    "lon": -0.607362,
     "borough": "Buckinghamshire"
   },
   "angel": {
@@ -50,8 +60,8 @@
     "borough": "Enfield"
   },
   "arsenal": {
-    "lat": 51.558655,
-    "lon": -0.107457,
+    "lat": 51.5584,
+    "lon": -0.10568,
     "borough": "Islington"
   },
   "baker-street": {
@@ -60,13 +70,13 @@
     "borough": "City of Westminster"
   },
   "balham": {
-    "lat": 51.443259,
-    "lon": -0.152707,
+    "lat": 51.443288,
+    "lon": -0.152997,
     "borough": "Wandsworth"
   },
   "bank": {
-    "lat": 51.513395,
-    "lon": -0.089095,
+    "lat": 51.513233,
+    "lon": -0.088515,
     "borough": "City of London"
   },
   "barbican": {
@@ -75,8 +85,8 @@
     "borough": "City of London"
   },
   "barking": {
-    "lat": 51.539413,
-    "lon": 0.080988,
+    "lat": 51.539321,
+    "lon": 0.081053,
     "borough": "Barking and Dagenham"
   },
   "barkingside": {
@@ -85,8 +95,8 @@
     "borough": "Redbridge"
   },
   "barons-court": {
-    "lat": 51.490311,
-    "lon": -0.213427,
+    "lat": 51.49037,
+    "lon": -0.21355,
     "borough": "Hammersmith and Fulham"
   },
   "battersea-power-station": {
@@ -99,19 +109,29 @@
     "lon": -0.187938,
     "borough": "City of Westminster"
   },
+  "beckton": {
+    "lat": 51.514362,
+    "lon": 0.061453,
+    "borough": "Newham"
+  },
+  "beckton-park": {
+    "lat": 51.508793,
+    "lon": 0.054932,
+    "borough": "Newham"
+  },
   "becontree": {
     "lat": 51.540331,
     "lon": 0.127016,
     "borough": "Barking and Dagenham"
   },
   "belsize-park": {
-    "lat": 51.550529,
-    "lon": -0.164783,
+    "lat": 51.550311,
+    "lon": -0.164648,
     "borough": "Camden"
   },
   "bermondsey": {
-    "lat": 51.49775,
-    "lon": -0.063993,
+    "lat": 51.497953,
+    "lon": -0.063769,
     "borough": "Southwark"
   },
   "bethnal-green": {
@@ -120,18 +140,23 @@
     "borough": "Tower Hamlets"
   },
   "blackfriars": {
-    "lat": 51.509613,
-    "lon": -0.104166,
+    "lat": 51.511581,
+    "lon": -0.103659,
     "borough": "City of London"
   },
   "blackhorse-road": {
-    "lat": 51.586768,
-    "lon": -0.041185,
+    "lat": 51.586919,
+    "lon": -0.04115,
     "borough": "Waltham Forest"
   },
+  "blackwall": {
+    "lat": 51.507991,
+    "lon": -0.006969,
+    "borough": "Tower Hamlets"
+  },
   "bond-street": {
-    "lat": 51.513362,
-    "lon": -0.148795,
+    "lat": 51.51369,
+    "lon": -0.149517,
     "borough": "City of Westminster"
   },
   "borough": {
@@ -149,6 +174,11 @@
     "lon": -0.124235,
     "borough": "Haringey"
   },
+  "bow-church": {
+    "lat": 51.527858,
+    "lon": -0.020936,
+    "borough": "Tower Hamlets"
+  },
   "bow-road": {
     "lat": 51.52694,
     "lon": -0.025128,
@@ -160,13 +190,13 @@
     "borough": "Barnet"
   },
   "brentwood": {
-    "lat": 51.613605,
-    "lon": 0.299586,
+    "lat": 51.613567,
+    "lon": 0.300147,
     "borough": "Brentwood"
   },
   "brixton": {
-    "lat": 51.462961,
-    "lon": -0.114531,
+    "lat": 51.462618,
+    "lon": -0.114888,
     "borough": "Lambeth"
   },
   "bromley-by-bow": {
@@ -200,23 +230,23 @@
     "borough": "Camden"
   },
   "canada-water": {
-    "lat": 51.498053,
-    "lon": -0.049667,
+    "lat": 51.497945,
+    "lon": -0.049722,
     "borough": "Southwark"
   },
   "canary-wharf": {
-    "lat": 51.503734,
-    "lon": -0.019121,
+    "lat": 51.50542,
+    "lon": -0.02073,
     "borough": "Tower Hamlets"
   },
   "canning-town": {
-    "lat": 51.514029,
-    "lon": 0.008025,
+    "lat": 51.514127,
+    "lon": 0.008101,
     "borough": "Newham"
   },
   "cannon-street": {
-    "lat": 51.511451,
-    "lon": -0.090357,
+    "lat": 51.51151,
+    "lon": -0.090432,
     "borough": "City of London"
   },
   "canons-park": {
@@ -230,8 +260,8 @@
     "borough": "Redbridge"
   },
   "chalfont-and-latimer": {
-    "lat": 51.668109,
-    "lon": -0.560519,
+    "lat": 51.667915,
+    "lon": -0.560616,
     "borough": "Buckinghamshire"
   },
   "chalk-farm": {
@@ -245,13 +275,13 @@
     "borough": "Camden"
   },
   "charing-cross": {
-    "lat": 51.507819,
-    "lon": -0.126137,
+    "lat": 51.50741,
+    "lon": -0.127277,
     "borough": "City of Westminster"
   },
   "chesham": {
-    "lat": 51.705208,
-    "lon": -0.611247,
+    "lat": 51.705227,
+    "lon": -0.611113,
     "borough": "Buckinghamshire"
   },
   "chigwell": {
@@ -260,13 +290,13 @@
     "borough": "Epping Forest"
   },
   "chiswick-park": {
-    "lat": 51.494627,
-    "lon": -0.267972,
+    "lat": 51.49436,
+    "lon": -0.26739,
     "borough": "Ealing"
   },
   "chorleywood": {
-    "lat": 51.654249,
-    "lon": -0.518312,
+    "lat": 51.654292,
+    "lon": -0.518319,
     "borough": "Three Rivers"
   },
   "clapham-common": {
@@ -304,14 +334,29 @@
     "lon": -0.124436,
     "borough": "City of Westminster"
   },
+  "crossharbour": {
+    "lat": 51.495728,
+    "lon": -0.014606,
+    "borough": "Tower Hamlets"
+  },
   "croxley": {
-    "lat": 51.647044,
-    "lon": -0.441718,
+    "lat": 51.647069,
+    "lon": -0.441746,
     "borough": "Three Rivers"
   },
-  "custom-house": {
-    "lat": 51.518757,
-    "lon": 0.027418,
+  "custom-house-for-excel": {
+    "lat": 51.509716,
+    "lon": 0.026699,
+    "borough": "Newham"
+  },
+  "cutty-sark-for-maritime-greenwich": {
+    "lat": 51.481671,
+    "lon": -0.01081,
+    "borough": "Greenwich"
+  },
+  "cyprus": {
+    "lat": 51.508473,
+    "lon": 0.063925,
     "borough": "Newham"
   },
   "dagenham-east": {
@@ -329,14 +374,24 @@
     "lon": 0.083782,
     "borough": "Epping Forest"
   },
+  "deptford-bridge": {
+    "lat": 51.47445,
+    "lon": -0.02246,
+    "borough": "Greenwich"
+  },
+  "devons-road": {
+    "lat": 51.522667,
+    "lon": -0.017615,
+    "borough": "Tower Hamlets"
+  },
   "dollis-hill": {
     "lat": 51.551955,
     "lon": -0.239068,
     "borough": "Brent"
   },
   "ealing-broadway": {
-    "lat": 51.514993,
-    "lon": -0.302131,
+    "lat": 51.514841,
+    "lon": -0.301752,
     "borough": "Ealing"
   },
   "ealing-common": {
@@ -364,6 +419,11 @@
     "lon": 0.051186,
     "borough": "Newham"
   },
+  "east-india": {
+    "lat": 51.509359,
+    "lon": -0.002326,
+    "borough": "Tower Hamlets"
+  },
   "east-putney": {
     "lat": 51.459205,
     "lon": -0.211,
@@ -390,14 +450,19 @@
     "borough": "City of Westminster"
   },
   "elephant-and-castle": {
-    "lat": 51.494505,
-    "lon": -0.099185,
+    "lat": 51.494536,
+    "lon": -0.100606,
     "borough": "Southwark"
   },
   "elm-park": {
     "lat": 51.549775,
     "lon": 0.19864,
     "borough": "Havering"
+  },
+  "elverson-road": {
+    "lat": 51.46895,
+    "lon": -0.01668,
+    "borough": "Lewisham"
   },
   "embankment": {
     "lat": 51.507058,
@@ -410,8 +475,8 @@
     "borough": "Epping Forest"
   },
   "euston": {
-    "lat": 51.527365,
-    "lon": -0.132754,
+    "lat": 51.527999,
+    "lon": -0.133785,
     "borough": "Camden"
   },
   "euston-square": {
@@ -425,13 +490,13 @@
     "borough": "Redbridge"
   },
   "farringdon": {
-    "lat": 51.520214,
-    "lon": -0.105054,
+    "lat": 51.520444,
+    "lon": -0.105092,
     "borough": "Islington"
   },
   "finchley-central": {
-    "lat": 51.600921,
-    "lon": -0.192527,
+    "lat": 51.60061,
+    "lon": -0.19294,
     "borough": "Barnet"
   },
   "finchley-road": {
@@ -440,8 +505,8 @@
     "borough": "Camden"
   },
   "finsbury-park": {
-    "lat": 51.564778,
-    "lon": -0.105876,
+    "lat": 51.564158,
+    "lon": -0.106825,
     "borough": "Islington"
   },
   "forest-gate": {
@@ -453,6 +518,11 @@
     "lat": 51.480081,
     "lon": -0.195422,
     "borough": "Hammersmith and Fulham"
+  },
+  "gallions-reach": {
+    "lat": 51.508941,
+    "lon": 0.071555,
+    "borough": "Newham"
   },
   "gants-hill": {
     "lat": 51.576544,
@@ -505,13 +575,18 @@
     "borough": "City of Westminster"
   },
   "greenford": {
-    "lat": 51.542657,
-    "lon": -0.345789,
+    "lat": 51.542424,
+    "lon": -0.34605,
     "borough": "Ealing"
   },
+  "greenwich": {
+    "lat": 51.478087,
+    "lon": -0.013673,
+    "borough": "Greenwich"
+  },
   "gunnersbury": {
-    "lat": 51.491745,
-    "lon": -0.275276,
+    "lat": 51.491803,
+    "lon": -0.275267,
     "borough": "Hounslow"
   },
   "hainault": {
@@ -520,13 +595,13 @@
     "borough": "Redbridge"
   },
   "hammersmith-handc-line": {
-    "lat": 51.49339,
-    "lon": -0.22503,
+    "lat": 51.493535,
+    "lon": -0.225013,
     "borough": "Hammersmith and Fulham"
   },
   "hampstead": {
-    "lat": 51.556239,
-    "lon": -0.177464,
+    "lat": 51.556632,
+    "lon": -0.178487,
     "borough": "Camden"
   },
   "hanger-lane": {
@@ -540,8 +615,8 @@
     "borough": "Ealing"
   },
   "harlesden": {
-    "lat": 51.536305,
-    "lon": -0.257774,
+    "lat": 51.53631,
+    "lon": -0.257883,
     "borough": "Brent"
   },
   "harold-wood": {
@@ -550,13 +625,13 @@
     "borough": "Havering"
   },
   "harrow-and-wealdstone": {
-    "lat": 51.592216,
-    "lon": -0.334896,
+    "lat": 51.592268,
+    "lon": -0.335217,
     "borough": "Harrow"
   },
   "harrow-on-the-hill": {
-    "lat": 51.579197,
-    "lon": -0.337226,
+    "lat": 51.579195,
+    "lon": -0.337225,
     "borough": "Harrow"
   },
   "hatton-cross": {
@@ -570,24 +645,29 @@
     "borough": "Hillingdon"
   },
   "heathrow-terminal-4": {
-    "lat": 51.458524,
-    "lon": -0.445771,
+    "lat": 51.458674,
+    "lon": -0.446256,
     "borough": "Hillingdon"
   },
   "heathrow-terminal-5": {
-    "lat": 51.470052,
-    "lon": -0.49056,
+    "lat": 51.472193,
+    "lon": -0.4864,
     "borough": "Hillingdon"
   },
   "heathrow-terminals-2-and-3": {
-    "lat": 51.471618,
-    "lon": -0.454037,
+    "lat": 51.47235,
+    "lon": -0.45198,
     "borough": "Hillingdon"
   },
   "hendon-central": {
     "lat": 51.583301,
     "lon": -0.226424,
     "borough": "Barnet"
+  },
+  "heron-quays": {
+    "lat": 51.50317,
+    "lon": -0.02134,
+    "borough": "Tower Hamlets"
   },
   "high-barnet": {
     "lat": 51.650541,
@@ -600,8 +680,8 @@
     "borough": "Kensington and Chelsea"
   },
   "highbury-and-islington": {
-    "lat": 51.546269,
-    "lon": -0.103538,
+    "lat": 51.54635,
+    "lon": -0.103324,
     "borough": "Islington"
   },
   "highgate": {
@@ -620,8 +700,8 @@
     "borough": "Camden"
   },
   "holland-park": {
-    "lat": 51.507143,
-    "lon": -0.205679,
+    "lat": 51.50728,
+    "lon": -0.20562,
     "borough": "Kensington and Chelsea"
   },
   "holloway-road": {
@@ -650,8 +730,8 @@
     "borough": "Hounslow"
   },
   "hyde-park-corner": {
-    "lat": 51.503035,
-    "lon": -0.152441,
+    "lat": 51.50493,
+    "lon": -0.15203,
     "borough": "City of Westminster"
   },
   "ickenham": {
@@ -664,6 +744,11 @@
     "lon": 0.06968,
     "borough": "Redbridge"
   },
+  "island-gardens": {
+    "lat": 51.487811,
+    "lon": -0.010139,
+    "borough": "Tower Hamlets"
+  },
   "iver": {
     "lat": 51.508503,
     "lon": -0.506726,
@@ -675,39 +760,44 @@
     "borough": "Lambeth"
   },
   "kensal-green": {
-    "lat": 51.530545,
-    "lon": -0.22505,
+    "lat": 51.530539,
+    "lon": -0.225016,
     "borough": "Brent"
   },
   "kensington-olympia": {
-    "lat": 51.496156,
-    "lon": -0.210502,
+    "lat": 51.497624,
+    "lon": -0.210015,
     "borough": "Hammersmith and Fulham"
   },
   "kentish-town": {
-    "lat": 51.550409,
-    "lon": -0.140545,
+    "lat": 51.550312,
+    "lon": -0.140733,
     "borough": "Camden"
   },
   "kenton": {
-    "lat": 51.581786,
-    "lon": -0.316946,
+    "lat": 51.581756,
+    "lon": -0.31691,
     "borough": "Brent"
   },
   "kew-gardens": {
-    "lat": 51.477069,
-    "lon": -0.285148,
+    "lat": 51.477058,
+    "lon": -0.285241,
     "borough": "Richmond upon Thames"
   },
   "kilburn": {
-    "lat": 51.547183,
-    "lon": -0.204248,
+    "lat": 51.546803,
+    "lon": -0.204105,
     "borough": "Brent"
   },
   "kilburn-park": {
     "lat": 51.534979,
     "lon": -0.194232,
     "borough": "Brent"
+  },
+  "king-george-v": {
+    "lat": 51.50194,
+    "lon": 0.06177,
+    "borough": "Newham"
   },
   "kings-cross-st-pancras": {
     "lat": 51.530663,
@@ -739,9 +829,14 @@
     "lon": -0.175494,
     "borough": "City of Westminster"
   },
+  "langdon-park": {
+    "lat": 51.515172,
+    "lon": -0.01415,
+    "borough": "Tower Hamlets"
+  },
   "langley-berks": {
-    "lat": 51.508062,
-    "lon": -0.541756,
+    "lat": 51.507712,
+    "lon": -0.541104,
     "borough": "Slough"
   },
   "latimer-road": {
@@ -754,6 +849,11 @@
     "lon": -0.128426,
     "borough": "City of Westminster"
   },
+  "lewisham": {
+    "lat": 51.464665,
+    "lon": -0.012874,
+    "borough": "Lewisham"
+  },
   "leyton": {
     "lat": 51.556589,
     "lon": -0.005523,
@@ -764,15 +864,25 @@
     "lon": 0.008194,
     "borough": "Waltham Forest"
   },
+  "limehouse": {
+    "lat": 51.512393,
+    "lon": -0.039809,
+    "borough": "Tower Hamlets"
+  },
   "liverpool-street": {
-    "lat": 51.51794,
-    "lon": -0.083162,
+    "lat": 51.517722,
+    "lon": -0.082043,
     "borough": "City of London"
   },
   "london-bridge": {
-    "lat": 51.505881,
-    "lon": -0.086807,
+    "lat": 51.505721,
+    "lon": -0.088873,
     "borough": "Southwark"
+  },
+  "london-city-airport": {
+    "lat": 51.50329,
+    "lon": 0.0498,
+    "borough": "Newham"
   },
   "loughton": {
     "lat": 51.641443,
@@ -785,8 +895,8 @@
     "borough": "City of Westminster"
   },
   "maidenhead": {
-    "lat": 51.518669,
-    "lon": -0.72266,
+    "lat": 51.518305,
+    "lon": -0.722253,
     "borough": "Windsor and Maidenhead"
   },
   "manor-house": {
@@ -815,8 +925,8 @@
     "borough": "Newham"
   },
   "marylebone": {
-    "lat": 51.521602,
-    "lon": -0.163013,
+    "lat": 51.522322,
+    "lon": -0.163207,
     "borough": "City of Westminster"
   },
   "mile-end": {
@@ -835,13 +945,13 @@
     "borough": "City of London"
   },
   "moor-park": {
-    "lat": 51.629845,
-    "lon": -0.432454,
+    "lat": 51.629693,
+    "lon": -0.432704,
     "borough": "Three Rivers"
   },
   "moorgate": {
-    "lat": 51.518338,
-    "lon": -0.088627,
+    "lat": 51.518176,
+    "lon": -0.088322,
     "borough": "City of London"
   },
   "morden": {
@@ -853,6 +963,11 @@
     "lat": 51.534679,
     "lon": -0.138789,
     "borough": "Camden"
+  },
+  "mudchute": {
+    "lat": 51.490704,
+    "lon": -0.014738,
+    "borough": "Tower Hamlets"
   },
   "neasden": {
     "lat": 51.553986,
@@ -880,8 +995,8 @@
     "borough": "Ealing"
   },
   "north-greenwich": {
-    "lat": 51.500474,
-    "lon": 0.004295,
+    "lat": 51.50026,
+    "lon": 0.00462,
     "borough": "Greenwich"
   },
   "north-harrow": {
@@ -890,8 +1005,8 @@
     "borough": "Harrow"
   },
   "north-wembley": {
-    "lat": 51.56258,
-    "lon": -0.303992,
+    "lat": 51.562551,
+    "lon": -0.304,
     "borough": "Brent"
   },
   "northfields": {
@@ -925,13 +1040,13 @@
     "borough": "Kensington and Chelsea"
   },
   "oakwood": {
-    "lat": 51.647726,
-    "lon": -0.132182,
+    "lat": 51.647725,
+    "lon": -0.132168,
     "borough": "Enfield"
   },
   "old-street": {
-    "lat": 51.526065,
-    "lon": -0.088193,
+    "lat": 51.525864,
+    "lon": -0.08777,
     "borough": "Islington"
   },
   "osterley": {
@@ -950,8 +1065,8 @@
     "borough": "City of Westminster"
   },
   "paddington": {
-    "lat": 51.516981,
-    "lon": -0.17616,
+    "lat": 51.51549,
+    "lon": -0.1757,
     "borough": "City of Westminster"
   },
   "park-royal": {
@@ -960,8 +1075,8 @@
     "borough": "Ealing"
   },
   "parsons-green": {
-    "lat": 51.475277,
-    "lon": -0.20117,
+    "lat": 51.47546,
+    "lon": -0.20121,
     "borough": "Hammersmith and Fulham"
   },
   "perivale": {
@@ -970,8 +1085,8 @@
     "borough": "Ealing"
   },
   "piccadilly-circus": {
-    "lat": 51.51005,
-    "lon": -0.133798,
+    "lat": 51.51023,
+    "lon": -0.1352,
     "borough": "City of Westminster"
   },
   "pimlico": {
@@ -989,10 +1104,30 @@
     "lon": 0.017451,
     "borough": "Newham"
   },
+  "pontoon-dock": {
+    "lat": 51.502212,
+    "lon": 0.032115,
+    "borough": "Newham"
+  },
+  "poplar": {
+    "lat": 51.508,
+    "lon": -0.01773,
+    "borough": "Tower Hamlets"
+  },
   "preston-road": {
     "lat": 51.571972,
     "lon": -0.295107,
     "borough": "Brent"
+  },
+  "prince-regent": {
+    "lat": 51.50957,
+    "lon": 0.0342,
+    "borough": "Newham"
+  },
+  "pudding-mill-lane": {
+    "lat": 51.53401,
+    "lon": -0.0131,
+    "borough": "Newham"
   },
   "putney-bridge": {
     "lat": 51.468262,
@@ -1000,8 +1135,8 @@
     "borough": "Hammersmith and Fulham"
   },
   "queens-park": {
-    "lat": 51.534443,
-    "lon": -0.204882,
+    "lat": 51.534158,
+    "lon": -0.204574,
     "borough": "Brent"
   },
   "queensbury": {
@@ -1026,7 +1161,7 @@
   },
   "reading": {
     "lat": 51.458786,
-    "lon": -0.971863,
+    "lon": -0.971849,
     "borough": "Reading"
   },
   "redbridge": {
@@ -1040,18 +1175,18 @@
     "borough": "City of Westminster"
   },
   "richmond": {
-    "lat": 51.463152,
-    "lon": -0.301448,
+    "lat": 51.463237,
+    "lon": -0.301336,
     "borough": "Richmond upon Thames"
   },
   "rickmansworth": {
-    "lat": 51.640247,
-    "lon": -0.473273,
+    "lat": 51.640385,
+    "lon": -0.473654,
     "borough": "Three Rivers"
   },
   "roding-valley": {
-    "lat": 51.617199,
-    "lon": 0.043647,
+    "lat": 51.61734,
+    "lon": 0.04355,
     "borough": "Epping Forest"
   },
   "romford": {
@@ -1059,10 +1194,20 @@
     "lon": 0.183237,
     "borough": "Havering"
   },
+  "royal-albert": {
+    "lat": 51.50809,
+    "lon": 0.04572,
+    "borough": "Newham"
+  },
   "royal-oak": {
-    "lat": 51.519113,
-    "lon": -0.188748,
+    "lat": 51.51911,
+    "lon": -0.18878,
     "borough": "City of Westminster"
+  },
+  "royal-victoria": {
+    "lat": 51.509336,
+    "lon": 0.018497,
+    "borough": "Newham"
   },
   "ruislip": {
     "lat": 51.571354,
@@ -1090,13 +1235,18 @@
     "borough": "Redbridge"
   },
   "seven-sisters": {
-    "lat": 51.582931,
-    "lon": -0.073306,
+    "lat": 51.58333,
+    "lon": -0.072584,
     "borough": "Haringey"
   },
+  "shadwell": {
+    "lat": 51.511693,
+    "lon": -0.056643,
+    "borough": "Tower Hamlets"
+  },
   "shenfield": {
-    "lat": 51.630877,
-    "lon": 0.329851,
+    "lat": 51.630646,
+    "lon": 0.329724,
     "borough": "Brentwood"
   },
   "shepherds-bush-central": {
@@ -1105,18 +1255,18 @@
     "borough": "Hammersmith and Fulham"
   },
   "shepherds-bush-market": {
-    "lat": 51.505579,
-    "lon": -0.226375,
+    "lat": 51.5057,
+    "lon": -0.22627,
     "borough": "Hammersmith and Fulham"
   },
   "sloane-square": {
-    "lat": 51.49227,
-    "lon": -0.156377,
+    "lat": 51.49249,
+    "lon": -0.15663,
     "borough": "Kensington and Chelsea"
   },
   "slough": {
-    "lat": 51.51188,
-    "lon": -0.59151,
+    "lat": 51.51202,
+    "lon": -0.591924,
     "borough": "Slough"
   },
   "snaresbrook": {
@@ -1140,13 +1290,18 @@
     "borough": "Kensington and Chelsea"
   },
   "south-kenton": {
-    "lat": 51.570229,
-    "lon": -0.308448,
+    "lat": 51.570232,
+    "lon": -0.308433,
     "borough": "Brent"
   },
+  "south-quay": {
+    "lat": 51.50013,
+    "lon": -0.01658,
+    "borough": "Tower Hamlets"
+  },
   "south-ruislip": {
-    "lat": 51.556893,
-    "lon": -0.399076,
+    "lat": 51.556853,
+    "lon": -0.398915,
     "borough": "Hillingdon"
   },
   "south-wimbledon": {
@@ -1175,8 +1330,8 @@
     "borough": "Enfield"
   },
   "southwark": {
-    "lat": 51.50427,
-    "lon": -0.105331,
+    "lat": 51.503976,
+    "lon": -0.10494,
     "borough": "Southwark"
   },
   "st-jamess-park": {
@@ -1204,6 +1359,11 @@
     "lon": -0.303266,
     "borough": "Harrow"
   },
+  "star-lane": {
+    "lat": 51.520786,
+    "lon": 0.004156,
+    "borough": "Newham"
+  },
   "stepney-green": {
     "lat": 51.521858,
     "lon": -0.046596,
@@ -1215,19 +1375,29 @@
     "borough": "Lambeth"
   },
   "stonebridge-park": {
-    "lat": 51.544041,
-    "lon": -0.275859,
+    "lat": 51.543959,
+    "lon": -0.275892,
     "borough": "Brent"
   },
   "stratford": {
-    "lat": 51.541508,
-    "lon": -0.00241,
+    "lat": 51.541758,
+    "lon": -0.003287,
+    "borough": "Newham"
+  },
+  "stratford-high-street": {
+    "lat": 51.53843,
+    "lon": -0.00091,
+    "borough": "Newham"
+  },
+  "stratford-international": {
+    "lat": 51.545265,
+    "lon": -0.009638,
     "borough": "Newham"
   },
   "sudbury-hill": {
-    "lat": 51.556946,
-    "lon": -0.336435,
-    "borough": "Harrow"
+    "lat": 51.55623,
+    "lon": -0.33626,
+    "borough": "Ealing"
   },
   "sudbury-town": {
     "lat": 51.550815,
@@ -1240,8 +1410,8 @@
     "borough": "Camden"
   },
   "taplow": {
-    "lat": 51.523562,
-    "lon": -0.68137,
+    "lat": 51.523402,
+    "lon": -0.681505,
     "borough": "Buckinghamshire"
   },
   "temple": {
@@ -1265,13 +1435,13 @@
     "borough": "Wandsworth"
   },
   "tottenham-court-road": {
-    "lat": 51.516018,
-    "lon": -0.130888,
+    "lat": 51.515698,
+    "lon": -0.13044,
     "borough": "City of Westminster"
   },
   "tottenham-hale": {
-    "lat": 51.588315,
-    "lon": -0.06024,
+    "lat": 51.588108,
+    "lon": -0.060241,
     "borough": "Haringey"
   },
   "totteridge-and-whetstone": {
@@ -1279,9 +1449,14 @@
     "lon": -0.17921,
     "borough": "Barnet"
   },
+  "tower-gateway": {
+    "lat": 51.510617,
+    "lon": -0.074818,
+    "borough": "City of London"
+  },
   "tower-hill": {
-    "lat": 51.509971,
-    "lon": -0.076546,
+    "lat": 51.5102,
+    "lon": -0.07681,
     "borough": "Tower Hamlets"
   },
   "tufnell-park": {
@@ -1305,8 +1480,8 @@
     "borough": "Wokingham"
   },
   "upminster": {
-    "lat": 51.558659,
-    "lon": 0.250855,
+    "lat": 51.559063,
+    "lon": 0.250882,
     "borough": "Havering"
   },
   "upminster-bridge": {
@@ -1330,18 +1505,18 @@
     "borough": "Hillingdon"
   },
   "vauxhall": {
-    "lat": 51.485739,
-    "lon": -0.123303,
+    "lat": 51.48631,
+    "lon": -0.12458,
     "borough": "Lambeth"
   },
   "victoria": {
-    "lat": 51.495812,
-    "lon": -0.143826,
+    "lat": 51.496359,
+    "lon": -0.143102,
     "borough": "City of Westminster"
   },
   "walthamstow-central": {
-    "lat": 51.582948,
-    "lon": -0.019842,
+    "lat": 51.582965,
+    "lon": -0.019885,
     "borough": "Waltham Forest"
   },
   "wanstead": {
@@ -1360,18 +1535,18 @@
     "borough": "City of Westminster"
   },
   "waterloo": {
-    "lat": 51.504269,
-    "lon": -0.113356,
+    "lat": 51.503299,
+    "lon": -0.11478,
     "borough": "Lambeth"
   },
   "watford": {
-    "lat": 51.657446,
-    "lon": -0.417377,
+    "lat": 51.657531,
+    "lon": -0.417157,
     "borough": "Watford"
   },
   "wembley-central": {
-    "lat": 51.55232,
-    "lon": -0.296642,
+    "lat": 51.552304,
+    "lon": -0.296852,
     "borough": "Brent"
   },
   "wembley-park": {
@@ -1385,9 +1560,9 @@
     "borough": "Ealing"
   },
   "west-brompton": {
-    "lat": 51.487168,
-    "lon": -0.195593,
-    "borough": "Hammersmith and Fulham"
+    "lat": 51.487268,
+    "lon": -0.195599,
+    "borough": "Kensington and Chelsea"
   },
   "west-drayton": {
     "lat": 51.510055,
@@ -1405,13 +1580,13 @@
     "borough": "Barnet"
   },
   "west-ham": {
-    "lat": 51.528178,
-    "lon": 0.004997,
+    "lat": 51.527894,
+    "lon": 0.004482,
     "borough": "Newham"
   },
   "west-hampstead": {
-    "lat": 51.547533,
-    "lon": -0.191357,
+    "lat": 51.546638,
+    "lon": -0.191059,
     "borough": "Camden"
   },
   "west-harrow": {
@@ -1419,24 +1594,39 @@
     "lon": -0.3534,
     "borough": "Harrow"
   },
+  "west-india-quay": {
+    "lat": 51.50744,
+    "lon": -0.02051,
+    "borough": "Tower Hamlets"
+  },
   "west-kensington": {
     "lat": 51.490459,
     "lon": -0.206636,
     "borough": "Hammersmith and Fulham"
   },
   "west-ruislip": {
-    "lat": 51.569721,
-    "lon": -0.437816,
+    "lat": 51.569688,
+    "lon": -0.437886,
     "borough": "Hillingdon"
+  },
+  "west-silvertown": {
+    "lat": 51.502838,
+    "lon": 0.02246,
+    "borough": "Newham"
   },
   "westbourne-park": {
     "lat": 51.52111,
     "lon": -0.201065,
     "borough": "Kensington and Chelsea"
   },
+  "westferry": {
+    "lat": 51.509431,
+    "lon": -0.02675,
+    "borough": "Tower Hamlets"
+  },
   "westminster": {
-    "lat": 51.501603,
-    "lon": -0.125984,
+    "lat": 51.50132,
+    "lon": -0.124861,
     "borough": "City of Westminster"
   },
   "white-city": {
@@ -1445,8 +1635,8 @@
     "borough": "Hammersmith and Fulham"
   },
   "whitechapel": {
-    "lat": 51.519498,
-    "lon": -0.059858,
+    "lat": 51.519632,
+    "lon": -0.059837,
     "borough": "Tower Hamlets"
   },
   "willesden-green": {
@@ -1455,18 +1645,18 @@
     "borough": "Brent"
   },
   "willesden-junction": {
-    "lat": 51.532556,
-    "lon": -0.243006,
+    "lat": 51.532259,
+    "lon": -0.244283,
     "borough": "Brent"
   },
   "wimbledon": {
-    "lat": 51.421505,
-    "lon": -0.206444,
+    "lat": 51.421207,
+    "lon": -0.206573,
     "borough": "Merton"
   },
   "wimbledon-park": {
-    "lat": 51.434573,
-    "lon": -0.199719,
+    "lat": 51.43462,
+    "lon": -0.19962,
     "borough": "Merton"
   },
   "wood-green": {
@@ -1475,8 +1665,8 @@
     "borough": "Haringey"
   },
   "wood-lane": {
-    "lat": 51.509669,
-    "lon": -0.22453,
+    "lat": 51.50967,
+    "lon": -0.2245,
     "borough": "Hammersmith and Fulham"
   },
   "woodford": {
@@ -1492,6 +1682,11 @@
   "woolwich": {
     "lat": 51.4914,
     "lon": 0.07138,
+    "borough": "Greenwich"
+  },
+  "woolwich-arsenal": {
+    "lat": 51.490009,
+    "lon": 0.069127,
     "borough": "Greenwich"
   }
 }

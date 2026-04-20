@@ -110,7 +110,7 @@ describe("getStationName", () => {
 });
 
 describe("getAllStationIds", () => {
-  it("returns all 299 stations", () => {
-    expect(getAllStationIds().length).toBe(299);
+  it("returns all 338 stations", () => {
+    expect(getAllStationIds().length).toBe(338);
   });
 });

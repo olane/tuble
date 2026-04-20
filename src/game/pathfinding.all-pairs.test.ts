@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { findRoute, getAllStationIds } from "./pathfinding";
 
-// Exhaustive all-pairs test. Slow (~50s with 299 stations, ~90k pairs), so
+// Exhaustive all-pairs test. Slow (~90s with 338 stations, ~114k pairs), so
 // it lives in its own file and runs via `npm run test:all-pairs` instead of
 // the default test suite. The default suite includes a random-sampled
 // version in pathfinding.test.ts.
@@ -16,5 +16,5 @@ describe("findRoute (exhaustive)", () => {
         expect(result[0].totalStops, `${from} -> ${to}`).toBeGreaterThan(0);
       }
     }
-  }, 120_000);
+  }, 180_000);
 });
