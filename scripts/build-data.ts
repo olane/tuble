@@ -328,6 +328,7 @@ async function buildGraphAndLines(): Promise<{
   // multiple short fragments. Chaining them avoids spurious branch slugs.
   const chained = chainSequences(slugSequences);
 
+  const chainedByLine = new Map<string, { slug: string; stopSlugs: string[] }[]>();
   for (const seq of chained) {
     const branchSlug = deriveBranchSlug(seq.lineId, seq.stopSlugs);
     for (let i = 0; i < seq.stopSlugs.length - 1; i++) {
@@ -336,9 +337,57 @@ async function buildGraphAndLines(): Promise<{
       addBranch(`${from}|${to}|${seq.lineId}`, branchSlug);
       addBranch(`${to}|${from}|${seq.lineId}`, branchSlug);
     }
+    let group = chainedByLine.get(seq.lineId);
+    if (!group) {
+      group = [];
+      chainedByLine.set(seq.lineId, group);
+    }
+    group.push({ slug: branchSlug, stopSlugs: seq.stopSlugs });
   }
 
+  // Propagate branches through shared sub-paths. When sequence A terminates
+  // at a station embedded mid-way in sequence B (same line), extend A's
+  // branch slug along B's edges from that junction to the nearest terminus
+  // of any sequence on the line. This handles e.g. Central's Epping branch
+  // ending at Woodford while the Hainault loop covers Woodford→Leytonstone.
+  for (const [lineId, seqs] of chainedByLine) {
+    const allTermini = new Set<string>();
+    for (const s of seqs) {
+      allTermini.add(s.stopSlugs[0]);
+      allTermini.add(s.stopSlugs[s.stopSlugs.length - 1]);
+    }
+    for (const a of seqs) {
+      // Skip sub-path sequences: if every stop in A also appears in B,
+      // then A is a sub-path of B (e.g. a short spur already covered by
+      // the main service) and should not propagate.
+      const isSubPathOf = seqs.some(
+        (b) => b !== a && a.stopSlugs.every((s) => b.stopSlugs.includes(s))
+      );
+      if (isSubPathOf) continue;
 
+      for (const terminus of [a.stopSlugs[0], a.stopSlugs[a.stopSlugs.length - 1]]) {
+        for (const b of seqs) {
+          if (a === b) continue;
+          // Only propagate if terminus is inside B, not at B's own endpoints.
+          if (terminus === b.stopSlugs[0] || terminus === b.stopSlugs[b.stopSlugs.length - 1]) continue;
+          const idx = b.stopSlugs.indexOf(terminus);
+          if (idx < 0) continue;
+          // Propagate forward through B until the nearest terminus.
+          for (let i = idx; i < b.stopSlugs.length - 1; i++) {
+            addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i + 1]}|${lineId}`, a.slug);
+            addBranch(`${b.stopSlugs[i + 1]}|${b.stopSlugs[i]}|${lineId}`, a.slug);
+            if (allTermini.has(b.stopSlugs[i + 1])) break;
+          }
+          // Propagate backward through B until the nearest terminus.
+          for (let i = idx; i > 0; i--) {
+            addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i - 1]}|${lineId}`, a.slug);
+            addBranch(`${b.stopSlugs[i - 1]}|${b.stopSlugs[i]}|${lineId}`, a.slug);
+            if (allTermini.has(b.stopSlugs[i - 1])) break;
+          }
+        }
+      }
+    }
+  }
 
   // Build adjacency list
   for (const [key, branchSet] of edgeBranches) {

@@ -46,12 +46,17 @@ export const TEST_ROUTES: TestRoute[] = [
   { label: "Northern via Bank branch", from: "london-bridge", to: "kings-cross-st-pancras" },
   { label: "Central with split", from: "stratford", to: "ealing-broadway" },
 
-  // --- Same-line branch changes (require swapping trains on one line) ---
-  { label: "Northern branch change (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
-  { label: "Northern Mill Hill East spur", from: "mill-hill-east", to: "morden" },
-  { label: "Central east↔west (West Ruislip → Epping)", from: "west-ruislip", to: "epping" },
-  { label: "Central Hainault loop (Hainault → Ealing Broadway)", from: "hainault", to: "ealing-broadway" },
-  { label: "Metropolitan branch change (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
-  { label: "District branch change (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
-  { label: "Piccadilly via trunk (Heathrow T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
+  // --- Same-line branch changes (expect ≥2 segments on the same line) ---
+  { label: "Northern branch change at Camden (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
+  { label: "Northern branch + line change (Mill Hill East → Morden)", from: "mill-hill-east", to: "morden" },
+  { label: "Metropolitan branch change at Moor Park (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
+  { label: "District branch change at Turnham Green (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
+
+  // --- Branch-aware but no same-line change expected (trunk handles it) ---
+  { label: "Northern trunk, no branch change (Morden → High Barnet)", from: "morden", to: "high-barnet" },
+  { label: "Piccadilly via shared trunk, no change (T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
+
+  // --- Routes that use Elizabeth line as a shortcut ---
+  { label: "Central via Elizabeth shortcut (West Ruislip → Epping)", from: "west-ruislip", to: "epping" },
+  { label: "Central via Elizabeth (Hainault → Ealing Broadway)", from: "hainault", to: "ealing-broadway" },
 ];
