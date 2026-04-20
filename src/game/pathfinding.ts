@@ -299,13 +299,13 @@ export function findRoute(
     }
   }
 
-  // Merge routes that only differ in which parallel line was used on a
-  // segment. Shape key: (stops, endStationId, branch) per segment — branch
-  // is included so same-line-different-branch routes stay distinct.
+  // Merge routes that only differ in which parallel line or branch was used
+  // on a segment. The user doesn't see branch slugs, so routes with the
+  // same line/stops/stations but different branches should collapse.
   const shapeGroups = new Map<string, typeof rawRoutes>();
   for (const route of rawRoutes) {
     const shapeKey = route.segments
-      .map((s) => `${s.stops}:${s.endStationId}:${s.branch ?? ""}`)
+      .map((s) => `${s.stops}:${s.endStationId}:${s.line}`)
       .join("|");
     let group = shapeGroups.get(shapeKey);
     if (!group) {
