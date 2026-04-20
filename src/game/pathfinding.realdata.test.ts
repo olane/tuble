@@ -33,10 +33,13 @@ describe("branch changes on real data", () => {
       expect(route.segments[0].endStationId).toBe("camden-town");
     });
 
-    it("Metropolitan: Chesham → Uxbridge changes branch at Moor Park or Chalfont", () => {
+    it("Metropolitan: Chesham → Uxbridge changes branch at Moor Park", () => {
       const route = bestRoute("chesham", "uxbridge");
       expect(allSegmentsOnLines(route, ["metropolitan"])).toBe(true);
-      expect(route.segments.length).toBeGreaterThanOrEqual(2);
+      expect(route.segments).toHaveLength(2);
+      // Chesham shuttle runs to Moor Park; Uxbridge service continues south
+      expect(route.segments[0].endStationId).toBe("moor-park");
+      expect(route.segments[1].endStationId).toBe("uxbridge");
     });
 
     it("District: Richmond → Wimbledon has an all-District route splitting at Earl's Court", () => {
