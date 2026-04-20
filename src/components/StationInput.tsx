@@ -113,7 +113,11 @@ export default function StationInput({ stations, guessedIds, onGuess, guessNumbe
         ref={inputRef}
         type="text"
         value={query}
-        placeholder={`Guess ${guessNumber} of ${maxGuesses}…`}
+        placeholder={
+          guessNumber > 1
+            ? `Guess a station… (${guessNumber}/${maxGuesses})`
+            : "Guess a station…"
+        }
         onChange={(e) => {
           setQuery(e.target.value);
           setIsOpen(true);
