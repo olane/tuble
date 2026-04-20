@@ -357,9 +357,10 @@ async function buildGraphAndLines(): Promise<{
       allTermini.add(s.stopSlugs[s.stopSlugs.length - 1]);
     }
     for (const a of seqs) {
-      // Skip sub-path sequences: if every stop in A also appears in B,
-      // then A is a sub-path of B (e.g. a short spur already covered by
-      // the main service) and should not propagate.
+      // Skip short spurs (≤3 stops) — these are shuttles or minor branches
+      // whose trains don't continue past their terminus (e.g. Chesham
+      // shuttle). Also skip sub-path sequences entirely covered by another.
+      if (a.stopSlugs.length <= 3) continue;
       const isSubPathOf = seqs.some(
         (b) => b !== a && a.stopSlugs.every((s) => b.stopSlugs.includes(s))
       );

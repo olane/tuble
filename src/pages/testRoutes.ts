@@ -49,7 +49,7 @@ export const TEST_ROUTES: TestRoute[] = [
   // --- Same-line branch changes (expect ≥2 segments on the same line) ---
   { label: "Northern branch change at Camden Town (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
   { label: "Northern no branch change (Mill Hill East → Morden)", from: "mill-hill-east", to: "morden" },
-  { label: "Metropolitan branch change at Moor Park (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
+  { label: "Metropolitan branch changes at Chalfont & Harrow (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
   { label: "District branch change at Earl's Court (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
 
   // --- Branch-aware but no same-line change expected (trunk handles it) ---
