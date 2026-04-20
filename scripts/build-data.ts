@@ -328,8 +328,6 @@ async function buildGraphAndLines(): Promise<{
   // multiple short fragments. Chaining them avoids spurious branch slugs.
   const chained = chainSequences(slugSequences);
 
-  // Index chained sequences by line for propagation below.
-  const chainedByLine = new Map<string, { slug: string; stopSlugs: string[] }[]>();
   for (const seq of chained) {
     const branchSlug = deriveBranchSlug(seq.lineId, seq.stopSlugs);
     for (let i = 0; i < seq.stopSlugs.length - 1; i++) {
@@ -338,72 +336,9 @@ async function buildGraphAndLines(): Promise<{
       addBranch(`${from}|${to}|${seq.lineId}`, branchSlug);
       addBranch(`${to}|${from}|${seq.lineId}`, branchSlug);
     }
-    let group = chainedByLine.get(seq.lineId);
-    if (!group) {
-      group = [];
-      chainedByLine.set(seq.lineId, group);
-    }
-    group.push({ slug: branchSlug, stopSlugs: seq.stopSlugs });
   }
 
-  // Propagate branch slugs through shared sub-paths then flood-fill trunk.
-  //
-  // Step 1: When sequence A terminates at a station embedded mid-way in
-  // sequence B (same line), extend A's branch along B's edges from that
-  // junction to the nearest terminus. This connects e.g. Central's Epping
-  // branch (ending at Woodford) through the Snaresbrook corridor to
-  // Leytonstone.
-  for (const [lineId, seqs] of chainedByLine) {
-    const allTermini = new Set<string>();
-    for (const s of seqs) {
-      allTermini.add(s.stopSlugs[0]);
-      allTermini.add(s.stopSlugs[s.stopSlugs.length - 1]);
-    }
-    for (const a of seqs) {
-      for (const terminus of [a.stopSlugs[0], a.stopSlugs[a.stopSlugs.length - 1]]) {
-        for (const b of seqs) {
-          if (a === b) continue;
-          if (terminus === b.stopSlugs[0] || terminus === b.stopSlugs[b.stopSlugs.length - 1]) continue;
-          const idx = b.stopSlugs.indexOf(terminus);
-          if (idx < 0) continue;
-          for (let i = idx; i < b.stopSlugs.length - 1; i++) {
-            addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i + 1]}|${lineId}`, a.slug);
-            addBranch(`${b.stopSlugs[i + 1]}|${b.stopSlugs[i]}|${lineId}`, a.slug);
-            if (allTermini.has(b.stopSlugs[i + 1])) break;
-          }
-          for (let i = idx; i > 0; i--) {
-            addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i - 1]}|${lineId}`, a.slug);
-            addBranch(`${b.stopSlugs[i - 1]}|${b.stopSlugs[i]}|${lineId}`, a.slug);
-            if (allTermini.has(b.stopSlugs[i - 1])) break;
-          }
-        }
-      }
-    }
-  }
 
-  // Step 2: Flood-fill trunk. Any edge on a line that already has 2+
-  // branch slugs is shared track — promote it to carry ALL branches on
-  // that line so the router treats it as fully uncommitted. Repeat until
-  // stable, since promoting an edge may cause its neighbours to cross the
-  // 2-branch threshold.
-  for (const [lineId, seqs] of chainedByLine) {
-    const allSlugs = seqs.map((s) => s.slug);
-    let changed = true;
-    while (changed) {
-      changed = false;
-      for (const [key, branchSet] of edgeBranches) {
-        if (!key.endsWith(`|${lineId}`)) continue;
-        if (branchSet.size >= 2 && branchSet.size < allSlugs.length) {
-          for (const slug of allSlugs) {
-            if (!branchSet.has(slug)) {
-              branchSet.add(slug);
-              changed = true;
-            }
-          }
-        }
-      }
-    }
-  }
 
   // Build adjacency list
   for (const [key, branchSet] of edgeBranches) {

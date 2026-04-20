@@ -53,5 +53,5 @@ export const TEST_ROUTES: TestRoute[] = [
   { label: "Central Hainault loop (Hainault → Ealing Broadway)", from: "hainault", to: "ealing-broadway" },
   { label: "Metropolitan branch change (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
   { label: "District branch change (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
-  { label: "Piccadilly branch change (Heathrow T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
+  { label: "Piccadilly via trunk (Heathrow T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
 ];
