@@ -1,5 +1,8 @@
 /**
- * Builds all generated data files for Tuble from the TfL API.
+ * Builds all generated data files for Tuble from cached TfL API data.
+ *
+ * Reads from scripts/tfl-cache/ (populated by fetch-tfl.ts) — no network
+ * access needed. This means the script can run in sandboxed environments.
  *
  * Generates:
  *   src/data/tube-graph.json       — station topology and adjacency
@@ -8,13 +11,14 @@
  *   src/data/ridership.json        — average daily ridership per station
  *
  * Usage:
+ *   npx tsx scripts/build-data.ts --graph-only
  *   npx tsx scripts/build-data.ts <footfall.csv>
  */
 
-import { readFileSync, writeFileSync, mkdirSync } from "fs";
+import { readFileSync, writeFileSync, mkdirSync, existsSync } from "fs";
 import { join } from "path";
 
-const TFL_BASE = "https://api.tfl.gov.uk";
+const CACHE_DIR = join(import.meta.dirname, "tfl-cache");
 const OUT_DIR = join(import.meta.dirname, "..", "src", "data");
 
 // ── Shared types & helpers ──────────────────────────────────────────
@@ -32,10 +36,14 @@ interface Edge {
   branches: string[];
 }
 
-async function fetchJson<T>(url: string): Promise<T> {
-  const res = await fetch(url);
-  if (!res.ok) throw new Error(`${url}: ${res.status} ${res.statusText}`);
-  return res.json() as Promise<T>;
+function readCache<T>(filename: string): T {
+  const path = join(CACHE_DIR, filename);
+  if (!existsSync(path)) {
+    throw new Error(
+      `Cache file not found: ${path}\nRun "npx tsx scripts/fetch-tfl.ts" first.`
+    );
+  }
+  return JSON.parse(readFileSync(path, "utf8")) as T;
 }
 
 function toSlug(stationName: string): string {
@@ -99,127 +107,209 @@ interface TflRouteSequence {
   stopPointSequences: TflStopPointSequence[];
 }
 
-/**
- * Derive a stable branch slug for a single TfL stopPointSequence. The slug is
- * a canonical identifier for the train service that runs end-to-end on that
- * sequence, so edges shared by multiple services list multiple branches.
- *
- * Strategy: sort the two terminus slugs lexicographically, then add a `via-*`
- * suffix for lines whose services share termini but diverge through the
- * middle (Northern via Bank/Charing Cross, Central via the Hainault loop).
- */
-function deriveBranchSlug(lineId: string, stopSlugs: string[]): string {
-  const a = stopSlugs[0];
-  const b = stopSlugs[stopSlugs.length - 1];
-  const [lo, hi] = a < b ? [a, b] : [b, a];
-  const via = deriveVia(lineId, stopSlugs);
-  return via ? `${lineId}:${lo}-${hi}-${via}` : `${lineId}:${lo}-${hi}`;
-}
-
-function deriveVia(lineId: string, stopSlugs: string[]): string | null {
-  if (lineId === "northern") {
-    if (stopSlugs.includes("bank")) return "via-bank";
-    if (stopSlugs.includes("charing-cross")) return "via-charing-cross";
-  }
-  if (lineId === "central") {
-    // Hainault-loop services traverse Hainault as a non-terminal stop;
-    // straight services terminate there (or don't touch it).
-    const last = stopSlugs.length - 1;
-    const hainaultMid = stopSlugs.some(
-      (s, i) => s === "hainault" && i !== 0 && i !== last
-    );
-    if (hainaultMid) return "via-hainault";
-  }
-  return null;
+interface TflRouteSection {
+  name: string;
+  direction: string;
+  originationName: string;
+  destinationName: string;
+  serviceType: string;
 }
 
 /**
- * Chain sequences on the same line that share an endpoint into longer
- * through-running services. For example if the TfL API returns:
- *   [A, B, C] and [C, D, E]  (same line)
- * we merge them into [A, B, C, D, E].
- *
- * Greedy: repeatedly find a pair that can be joined (the last stop of one
- * equals the first stop of the other) and merge until no more joins are
- * possible. Works across any number of fragments.
+ * A through-route as defined by the TfL /Line/{id}/Route API.
+ * Represents a single end-to-end train service (e.g. "Morden to High Barnet").
  */
-function chainSequences(
-  sequences: { lineId: string; stopSlugs: string[] }[]
-): { lineId: string; stopSlugs: string[] }[] {
-  // Deduplicate: outbound [A,B,C] and inbound [C,B,A] are the same service.
-  // Canonicalise by sorting the first/last stop pair and joining all slugs.
+interface ThroughRoute {
+  lineId: string;
+  originSlug: string;
+  destSlug: string;
+  via: string | null;
+  slug: string;
+}
+
+/**
+ * Parse the TfL Route API response into deduplicated through-routes.
+ * The API returns inbound/outbound pairs — we normalise to a single
+ * entry per service.
+ */
+function parseThroughRoutes(
+  lineId: string,
+  routeData: { routeSections: TflRouteSection[] },
+  slugLookup: (name: string) => string | undefined
+): ThroughRoute[] {
   const seen = new Set<string>();
-  const deduped: { lineId: string; stopSlugs: string[] }[] = [];
+  const routes: ThroughRoute[] = [];
+
+  for (const section of routeData.routeSections) {
+    if (section.serviceType !== "Regular") continue;
+
+    const originSlug = slugLookup(section.originationName);
+    const destSlug = slugLookup(section.destinationName);
+    if (!originSlug || !destSlug) continue;
+
+    // Normalise: sort termini lexicographically to dedup inbound/outbound
+    const [lo, hi] = originSlug < destSlug
+      ? [originSlug, destSlug]
+      : [destSlug, originSlug];
+
+    // Extract "via" from the route name (e.g. "Morden - High Barnet via Charing Cross")
+    const viaMatch = section.name.match(/\bvia\s+(.+)$/i);
+    const via = viaMatch ? toSlug(viaMatch[1]) : null;
+
+    const key = `${lineId}|${lo}|${hi}|${via ?? ""}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+
+    const slug = via
+      ? `${lineId}:${lo}-${hi}-via-${via}`
+      : `${lineId}:${lo}-${hi}`;
+
+    routes.push({ lineId, originSlug: lo, destSlug: hi, via, slug });
+  }
+
+  return routes;
+}
+
+/**
+ * Assign through-route branch slugs to edges by chaining sequence fragments.
+ *
+ * For each through-route (e.g. "Morden → High Barnet"), we find a chain of
+ * sequence fragments that connects origin to destination, then tag every edge
+ * in that chain with the through-route's slug.
+ *
+ * When multiple chains are possible (e.g. via Bank vs via Charing Cross on
+ * the Northern line), both produce the same slug (they're the same
+ * through-route) — the "via" suffix in the slug disambiguates.
+ */
+function assignBranchSlugs(
+  throughRoutes: ThroughRoute[],
+  lineId: string,
+  _adjacencyByLine: Map<string, Set<string>>,
+  sequences: { stopSlugs: string[] }[],
+  addBranch: (key: string, branch: string) => void
+): void {
+  // Dedup sequences: outbound [A,B,C] and inbound [C,B,A] are the same.
+  // Canonicalise by sorting the first/last stop pair.
+  const seen = new Set<string>();
+  const dedupedSeqs: { stopSlugs: string[] }[] = [];
   for (const seq of sequences) {
     const first = seq.stopSlugs[0];
     const last = seq.stopSlugs[seq.stopSlugs.length - 1];
     const [lo, hi] = first < last ? [first, last] : [last, first];
-    const key = `${seq.lineId}|${lo}|${hi}|${seq.stopSlugs.length}`;
+    const key = `${lo}|${hi}|${seq.stopSlugs.length}`;
     if (!seen.has(key)) {
       seen.add(key);
-      deduped.push(seq);
+      dedupedSeqs.push(seq);
     }
   }
 
-  // Group by line so we only try to chain within the same line.
-  const byLine = new Map<string, { stopSlugs: string[] }[]>();
-  for (const seq of deduped) {
-    let group = byLine.get(seq.lineId);
-    if (!group) {
-      group = [];
-      byLine.set(seq.lineId, group);
-    }
-    group.push({ stopSlugs: [...seq.stopSlugs] });
+  // Index sequences by their first station for chaining
+  const seqsByFirst = new Map<string, { stopSlugs: string[] }[]>();
+  for (const seq of dedupedSeqs) {
+    const first = seq.stopSlugs[0];
+    if (!seqsByFirst.has(first)) seqsByFirst.set(first, []);
+    seqsByFirst.get(first)!.push(seq);
   }
 
-  const result: { lineId: string; stopSlugs: string[] }[] = [];
+  for (const route of throughRoutes) {
+    // DFS to find all chains of fragments from origin to destination.
+    // Each chain is a list of sequences whose first/last stops connect.
+    // DFS to find ALL chains of fragments from origin to destination.
+    // We need all chains because the same through-route may have multiple
+    // physical paths (e.g. Northern via Bank vs via Charing Cross).
+    const allChains: [string, string][][] = [];
 
-  for (const [lineId, seqs] of byLine) {
-    // Greedily chain: index sequences by their first stop slug.
-    let changed = true;
-    while (changed) {
-      changed = false;
-      const byFirst = new Map<string, number>();
-      for (let i = 0; i < seqs.length; i++) {
-        byFirst.set(seqs[i].stopSlugs[0], i);
+    function dfs(
+      current: string,
+      visited: Set<string>,
+      edges: [string, string][]
+    ): void {
+      if (current === route.destSlug) {
+        allChains.push([...edges]);
+        return;
       }
-      for (let i = 0; i < seqs.length; i++) {
-        const tail = seqs[i].stopSlugs[seqs[i].stopSlugs.length - 1];
-        const j = byFirst.get(tail);
-        if (j !== undefined && j !== i) {
-          // Only merge if the combined sequence has no repeated stations —
-          // a repeat means this is a loop/overlap, not a genuine continuation.
-          const existing = new Set(seqs[i].stopSlugs);
-          const extension = seqs[j].stopSlugs.slice(1);
-          if (extension.some((s) => existing.has(s))) continue;
 
-          seqs[i].stopSlugs.push(...extension);
-          seqs.splice(j, 1);
-          changed = true;
-          break;
+      for (const seq of seqsByFirst.get(current) ?? []) {
+        const last = seq.stopSlugs[seq.stopSlugs.length - 1];
+        if (visited.has(last)) continue;
+
+        const seqEdges: [string, string][] = [];
+        for (let i = 0; i < seq.stopSlugs.length - 1; i++) {
+          seqEdges.push([seq.stopSlugs[i], seq.stopSlugs[i + 1]]);
+        }
+
+        visited.add(last);
+        edges.push(...seqEdges);
+        dfs(last, visited, edges);
+        edges.length -= seqEdges.length;
+        visited.delete(last);
+      }
+    }
+
+    const visited = new Set<string>();
+    visited.add(route.originSlug);
+    dfs(route.originSlug, visited, []);
+
+    // Also try from dest → origin
+    if (allChains.length === 0) {
+      visited.clear();
+      visited.add(route.destSlug);
+      dfs(route.destSlug, visited, []);
+    }
+
+    if (allChains.length === 0) {
+      console.warn(`    ⚠ No chain found for ${route.slug}`);
+      continue;
+    }
+
+    if (allChains.length === 1) {
+      // Single chain — tag all edges with the through-route slug
+      for (const [from, to] of allChains[0]) {
+        addBranch(`${from}|${to}|${lineId}`, route.slug);
+        addBranch(`${to}|${from}|${lineId}`, route.slug);
+      }
+    } else {
+      // Multiple chains — the same through-route has different physical paths
+      // (e.g. Northern via Bank vs via Charing Cross). Create a separate slug
+      // for each chain so the router can distinguish them.
+      for (let c = 0; c < allChains.length; c++) {
+        const chain = allChains[c];
+        // Find a distinguishing station: one that's in this chain but not all others
+        const chainStations = new Set(chain.flatMap(([a, b]) => [a, b]));
+        const otherStations = new Set(
+          allChains
+            .filter((_, i) => i !== c)
+            .flatMap((ch) => ch.flatMap(([a, b]) => [a, b]))
+        );
+        let viaStation: string | null = null;
+        for (const s of chainStations) {
+          if (!otherStations.has(s)) {
+            viaStation = s;
+            break;
+          }
+        }
+        const chainSlug = viaStation
+          ? `${route.slug}-via-${viaStation}`
+          : `${route.slug}-v${c}`;
+
+        for (const [from, to] of chain) {
+          addBranch(`${from}|${to}|${lineId}`, chainSlug);
+          addBranch(`${to}|${from}|${lineId}`, chainSlug);
         }
       }
     }
-
-    for (const seq of seqs) {
-      result.push({ lineId, stopSlugs: seq.stopSlugs });
-    }
   }
-
-  return result;
 }
 
-async function buildGraphAndLines(): Promise<{
+function buildGraphAndLines(): {
   stations: Record<string, Station>;
   adjacency: Map<string, Edge[]>;
   linesData: Record<string, { name: string; colour: string }>;
   parentIdToSlug: Map<string, string>;
-}> {
-  console.log("Fetching line list from TfL API...");
-  const lines = await fetchJson<{ id: string; name: string }[]>(
-    `${TFL_BASE}/Line/Mode/tube,elizabeth-line`
-  );
-  console.log(`Found ${lines.length} lines: ${lines.map((l) => l.name).join(", ")}`);
+} {
+  console.log("Reading cached TfL data...");
+  const lines = readCache<{ id: string; name: string }[]>("lines.json");
+  console.log(`  ${lines.length} lines: ${lines.map((l) => l.name).join(", ")}`);
 
   const stationsByParentId = new Map<
     string,
@@ -229,17 +319,16 @@ async function buildGraphAndLines(): Promise<{
   const lineSequences: { lineId: string; stopParentIds: string[] }[] = [];
   const adjacency = new Map<string, Edge[]>();
 
-  for (const line of lines) {
-    console.log(`  Fetching ${line.name}...`);
+  // ── Step 1: Build stations and raw edge set from Route/Sequence data ──
 
+  for (const line of lines) {
     for (const direction of ["outbound", "inbound"] as const) {
       let routeSeq: TflRouteSequence;
       try {
-        routeSeq = await fetchJson<TflRouteSequence>(
-          `${TFL_BASE}/Line/${line.id}/Route/Sequence/${direction}`
+        routeSeq = readCache<TflRouteSequence>(
+          `route-sequence/${line.id}-${direction}.json`
         );
-      } catch (e) {
-        console.warn(`  ⚠ Failed to fetch ${direction} for ${line.name}: ${e}`);
+      } catch {
         continue;
       }
 
@@ -248,7 +337,8 @@ async function buildGraphAndLines(): Promise<{
         if (!stops || stops.length < 2) continue;
 
         for (const stop of stops) {
-          const parentId = stop.topMostParentId || stop.parentId || stop.stationId;
+          const parentId =
+            stop.topMostParentId || stop.parentId || stop.stationId;
           tflIdToParentId.set(stop.stationId, parentId);
 
           const existing = stationsByParentId.get(parentId);
@@ -271,7 +361,8 @@ async function buildGraphAndLines(): Promise<{
     }
   }
 
-  // Build slug mapping
+  // ── Step 2: Build slug mapping ──
+
   const parentIdToSlug = new Map<string, string>();
   const slugCounts = new Map<string, number>();
   for (const [parentId, station] of stationsByParentId) {
@@ -282,7 +373,6 @@ async function buildGraphAndLines(): Promise<{
     parentIdToSlug.set(parentId, slug);
   }
 
-  // Build station records
   const stations: Record<string, Station> = {};
   for (const [parentId, data] of stationsByParentId) {
     const slug = parentIdToSlug.get(parentId)!;
@@ -295,8 +385,67 @@ async function buildGraphAndLines(): Promise<{
     adjacency.set(slug, []);
   }
 
-  // Walk each sequence, derive a branch slug, and attach it to every edge
-  // the sequence traverses (in both directions).
+  // ── Step 3: Build per-line adjacency (edge set without branches) ──
+  //
+  // We need the raw edge topology so we can BFS through it when assigning
+  // through-routes to edges. Deduplicate edges across sequences.
+
+  const edgeSet = new Set<string>();
+  const adjacencyByLine = new Map<string, Map<string, Set<string>>>();
+  const sequencesByLine = new Map<string, { stopSlugs: string[] }[]>();
+
+  for (const seq of lineSequences) {
+    const slugs: string[] = [];
+    for (const parentId of seq.stopParentIds) {
+      const slug = parentIdToSlug.get(parentId);
+      if (!slug) continue;
+      if (slugs.length === 0 || slugs[slugs.length - 1] !== slug) {
+        slugs.push(slug);
+      }
+    }
+
+    // Collect slug sequences grouped by line (dedup later)
+    if (slugs.length >= 2) {
+      if (!sequencesByLine.has(seq.lineId)) {
+        sequencesByLine.set(seq.lineId, []);
+      }
+      sequencesByLine.get(seq.lineId)!.push({ stopSlugs: slugs });
+    }
+
+    for (let i = 0; i < slugs.length - 1; i++) {
+      const from = slugs[i];
+      const to = slugs[i + 1];
+      const lineId = seq.lineId;
+      const keyA = `${from}|${to}|${lineId}`;
+      const keyB = `${to}|${from}|${lineId}`;
+      if (!edgeSet.has(keyA)) {
+        edgeSet.add(keyA);
+        edgeSet.add(keyB);
+      }
+
+      // Build per-line adjacency for BFS
+      if (!adjacencyByLine.has(lineId)) {
+        adjacencyByLine.set(lineId, new Map());
+      }
+      const lineAdj = adjacencyByLine.get(lineId)!;
+      if (!lineAdj.has(from)) lineAdj.set(from, new Set());
+      if (!lineAdj.has(to)) lineAdj.set(to, new Set());
+      lineAdj.get(from)!.add(to);
+      lineAdj.get(to)!.add(from);
+    }
+  }
+
+  // ── Step 4: Assign branch slugs from TfL through-routes ──
+  //
+  // The TfL /Line/{id}/Route API tells us the actual end-to-end services
+  // (e.g. "Morden to High Barnet via Charing Cross"). For each through-route,
+  // we BFS from origin to destination on the line's edge topology and tag
+  // every edge on the path with the through-route's branch slug.
+  //
+  // This replaces the old approach of deriving branch slugs from sequence
+  // termini + heuristic propagation. The Route API is the ground truth for
+  // which stations are connected by a single train service.
+
   const edgeBranches = new Map<string, Set<string>>();
   const addBranch = (key: string, branch: string) => {
     let set = edgeBranches.get(key);
@@ -307,168 +456,63 @@ async function buildGraphAndLines(): Promise<{
     set.add(branch);
   };
 
-  // ── Branch data pipeline ─────────────────────────────────────────
-  //
-  // Turns raw TfL stopPointSequences into per-edge branch metadata used by
-  // the pathfinding router to detect same-line branch changes.
-  //
-  // The pipeline has three stages:
-  //
-  //   1. Slug conversion: map TfL parent IDs to station slugs, dedup
-  //      consecutive duplicates within each sequence.
-  //
-  //   2. Chaining: merge sequences on the same line that share an endpoint
-  //      into longer through-running services. Prevents outbound/inbound
-  //      duplicates and reconnects fragments (e.g. Elizabeth line).
-  //      See chainSequences() for details.
-  //
-  //   3. Propagation: extend branch slugs through shared sub-paths where
-  //      a sequence's terminus is embedded inside another sequence on the
-  //      same line. See the "Branch propagation" comment block below.
-  //
-  // After the pipeline, each edge carries a list of branch slugs. Edges
-  // with multiple slugs are "trunk" (shared by multiple services). The
-  // router uses this to stay uncommitted on trunk and only charge a
-  // branch-change penalty when entering an edge whose branches don't
-  // include the traveller's current committed branch.
-  //
-  const slugSequences: { lineId: string; stopSlugs: string[] }[] = [];
-  for (const seq of lineSequences) {
-    const stopSlugs: string[] = [];
-    for (const parentId of seq.stopParentIds) {
-      const slug = parentIdToSlug.get(parentId);
-      if (!slug) continue;
-      if (stopSlugs.length === 0 || stopSlugs[stopSlugs.length - 1] !== slug) {
-        stopSlugs.push(slug);
-      }
-    }
-    if (stopSlugs.length >= 2) {
-      slugSequences.push({ lineId: seq.lineId, stopSlugs });
-    }
+  // Build a lookup from station name → slug for matching Route API names
+  const nameToSlug = new Map<string, string>();
+  for (const [slug, station] of Object.entries(stations)) {
+    nameToSlug.set(station.name, slug);
   }
+  const slugFromName = (name: string): string | undefined => {
+    // Try direct match first, then slug conversion
+    const direct = nameToSlug.get(cleanStationName(name));
+    if (direct) return direct;
+    const slug = toSlug(name);
+    return stations[slug] ? slug : undefined;
+  };
 
-  // Chain sequences on the same line that share an endpoint. The TfL API
-  // sometimes returns through-running services (e.g. Elizabeth line) as
-  // multiple short fragments. Chaining them avoids spurious branch slugs.
-  const chained = chainSequences(slugSequences);
-
-  const chainedByLine = new Map<string, { slug: string; stopSlugs: string[] }[]>();
-  for (const seq of chained) {
-    const branchSlug = deriveBranchSlug(seq.lineId, seq.stopSlugs);
-    for (let i = 0; i < seq.stopSlugs.length - 1; i++) {
-      const from = seq.stopSlugs[i];
-      const to = seq.stopSlugs[i + 1];
-      addBranch(`${from}|${to}|${seq.lineId}`, branchSlug);
-      addBranch(`${to}|${from}|${seq.lineId}`, branchSlug);
-    }
-    let group = chainedByLine.get(seq.lineId);
-    if (!group) {
-      group = [];
-      chainedByLine.set(seq.lineId, group);
-    }
-    group.push({ slug: branchSlug, stopSlugs: seq.stopSlugs });
-  }
-
-  // ── Branch propagation ─────────────────────────────────────────────
-  //
-  // Problem: the TfL API returns each service as a separate sequence, but
-  // some services extend beyond their nominal terminus onto track that is
-  // part of another sequence. For example:
-  //
-  //   • Metropolitan Chesham: TfL returns [Chesham, Chalfont]. The train
-  //     continues through the Amersham sequence to Baker Street. Without
-  //     propagation, Chalfont→Chorleywood wouldn't carry the Chesham slug,
-  //     causing a spurious branch change at Chalfont instead of at
-  //     Harrow-on-the-Hill where the Uxbridge branch actually splits.
-  //
-  //   • Central Epping: TfL returns [Epping, ..., Woodford]. The train
-  //     continues through the Snaresbrook corridor (Woodford → South
-  //     Woodford → Snaresbrook → Leytonstone), which TfL puts in the
-  //     Hainault loop sequence. Without propagation, those edges would
-  //     only carry the loop's slug.
-  //
-  // Solution: when sequence A's terminus appears mid-way inside sequence B
-  // (same line), extend A's branch slug along B's edges in both directions
-  // from the junction, all the way to B's own termini. This makes the
-  // shared section multi-branch (trunk), so the router stays uncommitted.
-  //
-  // Guards:
-  //   • Sub-path check: if every stop in A also appears in B, A is a
-  //     sub-path (e.g. Piccadilly's Hatton Cross spur is contained within
-  //     the main Cockfosters–Heathrow T5 sequence) — skip.
-  //   • Line blocklist: district and piccadilly are excluded because their
-  //     junction stations (e.g. Turnham Green, Acton Town) have terminating
-  //     services that would be incorrectly extended. There is no reliable
-  //     graph-topology heuristic to distinguish "train continues through
-  //     junction" from "train terminates at junction", so we use domain
-  //     knowledge.
-  //   • Propagation stops at B's own endpoints, not at termini of unrelated
-  //     sequences mid-way through B.
-  //
-  // Effect on routing:
-  //   • Propagated edges become multi-branch (trunk) — the router stays
-  //     uncommitted and charges no branch-change penalty.
-  //   • The branch change is detected when the traveller reaches an edge
-  //     that does NOT carry their previously committed branch.
-  //
-  for (const [lineId, seqs] of chainedByLine) {
-    for (const a of seqs) {
-      // Skip sub-path sequences entirely covered by another sequence.
-      const isSubPathOf = seqs.some(
-        (b) => b !== a && a.stopSlugs.every((s) => b.stopSlugs.includes(s))
+  for (const line of lines) {
+    let routeData: { routeSections: TflRouteSection[] };
+    try {
+      routeData = readCache<{ routeSections: TflRouteSection[] }>(
+        `routes/${line.id}.json`
       );
-      if (isSubPathOf) continue;
+    } catch {
+      console.warn(`  ⚠ No route data for ${line.name}, skipping branch assignment`);
+      continue;
+    }
 
-      for (const terminus of [a.stopSlugs[0], a.stopSlugs[a.stopSlugs.length - 1]]) {
-        for (const b of seqs) {
-          if (a === b) continue;
-          if (terminus === b.stopSlugs[0] || terminus === b.stopSlugs[b.stopSlugs.length - 1]) continue;
-          const idx = b.stopSlugs.indexOf(terminus);
-          if (idx < 0) continue;
+    const throughRoutes = parseThroughRoutes(line.id, routeData, slugFromName);
+    const lineAdj = adjacencyByLine.get(line.id);
+    if (!lineAdj) continue;
 
-          // Guard: only propagate for lines where the TfL API is known to
-          // fragment through-running services into separate sequences that
-          // need reconnecting. Other lines already have correct overlapping
-          // sequences at junctions.
-          //
-          // Lines that need propagation:
-          //   • central: Epping branch ends at Woodford but the train
-          //     continues through the Snaresbrook corridor (in the Hainault
-          //     loop sequence).
-          //   • metropolitan: Chesham branch ends at Chalfont but the train
-          //     continues through to Baker Street (in the Amersham sequence).
-          //
-          // Lines that must NOT propagate (e.g. district): Richmond's
-          // terminus Turnham Green is mid-way through the Ealing Broadway
-          // sequence, but trains terminate there — propagation would
-          // incorrectly extend the Richmond slug across the whole line.
-          // Lines where propagation is needed. District and piccadilly are
-          // excluded because their junction stations (e.g. Turnham Green,
-          // Acton Town) have terminating services that would be incorrectly
-          // extended.
-          const noPropagateLines = new Set(["district", "piccadilly"]);
-          if (noPropagateLines.has(lineId)) continue;
+    console.log(
+      `  ${line.name}: ${throughRoutes.length} through-routes`
+    );
 
-          // Propagate forward through B to B's own end.
-          const bEnd = b.stopSlugs[b.stopSlugs.length - 1];
-          for (let i = idx; i < b.stopSlugs.length - 1; i++) {
-            addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i + 1]}|${lineId}`, a.slug);
-            addBranch(`${b.stopSlugs[i + 1]}|${b.stopSlugs[i]}|${lineId}`, a.slug);
-            if (b.stopSlugs[i + 1] === bEnd) break;
-          }
-          // Propagate backward through B to B's own start.
-          const bStart = b.stopSlugs[0];
-          for (let i = idx; i > 0; i--) {
-            addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i - 1]}|${lineId}`, a.slug);
-            addBranch(`${b.stopSlugs[i - 1]}|${b.stopSlugs[i]}|${lineId}`, a.slug);
-            if (b.stopSlugs[i - 1] === bStart) break;
-          }
-        }
-      }
+    const lineSeqs = sequencesByLine.get(line.id) ?? [];
+    assignBranchSlugs(throughRoutes, line.id, lineAdj, lineSeqs, addBranch);
+  }
+
+  // ── Step 5: Build final adjacency list ──
+  //
+  // For edges that have no through-route assignments (e.g. if the Route API
+  // didn't cover them), fall back to a generic branch slug.
+
+  for (const key of edgeSet) {
+    const [from, to, lineId] = key.split("|");
+    // Only process one direction (from < to) to avoid duplicates
+    if (from > to) continue;
+
+    const fwdKey = `${from}|${to}|${lineId}`;
+    const branches = edgeBranches.get(fwdKey);
+
+    if (!branches || branches.size === 0) {
+      // Fallback: edge not covered by any through-route
+      const fallback = `${lineId}:unassigned`;
+      addBranch(fwdKey, fallback);
+      addBranch(`${to}|${from}|${lineId}`, fallback);
     }
   }
 
-  // Build adjacency list
   for (const [key, branchSet] of edgeBranches) {
     const [from, to, lineId] = key.split("|");
     const edges = adjacency.get(from);
@@ -485,29 +529,33 @@ async function buildGraphAndLines(): Promise<{
     };
   }
 
-  // Stats & sanity checks
+  // ── Stats & sanity checks ──
+
   const stationCount = Object.keys(stations).length;
-  const edgeCount = [...adjacency.values()].reduce((sum, edges) => sum + edges.length, 0) / 2;
+  const edgeCount =
+    [...adjacency.values()].reduce((sum, edges) => sum + edges.length, 0) / 2;
   console.log(`\n✓ Graph: ${stationCount} stations, ${edgeCount} edges`);
 
   const orphans = Object.keys(stations).filter(
     (s) => (adjacency.get(s)?.length ?? 0) === 0
   );
   if (orphans.length > 0) {
-    console.warn(`⚠ Orphan stations (no edges): ${orphans.map((s) => stations[s].name).join(", ")}`);
+    console.warn(
+      `⚠ Orphan stations (no edges): ${orphans.map((s) => stations[s].name).join(", ")}`
+    );
   }
 
   // Connectivity check
   const allSlugs = Object.keys(stations);
   const visited = new Set<string>();
-  const queue = [allSlugs[0]];
+  const bfsQueue = [allSlugs[0]];
   visited.add(allSlugs[0]);
-  while (queue.length > 0) {
-    const current = queue.shift()!;
+  while (bfsQueue.length > 0) {
+    const current = bfsQueue.shift()!;
     for (const edge of adjacency.get(current) || []) {
       if (!visited.has(edge.to)) {
         visited.add(edge.to);
-        queue.push(edge.to);
+        bfsQueue.push(edge.to);
       }
     }
   }
@@ -521,6 +569,15 @@ async function buildGraphAndLines(): Promise<{
     console.log(`✓ Graph is fully connected`);
   }
 
+  // Check for unassigned edges
+  let unassignedCount = 0;
+  for (const [, branchSet] of edgeBranches) {
+    if (branchSet.has("unassigned")) unassignedCount++;
+  }
+  if (unassignedCount > 0) {
+    console.warn(`⚠ ${unassignedCount / 2} edges not covered by any through-route`);
+  }
+
   console.log(`✓ Lines: ${Object.keys(linesData).length} lines`);
 
   return { stations, adjacency, linesData, parentIdToSlug };
@@ -528,119 +585,65 @@ async function buildGraphAndLines(): Promise<{
 
 // ── Station metadata (coordinates & borough) ────────────────────────
 
-interface TflModeStopPoint {
-  commonName: string;
-  lat: number;
-  lon: number;
-  id: string;
-}
-
 interface StationMetadata {
   lat: number;
   lon: number;
   borough: string;
 }
 
-function sleep(ms: number): Promise<void> {
-  return new Promise((resolve) => setTimeout(resolve, ms));
-}
-
-async function reverseGeocodeBorough(lat: number, lon: number): Promise<string> {
-  const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=json&zoom=10`;
-  const res = await fetch(url, {
-    headers: { "User-Agent": "tuble-build-script" },
-  });
-  if (!res.ok) return "Unknown";
-  const data = (await res.json()) as {
-    address?: {
-      city_district?: string;
-      borough?: string;
-      city?: string;
-      town?: string;
-      county?: string;
-    };
-  };
-  const a = data.address;
-  const raw = a?.city_district ?? a?.borough ?? a?.city ?? a?.town ?? a?.county ?? "Unknown";
-  return raw
-    .replace(/^London Borough of\s+/i, "")
-    .replace(/^Royal Borough of\s+/i, "");
-}
-
-async function buildMetadata(
+function buildMetadata(
   stations: Record<string, Station>
-): Promise<Record<string, StationMetadata>> {
-  // Step 1: Get coordinates from TfL
-  console.log("\nFetching station coordinates from TfL API...");
+): Record<string, StationMetadata> {
+  console.log("\nBuilding station metadata from cache...");
 
-  const response = await fetchJson<{ stopPoints: TflModeStopPoint[] }>(
-    `${TFL_BASE}/StopPoint/Mode/tube,elizabeth-line`
-  );
-  const stopPoints = response.stopPoints;
-  console.log(`  Fetched ${stopPoints.length} stop points`);
+  const stopPointData = readCache<{
+    stopPoints: { commonName: string; lat: number; lon: number; id: string }[];
+  }>("stoppoints.json");
+  const stopPoints = stopPointData.stopPoints;
+  console.log(`  ${stopPoints.length} stop points`);
 
-  const tflBySlug = new Map<string, TflModeStopPoint>();
+  const tflBySlug = new Map<
+    string,
+    { commonName: string; lat: number; lon: number }
+  >();
   for (const sp of stopPoints) {
     tflBySlug.set(toSlug(sp.commonName), sp);
   }
 
   const metadata: Record<string, StationMetadata> = {};
-  const missing: string[] = [];
 
   for (const id of Object.keys(stations)) {
     const sp = tflBySlug.get(id);
     if (sp) {
       metadata[id] = { lat: sp.lat, lon: sp.lon, borough: "" };
     } else {
-      missing.push(`${id} (${stations[id].name})`);
       metadata[id] = { lat: 0, lon: 0, borough: "Unknown" };
     }
   }
 
-  // Try individual lookups for unmatched stations
-  if (missing.length > 0) {
-    console.warn(`  ⚠ ${missing.length} stations not matched in bulk, trying individual lookups...`);
-    for (const id of Object.keys(stations)) {
-      if (metadata[id].lat !== 0) continue;
-      const station = stations[id];
-      try {
-        const results = await fetchJson<{ matches: { id: string; lat: number; lon: number }[] }>(
-          `${TFL_BASE}/StopPoint/Search/${encodeURIComponent(station.name)}?modes=tube,elizabeth-line&maxResults=1`
-        );
-        if (results.matches && results.matches.length > 0) {
-          const detail = await fetchJson<TflModeStopPoint>(
-            `${TFL_BASE}/StopPoint/${results.matches[0].id}`
-          );
-          metadata[id] = { lat: detail.lat, lon: detail.lon, borough: "" };
-          console.log(`    ✓ Found ${station.name}`);
-        } else {
-          console.warn(`    ✗ Could not find ${station.name}`);
-        }
-      } catch {
-        console.warn(`    ✗ Could not find ${station.name}`);
+  // Assign boroughs from cache
+  try {
+    const boroughs = readCache<Record<string, string>>("boroughs.json");
+    for (const [id, meta] of Object.entries(metadata)) {
+      if (meta.lat === 0) continue;
+      const sp = tflBySlug.get(id);
+      if (sp && boroughs[sp.commonName]) {
+        meta.borough = boroughs[sp.commonName];
       }
     }
+  } catch {
+    console.warn(
+      '  ⚠ No boroughs.json cache — run "npx tsx scripts/fetch-tfl.ts --metadata"'
+    );
   }
 
   const found = Object.values(metadata).filter((m) => m.lat !== 0).length;
-  console.log(`✓ Coordinates: ${found}/${Object.keys(stations).length} stations`);
-
-  // Step 2: Reverse geocode boroughs from Nominatim (1 req/sec rate limit)
-  const ids = Object.keys(metadata).filter((id) => metadata[id].lat !== 0);
-  console.log(`\nReverse geocoding boroughs for ${ids.length} stations (this takes a few minutes)...`);
-
-  for (let i = 0; i < ids.length; i++) {
-    const id = ids[i];
-    const { lat, lon } = metadata[id];
-    metadata[id].borough = await reverseGeocodeBorough(lat, lon);
-    if ((i + 1) % 25 === 0 || i === ids.length - 1) {
-      console.log(`  ${i + 1}/${ids.length}`);
-    }
-    if (i < ids.length - 1) await sleep(1000);
-  }
-
-  const withBorough = Object.values(metadata).filter((m) => m.borough !== "Unknown").length;
-  console.log(`✓ Metadata: ${withBorough}/${Object.keys(stations).length} stations with borough`);
+  const withBorough = Object.values(metadata).filter(
+    (m) => m.borough && m.borough !== "Unknown" && m.borough !== ""
+  ).length;
+  console.log(
+    `✓ Metadata: ${found}/${Object.keys(stations).length} with coordinates, ${withBorough} with borough`
+  );
 
   return metadata;
 }
@@ -654,13 +657,13 @@ function buildRidership(
   console.log(`\nBuilding ridership from ${csvPath}...`);
 
   const csv = readFileSync(csvPath, "utf8");
-  const lines = csv.trim().split("\n");
+  const csvLines = csv.trim().split("\n");
 
   const totals: Record<string, number> = {};
   const days: Record<string, number> = {};
 
-  for (let i = 1; i < lines.length; i++) {
-    const cols = lines[i].split(",");
+  for (let i = 1; i < csvLines.length; i++) {
+    const cols = csvLines[i].split(",");
     const station = cols[2];
     const entry = parseInt(cols[3]) || 0;
     const exit = parseInt(cols[4]) || 0;
@@ -688,9 +691,9 @@ function buildRidership(
     "shepherds-bush-central": "Shepherds Bush",
     "hammersmith-handc-line": "Hammersmith C&H",
     "burnham-berks": "Burnham Bucks",
-    "woolwich": "Woolwich Elizabeth Line",
+    woolwich: "Woolwich Elizabeth Line",
     "custom-house": "Custom House Elizabeth Line",
-    "watford": "Watford Met",
+    watford: "Watford Met",
   };
 
   const result: Record<string, number> = {};
@@ -710,7 +713,9 @@ function buildRidership(
   if (unmatched.length > 0) {
     console.error("Unmatched stations:");
     unmatched.forEach((s) => console.error(`  ${s}`));
-    console.error("\nAdd manual mappings in this script for the above stations.");
+    console.error(
+      "\nAdd manual mappings in this script for the above stations."
+    );
     process.exit(1);
   }
 
@@ -720,7 +725,7 @@ function buildRidership(
 
 // ── Main ────────────────────────────────────────────────────────────
 
-async function main() {
+function main() {
   const args = process.argv.slice(2);
   const graphOnly = args.includes("--graph-only");
   const csvPath = args.find((a) => !a.startsWith("--"));
@@ -735,7 +740,7 @@ async function main() {
 
   mkdirSync(OUT_DIR, { recursive: true });
 
-  const { stations, adjacency, linesData } = await buildGraphAndLines();
+  const { stations, adjacency, linesData } = buildGraphAndLines();
   writeJson("tube-graph.json", {
     stations,
     adjacency: Object.fromEntries(adjacency),
@@ -747,7 +752,7 @@ async function main() {
     return;
   }
 
-  const metadata = await buildMetadata(stations);
+  const metadata = buildMetadata(stations);
   const ridership = buildRidership(csvPath!, stations);
   const sortedMetadata = Object.fromEntries(
     Object.entries(metadata).sort(([a], [b]) => a.localeCompare(b))
@@ -758,7 +763,4 @@ async function main() {
   console.log("\nDone!");
 }
 
-main().catch((err) => {
-  console.error("Fatal error:", err);
-  process.exit(1);
-});
+main();

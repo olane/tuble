@@ -1,0 +1,46 @@
+{
+  "$type": "Tfl.Api.Presentation.Entities.Line, Tfl.Api.Presentation.Entities",
+  "id": "waterloo-city",
+  "name": "Waterloo & City",
+  "modeName": "tube",
+  "disruptions": [],
+  "created": "2026-03-31T11:01:31.293Z",
+  "modified": "2026-03-31T11:01:31.293Z",
+  "lineStatuses": [],
+  "routeSections": [
+    {
+      "$type": "Tfl.Api.Presentation.Entities.MatchedRoute, Tfl.Api.Presentation.Entities",
+      "name": "Bank Underground Station - Waterloo Underground Station",
+      "direction": "inbound",
+      "originationName": "Bank Underground Station",
+      "destinationName": "Waterloo Underground Station",
+      "originator": "940GZZLUBNK",
+      "destination": "940GZZLUWLO",
+      "serviceType": "Regular",
+      "validTo": "2026-12-23T00:00:00Z",
+      "validFrom": "2026-03-30T00:00:00Z"
+    },
+    {
+      "$type": "Tfl.Api.Presentation.Entities.MatchedRoute, Tfl.Api.Presentation.Entities",
+      "name": "Waterloo Underground Station - Bank Underground Station",
+      "direction": "outbound",
+      "originationName": "Waterloo Underground Station",
+      "destinationName": "Bank Underground Station",
+      "originator": "940GZZLUWLO",
+      "destination": "940GZZLUBNK",
+      "serviceType": "Regular",
+      "validTo": "2026-12-23T00:00:00Z",
+      "validFrom": "2026-03-30T00:00:00Z"
+    }
+  ],
+  "serviceTypes": [
+    {
+      "$type": "Tfl.Api.Presentation.Entities.LineServiceTypeInfo, Tfl.Api.Presentation.Entities",
+      "name": "Regular",
+      "uri": "/Line/Route?ids=Waterloo & City&serviceTypes=Regular"
+    }
+  ],
+  "crowding": {
+    "$type": "Tfl.Api.Presentation.Entities.Crowding, Tfl.Api.Presentation.Entities"
+  }
+}
