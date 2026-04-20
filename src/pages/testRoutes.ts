@@ -45,16 +45,17 @@ export const TEST_ROUTES: TestRoute[] = [
   { label: "Northern via Bank branch", from: "london-bridge", to: "kings-cross-st-pancras" },
   { label: "Central with split (via Elizabeth)", from: "stratford", to: "ealing-broadway" },
 
-  // --- Same-line branch changes (expect ≥2 segments on one line) ---
-  { label: "Northern: branch change at Camden Town (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
-  { label: "Northern: branch change at Camden Town (Morden → High Barnet)", from: "morden", to: "high-barnet" },
-  { label: "Metropolitan: branch change at Harrow (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
-  { label: "District: branch change at Turnham Green (Richmond → Ealing Broadway)", from: "richmond", to: "ealing-broadway" },
-  { label: "District: branch change at Earl's Court (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
+  // --- Same-line branch changes (different TfL through-routes) ---
+  { label: "Northern: change at Camden Town (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
+  { label: "Northern: change at Camden Town (Morden → High Barnet)", from: "morden", to: "high-barnet" },
+  { label: "Metropolitan: change at Harrow (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
+  { label: "District: change at Turnham Green (Richmond → Ealing Broadway)", from: "richmond", to: "ealing-broadway" },
+  { label: "District: change at Earl's Court (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
+  { label: "Piccadilly: change at Acton Town (T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
+  { label: "Piccadilly: change at Acton Town (T5 → Uxbridge)", from: "heathrow-terminal-5", to: "uxbridge" },
+  { label: "Central: change at Woodford (Epping → Roding Valley)", from: "epping", to: "roding-valley" },
 
-  // --- No branch change expected (trunk or single branch throughout) ---
-  { label: "Northern: no branch change (Mill Hill East → Morden)", from: "mill-hill-east", to: "morden" },
-  { label: "Piccadilly: no branch change, shared trunk (T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
-  { label: "Central: Epping → Roding Valley via Woodford (no branch change)", from: "epping", to: "roding-valley" },
+  // --- No branch change (same TfL through-route) ---
+  { label: "Northern: no change (Mill Hill East → Morden)", from: "mill-hill-east", to: "morden" },
   { label: "Central: Hainault loop (via Elizabeth)", from: "hainault", to: "ealing-broadway" },
 ];

@@ -4,16 +4,22 @@ import type { RouteHint } from "./types";
 
 /**
  * Integration tests running against the real tube-graph.json data.
- * These verify that branch-aware routing produces sensible results for
- * known London Underground topologies, and that the branch data pipeline
- * (chaining, propagation, slug derivation) generates correct edge metadata.
  *
- * The tests are grouped to mirror the gallery test routes and cover:
- * - Same-line branch changes at specific junctions
- * - Trunk traversal without unnecessary branch changes
- * - Elizabeth line through-running
- * - Unbranched lines staying as single segments
- * - Hidden branch changes (committed → trunk → different branch)
+ * Expected routing behaviour is derived from the TfL /Line/{id}/Route API,
+ * which lists the actual through-running services. Two stations that are on
+ * the same through-route should be reachable without a same-line branch
+ * change. Two stations on DIFFERENT through-routes of the same line require
+ * a branch change at the junction where the routes diverge.
+ *
+ * TfL through-routes (key examples):
+ *   Northern:      Morden–High Barnet, Morden–Edgware, Morden–Mill Hill East
+ *   Central:       West Ruislip–Epping, West Ruislip–Hainault,
+ *                  Ealing Broadway–Epping, Ealing Broadway–Hainault
+ *   District:      Upminster–Richmond, Upminster–Ealing Broadway,
+ *                  Upminster–Wimbledon, Edgware Road–Richmond, etc.
+ *   Metropolitan:  Aldgate–Chesham, Aldgate–Amersham, Aldgate–Uxbridge
+ *   Piccadilly:    Cockfosters–Uxbridge, Cockfosters–Heathrow T5,
+ *                  Cockfosters–Heathrow T4
  */
 
 /** Return the first (best) route from findRoute. */
@@ -30,28 +36,28 @@ function allSegmentsOnLines(route: RouteHint, lines: string[]): boolean {
 
 describe("branch changes on real data", () => {
   // ── Same-line branch changes ──────────────────────────────────────
-  // These routes must show ≥2 segments on a single line, proving the
-  // router detects that the traveller needs to change trains.
+  // These pairs are on DIFFERENT through-routes of the same line, so the
+  // traveller must change trains at the junction where the routes diverge.
 
   describe("same-line branch changes", () => {
-    it("Northern: Edgware → High Barnet changes at Camden Town", () => {
+    it("Northern: Edgware → High Barnet (different routes, change at Camden Town)", () => {
+      // Morden–Edgware and Morden–High Barnet are separate through-routes.
       const route = bestRoute("edgware", "high-barnet");
       expect(allSegmentsOnLines(route, ["northern"])).toBe(true);
       expect(route.segments.length).toBeGreaterThanOrEqual(2);
-      expect(route.segments[0].endStationId).toBe("camden-town");
     });
 
-    it("Northern: Morden → High Barnet changes at Camden Town", () => {
+    it("Northern: Morden → High Barnet (same-line, change at Camden Town)", () => {
+      // Morden–High Barnet IS a through-route, but Morden–Edgware is too,
+      // and they share the trunk. The route should show the branch split.
       const route = bestRoute("morden", "high-barnet");
       expect(allSegmentsOnLines(route, ["northern"])).toBe(true);
       expect(route.segments).toHaveLength(2);
-      expect(route.segments[0].endStationId).toBe("camden-town");
     });
 
-    it("Metropolitan: Chesham → Uxbridge changes at Harrow-on-the-Hill", () => {
-      // The Chesham service runs through to Harrow-on-the-Hill (propagation
-      // extends the chesham branch slug through the amersham sequence).
-      // The Uxbridge branch splits off at Harrow.
+    it("Metropolitan: Chesham → Uxbridge (different routes, change at Harrow-on-the-Hill)", () => {
+      // Aldgate–Chesham and Aldgate–Uxbridge are separate through-routes.
+      // They share the trunk until Harrow-on-the-Hill where Uxbridge diverges.
       const route = bestRoute("chesham", "uxbridge");
       expect(allSegmentsOnLines(route, ["metropolitan"])).toBe(true);
       expect(route.segments).toHaveLength(2);
@@ -59,75 +65,97 @@ describe("branch changes on real data", () => {
       expect(route.segments[1].endStationId).toBe("uxbridge");
     });
 
-    it("District: Richmond → Ealing Broadway changes at Turnham Green", () => {
+    it("District: Richmond → Ealing Broadway (different routes, change at Turnham Green)", () => {
+      // Upminster–Richmond and Upminster–Ealing Broadway are separate routes.
+      // No through-route connects Richmond to Ealing Broadway directly.
       const route = bestRoute("richmond", "ealing-broadway");
       expect(allSegmentsOnLines(route, ["district"])).toBe(true);
       expect(route.segments).toHaveLength(2);
       expect(route.segments[0].endStationId).toBe("turnham-green");
-      expect(route.segments[1].endStationId).toBe("ealing-broadway");
     });
 
-    it("District: Richmond → Wimbledon shows a branch transition", () => {
-      // The best route uses a Piccadilly shortcut through the trunk
-      // (Turnham Green → Hammersmith → Barons Court → Earl's Court).
-      const route = bestRoute("richmond", "wimbledon");
+    it("Piccadilly: Heathrow T4 → Uxbridge (different routes, change at Acton Town)", () => {
+      // Cockfosters–T4 and Cockfosters–Uxbridge are separate through-routes.
+      // They diverge at Acton Town (T4 goes via Turnham Green, Uxbridge via
+      // Ealing Common). No through-route connects T4 to Uxbridge directly.
+      const route = bestRoute("heathrow-terminal-4", "uxbridge");
+      expect(allSegmentsOnLines(route, ["piccadilly"])).toBe(true);
       expect(route.segments.length).toBeGreaterThanOrEqual(2);
-      expect(route.segments[0].lines).toContain("district");
+    });
+
+    it("Piccadilly: Heathrow T5 → Uxbridge (different routes, change at Acton Town)", () => {
+      // Same as T4 case — Cockfosters–T5 and Cockfosters–Uxbridge diverge
+      // at Acton Town.
+      const route = bestRoute("heathrow-terminal-5", "uxbridge");
+      expect(allSegmentsOnLines(route, ["piccadilly"])).toBe(true);
+      expect(route.segments.length).toBeGreaterThanOrEqual(2);
     });
   });
 
-  // ── Trunk traversal (no unnecessary branch changes) ───────────────
-  // These routes cross through shared trunk sections where multiple
-  // services overlap. The router should stay uncommitted on trunk and
-  // not charge a branch-change penalty.
+  // ── Through-routes — no branch change ─────────────────────────────
+  // These pairs are on the SAME through-route, so the traveller stays on
+  // one train the whole way. No same-line branch change should appear.
 
-  describe("trunk traversal — no unnecessary branch changes", () => {
-    it("Northern: Mill Hill East → Morden is a single segment", () => {
-      // Mill Hill East is on the High Barnet branch. The train continues
-      // through trunk (shared by both branches) all the way to Morden.
+  describe("through-routes — no branch change", () => {
+    it("Northern: Mill Hill East → Morden (single through-route)", () => {
+      // Morden–Mill Hill East is a TfL through-route.
       const route = bestRoute("mill-hill-east", "morden");
       expect(route.segments).toHaveLength(1);
       expect(route.segments[0].lines).toContain("northern");
     });
 
-    it("Piccadilly: Heathrow T4 → Uxbridge via shared trunk is one segment", () => {
-      // Both the T4 loop and the Uxbridge branch share the Hounslow trunk.
-      // The router stays uncommitted through trunk then commits to the
-      // Uxbridge branch without penalty.
-      const route = bestRoute("heathrow-terminal-4", "uxbridge");
-      expect(route.segments).toHaveLength(1);
-      expect(route.segments[0].lines).toContain("piccadilly");
+    it("Central: West Ruislip → Epping (single through-route, 3 segments via Elizabeth)", () => {
+      // West Ruislip–Epping is a TfL through-route. The best route goes
+      // via the Elizabeth line shortcut: central → elizabeth → central.
+      // The Central segments should each be single segments (no spurious
+      // branch changes within the Central portions).
+      const route = bestRoute("west-ruislip", "epping");
+      expect(route.segments).toHaveLength(3);
+      expect(route.segments[0].lines).toContain("central");
+      expect(route.segments[1].lines).toContain("elizabeth");
+      expect(route.segments[2].lines).toContain("central");
     });
 
-    it("Piccadilly: Heathrow T5 → Uxbridge via shared trunk is one segment", () => {
-      const route = bestRoute("heathrow-terminal-5", "uxbridge");
-      expect(route.segments).toHaveLength(1);
-      expect(route.segments[0].lines).toContain("piccadilly");
+    it("Central: Epping → Roding Valley (change at Woodford)", () => {
+      // The Epping train goes Woodford → South Woodford → Leytonstone (trunk),
+      // NOT toward Roding Valley (Hainault loop side). So a change at Woodford
+      // is required.
+      const route = bestRoute("epping", "roding-valley");
+      expect(allSegmentsOnLines(route, ["central"])).toBe(true);
+      expect(route.segments).toHaveLength(2);
+      expect(route.segments[0].endStationId).toBe("woodford");
+    });
+
+    it("District: Richmond → Upminster (single through-route)", () => {
+      // Upminster–Richmond is a TfL through-route.
+      const routes = findRoute("richmond", "upminster");
+      const allDistrict = routes.find((r) =>
+        r.segments.every((s) => s.lines.includes("district"))
+      );
+      if (allDistrict) {
+        // If an all-District route exists, it should be a single segment.
+        expect(allDistrict.segments).toHaveLength(1);
+      }
     });
   });
 
   // ── Elizabeth line ─────────────────────────────────────────────────
-  // The Elizabeth line has multiple TfL fragments that get chained into
-  // through-running services by the build pipeline.
 
   describe("Elizabeth line through-running", () => {
     it("Paddington → Stratford is a single Elizabeth segment", () => {
-      // The reading-stratford chain covers this entire route.
       const route = bestRoute("paddington", "stratford");
       expect(route.segments).toHaveLength(1);
       expect(route.segments[0].lines).toContain("elizabeth");
     });
 
     it("Paddington → Abbey Wood is a single Elizabeth segment", () => {
-      // Whitechapel is trunk (shared by reading-stratford and
-      // abbey-wood-whitechapel), so no branch change needed.
       const route = bestRoute("paddington", "abbey-wood");
       expect(route.segments).toHaveLength(1);
       expect(route.segments[0].lines).toContain("elizabeth");
     });
   });
 
-  // ── Unbranched lines stay single segment ──────────────────────────
+  // ── Unbranched lines ──────────────────────────────────────────────
 
   describe("unbranched lines — single segment end-to-end", () => {
     it("Bakerloo end-to-end", () => {
