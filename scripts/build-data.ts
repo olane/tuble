@@ -357,10 +357,8 @@ async function buildGraphAndLines(): Promise<{
       allTermini.add(s.stopSlugs[s.stopSlugs.length - 1]);
     }
     for (const a of seqs) {
-      // Skip short spurs (≤3 stops) — these are shuttles or minor branches
-      // whose trains don't continue past their terminus (e.g. Chesham
-      // shuttle). Also skip sub-path sequences entirely covered by another.
-      if (a.stopSlugs.length <= 3) continue;
+      // Skip sub-path sequences entirely covered by another sequence
+      // (e.g. Piccadilly Hatton Cross spur is a sub-path of the main line).
       const isSubPathOf = seqs.some(
         (b) => b !== a && a.stopSlugs.every((s) => b.stopSlugs.includes(s))
       );
@@ -373,17 +371,21 @@ async function buildGraphAndLines(): Promise<{
           if (terminus === b.stopSlugs[0] || terminus === b.stopSlugs[b.stopSlugs.length - 1]) continue;
           const idx = b.stopSlugs.indexOf(terminus);
           if (idx < 0) continue;
-          // Propagate forward through B until the nearest terminus.
+          // Propagate forward through B until we reach B's own terminus.
+          // We don't stop at termini of *other* sequences that happen to be
+          // mid-way through B — the train continues past those on B's track.
+          const bEnd = b.stopSlugs[b.stopSlugs.length - 1];
           for (let i = idx; i < b.stopSlugs.length - 1; i++) {
             addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i + 1]}|${lineId}`, a.slug);
             addBranch(`${b.stopSlugs[i + 1]}|${b.stopSlugs[i]}|${lineId}`, a.slug);
-            if (allTermini.has(b.stopSlugs[i + 1])) break;
+            if (b.stopSlugs[i + 1] === bEnd) break;
           }
-          // Propagate backward through B until the nearest terminus.
+          // Propagate backward through B until we reach B's own start.
+          const bStart = b.stopSlugs[0];
           for (let i = idx; i > 0; i--) {
             addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i - 1]}|${lineId}`, a.slug);
             addBranch(`${b.stopSlugs[i - 1]}|${b.stopSlugs[i]}|${lineId}`, a.slug);
-            if (allTermini.has(b.stopSlugs[i - 1])) break;
+            if (b.stopSlugs[i - 1] === bStart) break;
           }
         }
       }
