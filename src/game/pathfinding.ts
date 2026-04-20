@@ -259,14 +259,19 @@ export function findRoute(
   for (const steps of allPaths) {
     const segments: RawSegment[] = [];
     let prevStation = fromId;
+    // Track the last committed (non-null) branch per segment so we can
+    // detect branch changes that pass through trunk (null) in between.
+    let lastCommittedBranch: string | null = null;
     for (const step of steps) {
       const last = segments[segments.length - 1];
       const sameLine = last && last.line === step.line;
+      // Compatible if: no prior branch commitment, or step is trunk
+      // (uncommitted), or step matches the last committed branch.
       const branchCompatible =
         sameLine &&
-        (last!.branch === null ||
+        (lastCommittedBranch === null ||
           step.branch === null ||
-          last!.branch === step.branch);
+          lastCommittedBranch === step.branch);
 
       if (sameLine && branchCompatible) {
         last!.stops++;
@@ -275,7 +280,11 @@ export function findRoute(
         if (last!.branch === null && step.branch !== null) {
           last!.branch = step.branch;
         }
+        if (step.branch !== null) {
+          lastCommittedBranch = step.branch;
+        }
       } else {
+        lastCommittedBranch = step.branch;
         segments.push({
           line: step.line,
           branch: step.branch,

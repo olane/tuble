@@ -49,15 +49,18 @@ describe("branch changes on real data", () => {
     });
   });
 
-  describe("trunk traversal (no branch change expected)", () => {
-    it("Northern: Morden → High Barnet stays on one Northern segment through trunk", () => {
+  describe("trunk traversal (no unnecessary branch changes)", () => {
+    it("Northern: Morden → High Barnet has one branch change at Finchley Central", () => {
       const route = bestRoute("morden", "high-barnet");
-      const northernSegs = route.segments.filter((s) =>
-        s.lines.includes("northern")
-      );
-      // The trunk (Morden → Kennington → Camden) is shared by both
-      // branches, so only one branch change at the split — not two.
-      expect(northernSegs.length).toBeLessThanOrEqual(2);
+      expect(allSegmentsOnLines(route, ["northern"])).toBe(true);
+      expect(route.segments).toHaveLength(2);
+      expect(route.segments[0].endStationId).toBe("finchley-central");
+    });
+
+    it("Northern: Mill Hill East → Morden is a single segment (same branch through trunk)", () => {
+      const route = bestRoute("mill-hill-east", "morden");
+      expect(route.segments).toHaveLength(1);
+      expect(route.segments[0].lines).toContain("northern");
     });
 
     it("Piccadilly: Heathrow T4 → Uxbridge via shared trunk is one segment", () => {
