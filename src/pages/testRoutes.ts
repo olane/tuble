@@ -47,13 +47,13 @@ export const TEST_ROUTES: TestRoute[] = [
   { label: "Central with split", from: "stratford", to: "ealing-broadway" },
 
   // --- Same-line branch changes (expect ≥2 segments on the same line) ---
-  { label: "Northern branch change at Camden (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
+  { label: "Northern branch change at Camden Town (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
   { label: "Northern no branch change (Mill Hill East → Morden)", from: "mill-hill-east", to: "morden" },
   { label: "Metropolitan branch change at Moor Park (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
-  { label: "District branch change at Turnham Green (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
+  { label: "District branch change at Earl's Court (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
 
   // --- Branch-aware but no same-line change expected (trunk handles it) ---
-  { label: "Northern branch change at Finchley Central (Morden → High Barnet)", from: "morden", to: "high-barnet" },
+  { label: "Northern branch change at Camden Town (Morden → High Barnet)", from: "morden", to: "high-barnet" },
   { label: "Piccadilly via shared trunk, no change (T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
 
   // --- Routes that use Elizabeth line as a shortcut ---

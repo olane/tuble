@@ -24,13 +24,13 @@ function allSegmentsOnLines(route: RouteHint, lines: string[]): boolean {
 
 describe("branch changes on real data", () => {
   describe("same-line branch changes (expect ≥2 segments on one line)", () => {
-    it("Northern: Edgware → High Barnet changes branch at Finchley Central", () => {
+    it("Northern: Edgware → High Barnet changes branch at Camden Town", () => {
       const route = bestRoute("edgware", "high-barnet");
       // Should be all-Northern with a branch change
       expect(allSegmentsOnLines(route, ["northern"])).toBe(true);
       expect(route.segments.length).toBeGreaterThanOrEqual(2);
-      // The Edgware and High Barnet branches diverge at Finchley Central
-      expect(route.segments[0].endStationId).toBe("finchley-central");
+      // The Edgware and High Barnet branches diverge at Camden Town
+      expect(route.segments[0].endStationId).toBe("camden-town");
     });
 
     it("Metropolitan: Chesham → Uxbridge changes branch at Moor Park or Chalfont", () => {
@@ -39,22 +39,31 @@ describe("branch changes on real data", () => {
       expect(route.segments.length).toBeGreaterThanOrEqual(2);
     });
 
-    it("District: Richmond → Wimbledon requires a branch transition", () => {
+    it("District: Richmond → Wimbledon requires a branch transition at Earl's Court", () => {
       const route = bestRoute("richmond", "wimbledon");
       // May route via Piccadilly for the trunk section, but should show
       // at least 2 segments (the Richmond spur is branch-exclusive).
       expect(route.segments.length).toBeGreaterThanOrEqual(2);
       // First segment should start on the Richmond branch
       expect(route.segments[0].lines).toContain("district");
+      // The all-District variant (if present) should split at Earl's Court
+      const routes = findRoute("richmond", "wimbledon");
+      const allDistrict = routes.find((r) =>
+        r.segments.every((s) => s.lines.includes("district"))
+      );
+      if (allDistrict) {
+        expect(allDistrict.segments).toHaveLength(2);
+        expect(allDistrict.segments[0].endStationId).toBe("earls-court");
+      }
     });
   });
 
   describe("trunk traversal (no unnecessary branch changes)", () => {
-    it("Northern: Morden → High Barnet has one branch change at Finchley Central", () => {
+    it("Northern: Morden → High Barnet has one branch change at Camden Town", () => {
       const route = bestRoute("morden", "high-barnet");
       expect(allSegmentsOnLines(route, ["northern"])).toBe(true);
       expect(route.segments).toHaveLength(2);
-      expect(route.segments[0].endStationId).toBe("finchley-central");
+      expect(route.segments[0].endStationId).toBe("camden-town");
     });
 
     it("Northern: Mill Hill East → Morden is a single segment (same branch through trunk)", () => {

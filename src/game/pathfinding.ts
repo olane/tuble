@@ -265,10 +265,27 @@ export function findRoute(
     for (const step of steps) {
       const last = segments[segments.length - 1];
       const sameLine = last && last.line === step.line;
+
+      // Detect a hidden branch change: the step is uncommitted (null) but
+      // the edge doesn't carry our last committed branch — meaning the
+      // Dijkstra charged a branch-change penalty here.
+      let hiddenBranchChange = false;
+      if (sameLine && lastCommittedBranch !== null && step.branch === null) {
+        const edge = g.adjacency[prevStation]?.find(
+          (e: { to: string; line: string; branches: string[] }) =>
+            e.to === step.stationId && e.line === step.line
+        );
+        if (edge && !edge.branches.includes(lastCommittedBranch)) {
+          hiddenBranchChange = true;
+        }
+      }
+
       // Compatible if: no prior branch commitment, or step is trunk
-      // (uncommitted), or step matches the last committed branch.
+      // (uncommitted) with no hidden branch change, or step matches the
+      // last committed branch.
       const branchCompatible =
         sameLine &&
+        !hiddenBranchChange &&
         (lastCommittedBranch === null ||
           step.branch === null ||
           lastCommittedBranch === step.branch);
