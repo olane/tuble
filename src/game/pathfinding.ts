@@ -152,52 +152,57 @@ export function findRoute(
       }
 
       const sameLine = current.line === edge.line;
+
+      // Determine penalty and which branches to explore.
+      // Unlike the previous uncommitted model, we ALWAYS commit to a
+      // specific branch. On multi-branch edges, we explore a state for
+      // each branch — the Dijkstra naturally prunes suboptimal ones.
       let penalty: number;
-      let nextBranch: string | null;
+      let branchesToExplore: string[];
 
       if (current.line === null) {
-        // Fresh start — no penalty, commit to a branch if the edge is branch-exclusive.
+        // Fresh start — explore each branch on this edge.
         penalty = 0;
-        nextBranch = edgeBranches.length === 1 ? edgeBranches[0] : null;
+        branchesToExplore = edgeBranches;
       } else if (!sameLine) {
         // Full line change.
         penalty = LINE_CHANGE_PENALTY;
-        nextBranch = edgeBranches.length === 1 ? edgeBranches[0] : null;
-      } else if (current.branch === null) {
-        // On the line's trunk without having committed to a branch — any
-        // service can carry us, so no penalty. Commit if the edge is
-        // branch-exclusive.
-        penalty = 0;
-        nextBranch = edgeBranches.length === 1 ? edgeBranches[0] : null;
-      } else if (edgeBranches.includes(current.branch)) {
+        branchesToExplore = edgeBranches;
+      } else if (current.branch !== null && edgeBranches.includes(current.branch)) {
         // Same line, same branch — continuing the same train.
         penalty = 0;
-        nextBranch = current.branch;
-      } else {
-        // Same line but the current branch doesn't cover this edge: we must
-        // switch trains. If the new edge is trunk (multi-branch), stay
-        // uncommitted; otherwise commit to the new branch.
+        branchesToExplore = [current.branch];
+      } else if (current.branch !== null) {
+        // Same line but the current branch doesn't cover this edge:
+        // branch change penalty, explore each new branch.
         penalty = BRANCH_CHANGE_PENALTY;
-        nextBranch = edgeBranches.length === 1 ? edgeBranches[0] : null;
+        branchesToExplore = edgeBranches;
+      } else {
+        // current.branch is null (shouldn't happen with new model, but
+        // handle gracefully for the start state).
+        penalty = 0;
+        branchesToExplore = edgeBranches;
       }
 
       const nextCost = current.cost + 1 + penalty;
       if (nextCost > bestTargetCost) continue;
 
-      const nextKey = stateKey(edge.to, edge.line, nextBranch);
-      const prevBest = best.get(nextKey) ?? Infinity;
+      for (const nextBranch of branchesToExplore) {
+        const nextKey = stateKey(edge.to, edge.line, nextBranch);
+        const prevBest = best.get(nextKey) ?? Infinity;
 
-      if (nextCost < prevBest) {
-        best.set(nextKey, nextCost);
-        parents.set(nextKey, [key]);
-        queue.push({
-          stationId: edge.to,
-          line: edge.line,
-          branch: nextBranch,
-          cost: nextCost,
-        });
-      } else if (nextCost === prevBest) {
-        parents.get(nextKey)!.push(key);
+        if (nextCost < prevBest) {
+          best.set(nextKey, nextCost);
+          parents.set(nextKey, [key]);
+          queue.push({
+            stationId: edge.to,
+            line: edge.line,
+            branch: nextBranch,
+            cost: nextCost,
+          });
+        } else if (nextCost === prevBest) {
+          parents.get(nextKey)!.push(key);
+        }
       }
     }
   }
@@ -259,36 +264,14 @@ export function findRoute(
   for (const steps of allPaths) {
     const segments: RawSegment[] = [];
     let prevStation = fromId;
-    // Track the last committed (non-null) branch per segment so we can
-    // detect branch changes that pass through trunk (null) in between.
-    let lastCommittedBranch: string | null = null;
     for (const step of steps) {
       const last = segments[segments.length - 1];
       const sameLine = last && last.line === step.line;
-
-      // Detect a hidden branch change: the step is uncommitted (null) but
-      // the edge doesn't carry our last committed branch — meaning the
-      // Dijkstra charged a branch-change penalty here.
-      let hiddenBranchChange = false;
-      if (sameLine && lastCommittedBranch !== null && step.branch === null) {
-        const edge = g.adjacency[prevStation]?.find(
-          (e: { to: string; line: string; branches: string[] }) =>
-            e.to === step.stationId && e.line === step.line
-        );
-        if (edge && !edge.branches.includes(lastCommittedBranch)) {
-          hiddenBranchChange = true;
-        }
-      }
-
-      // Compatible if: no prior branch commitment, or step is trunk
-      // (uncommitted) with no hidden branch change, or step matches the
-      // last committed branch.
       const branchCompatible =
         sameLine &&
-        !hiddenBranchChange &&
-        (lastCommittedBranch === null ||
+        (last!.branch === null ||
           step.branch === null ||
-          lastCommittedBranch === step.branch);
+          last!.branch === step.branch);
 
       if (sameLine && branchCompatible) {
         last!.stops++;
@@ -297,11 +280,7 @@ export function findRoute(
         if (last!.branch === null && step.branch !== null) {
           last!.branch = step.branch;
         }
-        if (step.branch !== null) {
-          lastCommittedBranch = step.branch;
-        }
       } else {
-        lastCommittedBranch = step.branch;
         segments.push({
           line: step.line,
           branch: step.branch,

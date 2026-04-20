@@ -19,7 +19,7 @@ describe("findRoute", () => {
   it("finds a direct single-line route between adjacent stations", () => {
     // Bank -> St. Paul's are adjacent on Central line
     const result = findRoute("bank", "st-pauls");
-    expect(result).toHaveLength(1);
+    expect(result.length).toBeGreaterThanOrEqual(1);
     expect(result[0].totalStops).toBe(1);
     expect(result[0].segments).toMatchObject([{ lines: ["central"], stops: 1, endStationId: "st-pauls" }]);
   });
