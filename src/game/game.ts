@@ -122,9 +122,9 @@ export function makeGuess(state: GameState, stationId: string): GameState {
 /**
  * Get all station names for autocomplete, sorted alphabetically.
  */
-export function getStationList(): { id: string; name: string }[] {
+export function getStationList(): { id: string; name: string; code?: string }[] {
   return Object.entries(graph.stations)
-    .map(([id, station]) => ({ id, name: station.name }))
+    .map(([id, station]) => ({ id, name: station.name, code: codes[id] }))
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 

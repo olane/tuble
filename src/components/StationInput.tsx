@@ -3,6 +3,7 @@ import { useState, useRef, useEffect } from "react";
 interface StationOption {
   id: string;
   name: string;
+  code?: string;
 }
 
 const MAX_SUGGESTIONS = 25;
@@ -17,19 +18,25 @@ function filterAndRank(
   guessedIds: Set<string>
 ): StationOption[] {
   const q = normalize(query);
+  const codeQuery = query.trim().toUpperCase();
   const matches: { station: StationOption; rank: number }[] = [];
 
   for (const s of stations) {
     if (guessedIds.has(s.id)) continue;
-    const name = normalize(s.name);
-    if (!name.includes(q)) continue;
 
-    // Rank: starts-with first (0), then word-boundary match (1), then substring (2)
-    let rank = 2;
-    if (name.startsWith(q)) {
+    const isExactCode = s.code !== undefined && s.code === codeQuery;
+    const name = normalize(s.name);
+    const nameMatches = name.includes(q);
+    if (!isExactCode && !nameMatches) continue;
+
+    // Rank: exact code match (0), starts-with (1), word-boundary (2), substring (3)
+    let rank = 3;
+    if (isExactCode) {
       rank = 0;
-    } else if (name.includes(" " + q)) {
+    } else if (name.startsWith(q)) {
       rank = 1;
+    } else if (name.includes(" " + q)) {
+      rank = 2;
     }
     matches.push({ station: s, rank });
   }
@@ -42,9 +49,11 @@ interface StationInputProps {
   stations: StationOption[];
   guessedIds: Set<string>;
   onGuess: (stationId: string) => void;
+  guessNumber: number;
+  maxGuesses: number;
 }
 
-export default function StationInput({ stations, guessedIds, onGuess }: StationInputProps) {
+export default function StationInput({ stations, guessedIds, onGuess, guessNumber, maxGuesses }: StationInputProps) {
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const [highlightIndex, setHighlightIndex] = useState(0);
@@ -104,7 +113,11 @@ export default function StationInput({ stations, guessedIds, onGuess }: StationI
         ref={inputRef}
         type="text"
         value={query}
-        placeholder="Guess a station..."
+        placeholder={
+          guessNumber > 1
+            ? `Guess a station… (${guessNumber}/${maxGuesses})`
+            : "Guess a station…"
+        }
         onChange={(e) => {
           setQuery(e.target.value);
           setIsOpen(true);

@@ -108,9 +108,17 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                     || (revealMatchedSegments && !isLastSegment && sharedSegments.has(segmentKey(seg)));
                   const perLineReveal = !shouldShowLines && revealMatchedSegments && isLastSegment;
 
+                  const endRevealed = isLastSegment
+                    ? revealStations
+                    : revealStations || guessedStationIds.has(seg.endStationId);
+                  const endText = endRevealed
+                    ? (getStationName(seg.endStationId) ?? seg.endStationId)
+                    : isLastSegment
+                      ? "?"
+                      : "";
+
                   return (
                     <div key={j} className="segment">
-                      <span className="segment-chevron">&#x25B8;</span>
                       <div className="segment-lines">
                         {shouldShowLines ? (
                           seg.lines.map((lineId, k) => (
@@ -151,19 +159,8 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                       <div className="segment-stops">
                         {seg.stops} {seg.stops === 1 ? "stop" : "stops"}
                       </div>
-                      {revealStations ? (
-                        <div className="segment-arrow">
-                          {j < guess.hint.segments.length - 1
-                            ? "change at " + (getStationName(seg.endStationId) ?? seg.endStationId)
-                            : getStationName(seg.endStationId) ?? seg.endStationId}
-                        </div>
-                      ) : (
-                        !isLastSegment && guessedStationIds.has(seg.endStationId) && (
-                          <div className="segment-arrow">
-                            change at {getStationName(seg.endStationId) ?? seg.endStationId}
-                          </div>
-                        )
-                      )}
+                      <span className="segment-chevron">&#x25B8;</span>
+                      <div className="segment-end">{endText}</div>
                     </div>
                   );
                 })}

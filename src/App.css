@@ -309,10 +309,10 @@
 }
 
 .segment {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto 1rem 1fr;
   align-items: center;
   gap: 0.5rem;
-  flex-wrap: wrap;
 }
 
 .segment-lines {
@@ -343,6 +343,7 @@
 
 .segment-chevron {
   color: #999;
+  text-align: center;
 }
 
 .segment-stops {
@@ -350,10 +351,11 @@
   white-space: nowrap;
 }
 
-.segment-arrow {
+.segment-end {
   color: #444;
-  font-style: italic;
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 
