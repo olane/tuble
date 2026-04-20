@@ -172,6 +172,37 @@ describe("branch-aware routing (synthetic fixtures)", () => {
     expect(chosen!.segments).toHaveLength(2);
   });
 
+  it("splits segments when a branch change passes through trunk", () => {
+    // Richmond-like topology: branch A → trunk (multi-branch) → branch B.
+    // The traveller must change trains even though the trunk carries both
+    // services. The segment builder must detect the hidden branch change.
+    //
+    //   richmond --- turnham-green --- earls-court --- wimbledon
+    //   (branch:rich only)  (trunk: rich + wimb)  (branch:wimb only)
+    //
+    const graph: TubeGraph = {
+      stations: {
+        ...station("richmond", "Richmond", ["district"]),
+        ...station("turnham-green", "Turnham Green", ["district"]),
+        ...station("earls-court", "Earl's Court", ["district"]),
+        ...station("wimbledon", "Wimbledon", ["district"]),
+      },
+      adjacency: edges([
+        ["richmond", "turnham-green", "district", ["district:rich"]],
+        ["turnham-green", "earls-court", "district", ["district:rich", "district:wimb"]],
+        ["earls-court", "wimbledon", "district", ["district:wimb"]],
+      ]),
+    };
+
+    const hints = findRoute("richmond", "wimbledon", graph);
+    expect(hints).toHaveLength(1);
+    expect(hints[0].segments).toHaveLength(2);
+    // First segment: richmond → earls-court (committed to rich, trunk is compatible)
+    expect(hints[0].segments[0].endStationId).toBe("earls-court");
+    // Second segment: earls-court → wimbledon (branch change to wimb)
+    expect(hints[0].segments[1].endStationId).toBe("wimbledon");
+  });
+
   it("throws if an edge lacks branches metadata", () => {
     const graph = {
       stations: station("A", "A", ["l1"]) as Record<

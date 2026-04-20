@@ -307,7 +307,31 @@ async function buildGraphAndLines(): Promise<{
     set.add(branch);
   };
 
-  // Convert parentId sequences to slug sequences.
+  // ── Branch data pipeline ─────────────────────────────────────────
+  //
+  // Turns raw TfL stopPointSequences into per-edge branch metadata used by
+  // the pathfinding router to detect same-line branch changes.
+  //
+  // The pipeline has three stages:
+  //
+  //   1. Slug conversion: map TfL parent IDs to station slugs, dedup
+  //      consecutive duplicates within each sequence.
+  //
+  //   2. Chaining: merge sequences on the same line that share an endpoint
+  //      into longer through-running services. Prevents outbound/inbound
+  //      duplicates and reconnects fragments (e.g. Elizabeth line).
+  //      See chainSequences() for details.
+  //
+  //   3. Propagation: extend branch slugs through shared sub-paths where
+  //      a sequence's terminus is embedded inside another sequence on the
+  //      same line. See the "Branch propagation" comment block below.
+  //
+  // After the pipeline, each edge carries a list of branch slugs. Edges
+  // with multiple slugs are "trunk" (shared by multiple services). The
+  // router uses this to stay uncommitted on trunk and only charge a
+  // branch-change penalty when entering an edge whose branches don't
+  // include the traveller's current committed branch.
+  //
   const slugSequences: { lineId: string; stopSlugs: string[] }[] = [];
   for (const seq of lineSequences) {
     const stopSlugs: string[] = [];
@@ -345,20 +369,51 @@ async function buildGraphAndLines(): Promise<{
     group.push({ slug: branchSlug, stopSlugs: seq.stopSlugs });
   }
 
-  // Propagate branches through shared sub-paths. When sequence A terminates
-  // at a station embedded mid-way in sequence B (same line), extend A's
-  // branch slug along B's edges from that junction to the nearest terminus
-  // of any sequence on the line. This handles e.g. Central's Epping branch
-  // ending at Woodford while the Hainault loop covers Woodford→Leytonstone.
+  // ── Branch propagation ─────────────────────────────────────────────
+  //
+  // Problem: the TfL API returns each service as a separate sequence, but
+  // some services extend beyond their nominal terminus onto track that is
+  // part of another sequence. For example:
+  //
+  //   • Metropolitan Chesham: TfL returns [Chesham, Chalfont]. The train
+  //     continues through the Amersham sequence to Baker Street. Without
+  //     propagation, Chalfont→Chorleywood wouldn't carry the Chesham slug,
+  //     causing a spurious branch change at Chalfont instead of at
+  //     Harrow-on-the-Hill where the Uxbridge branch actually splits.
+  //
+  //   • Central Epping: TfL returns [Epping, ..., Woodford]. The train
+  //     continues through the Snaresbrook corridor (Woodford → South
+  //     Woodford → Snaresbrook → Leytonstone), which TfL puts in the
+  //     Hainault loop sequence. Without propagation, those edges would
+  //     only carry the loop's slug.
+  //
+  // Solution: when sequence A's terminus appears mid-way inside sequence B
+  // (same line), extend A's branch slug along B's edges in both directions
+  // from the junction, all the way to B's own termini. This makes the
+  // shared section multi-branch (trunk), so the router stays uncommitted.
+  //
+  // Guards:
+  //   • Sub-path check: if every stop in A also appears in B, A is a
+  //     sub-path (e.g. Piccadilly's Hatton Cross spur is contained within
+  //     the main Cockfosters–Heathrow T5 sequence) — skip.
+  //   • Line blocklist: district and piccadilly are excluded because their
+  //     junction stations (e.g. Turnham Green, Acton Town) have terminating
+  //     services that would be incorrectly extended. There is no reliable
+  //     graph-topology heuristic to distinguish "train continues through
+  //     junction" from "train terminates at junction", so we use domain
+  //     knowledge.
+  //   • Propagation stops at B's own endpoints, not at termini of unrelated
+  //     sequences mid-way through B.
+  //
+  // Effect on routing:
+  //   • Propagated edges become multi-branch (trunk) — the router stays
+  //     uncommitted and charges no branch-change penalty.
+  //   • The branch change is detected when the traveller reaches an edge
+  //     that does NOT carry their previously committed branch.
+  //
   for (const [lineId, seqs] of chainedByLine) {
-    const allTermini = new Set<string>();
-    for (const s of seqs) {
-      allTermini.add(s.stopSlugs[0]);
-      allTermini.add(s.stopSlugs[s.stopSlugs.length - 1]);
-    }
     for (const a of seqs) {
-      // Skip sub-path sequences entirely covered by another sequence
-      // (e.g. Piccadilly Hatton Cross spur is a sub-path of the main line).
+      // Skip sub-path sequences entirely covered by another sequence.
       const isSubPathOf = seqs.some(
         (b) => b !== a && a.stopSlugs.every((s) => b.stopSlugs.includes(s))
       );
@@ -367,20 +422,41 @@ async function buildGraphAndLines(): Promise<{
       for (const terminus of [a.stopSlugs[0], a.stopSlugs[a.stopSlugs.length - 1]]) {
         for (const b of seqs) {
           if (a === b) continue;
-          // Only propagate if terminus is inside B, not at B's own endpoints.
           if (terminus === b.stopSlugs[0] || terminus === b.stopSlugs[b.stopSlugs.length - 1]) continue;
           const idx = b.stopSlugs.indexOf(terminus);
           if (idx < 0) continue;
-          // Propagate forward through B until we reach B's own terminus.
-          // We don't stop at termini of *other* sequences that happen to be
-          // mid-way through B — the train continues past those on B's track.
+
+          // Guard: only propagate for lines where the TfL API is known to
+          // fragment through-running services into separate sequences that
+          // need reconnecting. Other lines already have correct overlapping
+          // sequences at junctions.
+          //
+          // Lines that need propagation:
+          //   • central: Epping branch ends at Woodford but the train
+          //     continues through the Snaresbrook corridor (in the Hainault
+          //     loop sequence).
+          //   • metropolitan: Chesham branch ends at Chalfont but the train
+          //     continues through to Baker Street (in the Amersham sequence).
+          //
+          // Lines that must NOT propagate (e.g. district): Richmond's
+          // terminus Turnham Green is mid-way through the Ealing Broadway
+          // sequence, but trains terminate there — propagation would
+          // incorrectly extend the Richmond slug across the whole line.
+          // Lines where propagation is needed. District and piccadilly are
+          // excluded because their junction stations (e.g. Turnham Green,
+          // Acton Town) have terminating services that would be incorrectly
+          // extended.
+          const noPropagateLines = new Set(["district", "piccadilly"]);
+          if (noPropagateLines.has(lineId)) continue;
+
+          // Propagate forward through B to B's own end.
           const bEnd = b.stopSlugs[b.stopSlugs.length - 1];
           for (let i = idx; i < b.stopSlugs.length - 1; i++) {
             addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i + 1]}|${lineId}`, a.slug);
             addBranch(`${b.stopSlugs[i + 1]}|${b.stopSlugs[i]}|${lineId}`, a.slug);
             if (b.stopSlugs[i + 1] === bEnd) break;
           }
-          // Propagate backward through B until we reach B's own start.
+          // Propagate backward through B to B's own start.
           const bStart = b.stopSlugs[0];
           for (let i = idx; i > 0; i--) {
             addBranch(`${b.stopSlugs[i]}|${b.stopSlugs[i - 1]}|${lineId}`, a.slug);

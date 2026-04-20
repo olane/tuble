@@ -2644,7 +2644,6 @@
         "to": "westminster",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -2652,7 +2651,6 @@
         "to": "temple",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -2724,16 +2722,14 @@
         "to": "green-park",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "leicester-square",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -2956,18 +2952,14 @@
         "to": "bayswater",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "edgware-road-circle-line",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -3481,18 +3473,14 @@
         "to": "high-street-kensington",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "bayswater",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -3689,16 +3677,14 @@
         "to": "covent-garden",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "russell-square",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -3926,7 +3912,6 @@
         "to": "stepney-green",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -3934,7 +3919,6 @@
         "to": "bow-road",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -4393,9 +4377,7 @@
         "to": "ealing-common",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -4447,18 +4429,14 @@
         "to": "ravenscourt-park",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "barons-court",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -4472,16 +4450,14 @@
         "to": "turnham-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "barons-court",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -4715,9 +4691,7 @@
         "to": "paddington",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -4914,16 +4888,14 @@
         "to": "russell-square",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "caledonian-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
@@ -5184,7 +5156,6 @@
         "to": "monument",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5192,7 +5163,6 @@
         "to": "aldgate-east",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -5216,7 +5186,6 @@
         "to": "cannon-street",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5224,7 +5193,6 @@
         "to": "tower-hill",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -5248,7 +5216,6 @@
         "to": "mansion-house",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5256,7 +5223,6 @@
         "to": "monument",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -5280,7 +5246,6 @@
         "to": "blackfriars",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5288,7 +5253,6 @@
         "to": "cannon-street",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -5312,7 +5276,6 @@
         "to": "temple",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5320,7 +5283,6 @@
         "to": "mansion-house",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -5344,7 +5306,6 @@
         "to": "embankment",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5352,7 +5313,6 @@
         "to": "blackfriars",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -5376,7 +5336,6 @@
         "to": "st-jamess-park",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5384,7 +5343,6 @@
         "to": "embankment",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5422,7 +5380,6 @@
         "to": "victoria",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5430,7 +5387,6 @@
         "to": "westminster",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -5454,7 +5410,6 @@
         "to": "sloane-square",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5462,7 +5417,6 @@
         "to": "st-jamess-park",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5500,7 +5454,6 @@
         "to": "south-kensington",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5508,7 +5461,6 @@
         "to": "victoria",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -5532,7 +5484,6 @@
         "to": "gloucester-road",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5540,7 +5491,6 @@
         "to": "sloane-square",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5548,16 +5498,14 @@
         "to": "gloucester-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "knightsbridge",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -5580,7 +5528,6 @@
         "to": "earls-court",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5588,7 +5535,6 @@
         "to": "south-kensington",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5596,16 +5542,14 @@
         "to": "earls-court",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "south-kensington",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -5628,18 +5572,14 @@
         "to": "earls-court",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "notting-hill-gate",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5662,18 +5602,14 @@
         "to": "notting-hill-gate",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "paddington",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5682,18 +5618,14 @@
         "to": "ealing-broadway",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "acton-town",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -5716,18 +5648,14 @@
         "to": "ealing-common",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "chiswick-park",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -5749,8 +5677,7 @@
         "to": "turnham-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -5759,18 +5686,14 @@
         "to": "acton-town",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "turnham-green",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5779,18 +5702,14 @@
         "to": "chiswick-park",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "stamford-brook",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
@@ -5804,16 +5723,14 @@
         "to": "acton-town",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "hammersmith-handc-line",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -5822,18 +5739,14 @@
         "to": "turnham-green",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "ravenscourt-park",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5842,18 +5755,14 @@
         "to": "stamford-brook",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "hammersmith-handc-line",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5862,34 +5771,28 @@
         "to": "hammersmith-handc-line",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "west-kensington",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "hammersmith-handc-line",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "earls-court",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -5898,18 +5801,14 @@
         "to": "barons-court",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "earls-court",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       }
     ],
@@ -5918,25 +5817,20 @@
         "to": "west-kensington",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "high-street-kensington",
         "line": "district",
         "branches": [
-          "district:ealing-broadway-edgware-road-circle-line",
-          "district:earls-court-kensington-olympia",
-          "district:richmond-turnham-green"
+          "district:ealing-broadway-edgware-road-circle-line"
         ]
       },
       {
         "to": "west-brompton",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5944,7 +5838,6 @@
         "to": "gloucester-road",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5959,16 +5852,14 @@
         "to": "barons-court",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "gloucester-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -5977,7 +5868,6 @@
         "to": "tower-hill",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -5985,7 +5875,6 @@
         "to": "whitechapel",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6009,7 +5898,6 @@
         "to": "aldgate-east",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6017,7 +5905,6 @@
         "to": "stepney-green",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6068,7 +5955,6 @@
         "to": "whitechapel",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6076,7 +5962,6 @@
         "to": "mile-end",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6100,7 +5985,6 @@
         "to": "mile-end",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6108,7 +5992,6 @@
         "to": "bromley-by-bow",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6132,7 +6015,6 @@
         "to": "bow-road",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6140,7 +6022,6 @@
         "to": "west-ham",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6164,7 +6045,6 @@
         "to": "bromley-by-bow",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6172,7 +6052,6 @@
         "to": "plaistow",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6210,7 +6089,6 @@
         "to": "west-ham",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6218,7 +6096,6 @@
         "to": "upton-park",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6242,7 +6119,6 @@
         "to": "plaistow",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6250,7 +6126,6 @@
         "to": "east-ham",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6274,7 +6149,6 @@
         "to": "upton-park",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6282,7 +6156,6 @@
         "to": "barking",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6306,7 +6179,6 @@
         "to": "east-ham",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6314,7 +6186,6 @@
         "to": "upney",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6331,7 +6202,6 @@
         "to": "barking",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6339,7 +6209,6 @@
         "to": "becontree",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6349,7 +6218,6 @@
         "to": "upney",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6357,7 +6225,6 @@
         "to": "dagenham-heathway",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6367,7 +6234,6 @@
         "to": "becontree",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6375,7 +6241,6 @@
         "to": "dagenham-east",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6385,7 +6250,6 @@
         "to": "dagenham-heathway",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6393,7 +6257,6 @@
         "to": "elm-park",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6403,7 +6266,6 @@
         "to": "dagenham-east",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6411,7 +6273,6 @@
         "to": "hornchurch",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6421,7 +6282,6 @@
         "to": "elm-park",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6429,7 +6289,6 @@
         "to": "upminster-bridge",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6439,7 +6298,6 @@
         "to": "hornchurch",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6447,7 +6305,6 @@
         "to": "upminster",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6457,7 +6314,6 @@
         "to": "upminster-bridge",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6508,7 +6364,6 @@
         "to": "wimbledon-park",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6518,7 +6373,6 @@
         "to": "wimbledon",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6526,7 +6380,6 @@
         "to": "southfields",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6536,7 +6389,6 @@
         "to": "wimbledon-park",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6544,7 +6396,6 @@
         "to": "east-putney",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6554,7 +6405,6 @@
         "to": "southfields",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6562,7 +6412,6 @@
         "to": "putney-bridge",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6572,7 +6421,6 @@
         "to": "east-putney",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6580,7 +6428,6 @@
         "to": "parsons-green",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6590,7 +6437,6 @@
         "to": "putney-bridge",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6598,7 +6444,6 @@
         "to": "fulham-broadway",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6608,7 +6453,6 @@
         "to": "parsons-green",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6616,7 +6460,6 @@
         "to": "west-brompton",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -6626,7 +6469,6 @@
         "to": "fulham-broadway",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       },
@@ -6634,7 +6476,6 @@
         "to": "earls-court",
         "line": "district",
         "branches": [
-          "district:earls-court-kensington-olympia",
           "district:upminster-wimbledon"
         ]
       }
@@ -7010,8 +6851,7 @@
         "line": "piccadilly",
         "branches": [
           "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:hatton-cross-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:hatton-cross-heathrow-terminal-5"
         ]
       },
       {
@@ -7019,8 +6859,7 @@
         "line": "piccadilly",
         "branches": [
           "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:hatton-cross-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:hatton-cross-heathrow-terminal-5"
         ]
       }
     ],
@@ -7061,8 +6900,7 @@
         "line": "piccadilly",
         "branches": [
           "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:hatton-cross-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:hatton-cross-heathrow-terminal-5"
         ]
       }
     ],
@@ -7621,16 +7459,14 @@
         "to": "hyde-park-corner",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "piccadilly-circus",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
@@ -8543,16 +8379,14 @@
         "to": "piccadilly-circus",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "covent-garden",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9198,16 +9032,14 @@
         "to": "south-kensington",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "hyde-park-corner",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9216,16 +9048,14 @@
         "to": "knightsbridge",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "green-park",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9234,16 +9064,14 @@
         "to": "leicester-square",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "holborn",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9252,16 +9080,14 @@
         "to": "holborn",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "kings-cross-st-pancras",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9270,16 +9096,14 @@
         "to": "kings-cross-st-pancras",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "holloway-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9288,16 +9112,14 @@
         "to": "caledonian-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "arsenal",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9306,16 +9128,14 @@
         "to": "holloway-road",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "finsbury-park",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9324,16 +9144,14 @@
         "to": "arsenal",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "manor-house",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
@@ -9356,16 +9174,14 @@
         "to": "finsbury-park",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "turnpike-lane",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9374,16 +9190,14 @@
         "to": "manor-house",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "wood-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9392,16 +9206,14 @@
         "to": "turnpike-lane",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "bounds-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9410,16 +9222,14 @@
         "to": "wood-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "arnos-grove",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9428,16 +9238,14 @@
         "to": "bounds-green",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "southgate",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9446,16 +9254,14 @@
         "to": "arnos-grove",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "oakwood",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9464,16 +9270,14 @@
         "to": "southgate",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       },
       {
         "to": "cockfosters",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9482,8 +9286,7 @@
         "to": "oakwood",
         "line": "piccadilly",
         "branches": [
-          "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:cockfosters-heathrow-terminal-5"
         ]
       }
     ],
@@ -9508,8 +9311,7 @@
         "line": "piccadilly",
         "branches": [
           "piccadilly:cockfosters-heathrow-terminal-5",
-          "piccadilly:hatton-cross-heathrow-terminal-5",
-          "piccadilly:heathrow-terminals-2-and-3-uxbridge"
+          "piccadilly:hatton-cross-heathrow-terminal-5"
         ]
       }
     ],
