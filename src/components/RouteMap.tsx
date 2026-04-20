@@ -8,6 +8,7 @@ const meta = metadataData as Record<string, { lat: number; lon: number; borough:
 const HOP_LENGTH = 20;
 const MIN_SEGMENT_LENGTH = 60;
 const LINE_THICKNESS = 10;
+const DLR_GAP_THICKNESS = 4;
 const NODE_RADIUS = 9;
 const TARGET_RADIUS = 12;
 const PADDING = 30;
@@ -373,7 +374,7 @@ function computeOverlapOffsets(segmentPoints: Point[][]): number[] {
 }
 
 /** Return "white" or "black" depending on which contrasts better with the given hex colour. */
-function contrastingTextColor(hex: string): string {
+export function contrastingTextColor(hex: string): string {
   const raw = hex.replace("#", "");
   const r = parseInt(raw.substring(0, 2), 16);
   const g = parseInt(raw.substring(2, 4), 16);
@@ -468,6 +469,8 @@ export default function RouteMap({
           const textColor = contrastingTextColor(lineColor);
           const half = LABEL_BOX_SIZE / 2;
 
+          const isDLR = revealed && seg.lines[0] === "dlr";
+
           return (
             <g key={j}>
               <path
@@ -478,6 +481,16 @@ export default function RouteMap({
                 strokeLinecap="butt"
                 strokeLinejoin="round"
               />
+              {isDLR && (
+                <path
+                  d={d}
+                  fill="none"
+                  stroke="#fff"
+                  strokeWidth={DLR_GAP_THICKNESS}
+                  strokeLinecap="butt"
+                  strokeLinejoin="round"
+                />
+              )}
               <rect
                 x={mid.x - half}
                 y={mid.y - half}

@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import type { GuessResult } from "../game/types";
 import linesData from "../data/lines.json";
-import RouteMap, { getRevealedSegments } from "./RouteMap";
+import RouteMap, { getRevealedSegments, contrastingTextColor } from "./RouteMap";
 
 const lines = linesData as Record<string, { name: string; colour: string }>;
 
@@ -68,6 +68,10 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
 
   const sharedSegments = useMemo(() => buildSharedSegments(guesses), [guesses]);
   const revealedKeys = useMemo(() => getRevealedSegments(guesses), [guesses]);
+  const guessedStationIds = useMemo(
+    () => new Set(guesses.map((g) => g.stationId)),
+    [guesses]
+  );
 
   return (
     <div className="guess-list">
@@ -115,7 +119,7 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                               <span
                                 key={lineId}
                                 className="line-badge"
-                                style={{ backgroundColor: lines[lineId]?.colour ?? "#666" }}
+                                style={{ backgroundColor: lines[lineId]?.colour ?? "#666", color: contrastingTextColor(lines[lineId]?.colour ?? "#666") }}
                                 title={lines[lineId]?.name ?? lineId}
                               >
                                 {lines[lineId]?.name ?? lineId}
@@ -130,7 +134,7 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                                 <span
                                   key={lineId}
                                   className="line-badge"
-                                  style={{ backgroundColor: lines[lineId]?.colour ?? "#666" }}
+                                  style={{ backgroundColor: lines[lineId]?.colour ?? "#666", color: contrastingTextColor(lines[lineId]?.colour ?? "#666") }}
                                   title={lines[lineId]?.name ?? lineId}
                                 >
                                   {lines[lineId]?.name ?? lineId}
@@ -147,12 +151,18 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                       <div className="segment-stops">
                         {seg.stops} {seg.stops === 1 ? "stop" : "stops"}
                       </div>
-                      {revealStations && (
+                      {revealStations ? (
                         <div className="segment-arrow">
                           {j < guess.hint.segments.length - 1
                             ? "change at " + (getStationName(seg.endStationId) ?? seg.endStationId)
                             : getStationName(seg.endStationId) ?? seg.endStationId}
                         </div>
+                      ) : (
+                        !isLastSegment && guessedStationIds.has(seg.endStationId) && (
+                          <div className="segment-arrow">
+                            change at {getStationName(seg.endStationId) ?? seg.endStationId}
+                          </div>
+                        )
                       )}
                     </div>
                   );

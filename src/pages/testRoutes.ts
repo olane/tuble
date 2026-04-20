@@ -55,4 +55,12 @@ export const TEST_ROUTES: TestRoute[] = [
   { label: "Northern: no change (Morden → High Barnet)", from: "morden", to: "high-barnet" },
   { label: "Northern: no change (Mill Hill East → Morden)", from: "mill-hill-east", to: "morden" },
   { label: "Central: Hainault loop (via Elizabeth)", from: "hainault", to: "ealing-broadway" },
+
+  // --- DLR ---
+  { label: "DLR: Bank → Lewisham", from: "bank", to: "lewisham" },
+  { label: "DLR: Stratford → Canary Wharf (DLR-only)", from: "stratford-international", to: "canary-wharf" },
+  { label: "DLR: Beckton → Woolwich Arsenal", from: "beckton", to: "woolwich-arsenal" },
+  { label: "DLR branch: Lewisham → Beckton (change at Poplar)", from: "lewisham", to: "beckton" },
+  { label: "DLR → Tube: Cutty Sark → Westminster", from: "cutty-sark-for-maritime-greenwich", to: "westminster" },
+  { label: "Tube → DLR: Oxford Circus → London City Airport", from: "oxford-circus", to: "london-city-airport" },
 ];

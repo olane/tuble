@@ -400,6 +400,7 @@
       "zone": "1",
       "lines": [
         "central",
+        "dlr",
         "northern",
         "waterloo-city"
       ]
@@ -440,6 +441,7 @@
       "zone": "2/3",
       "lines": [
         "central",
+        "dlr",
         "elizabeth",
         "jubilee"
       ]
@@ -1039,6 +1041,7 @@
       "zone": "2/3",
       "lines": [
         "district",
+        "dlr",
         "hammersmith-city",
         "jubilee"
       ]
@@ -1237,6 +1240,346 @@
       "zone": "2",
       "lines": [
         "district"
+      ]
+    },
+    "tower-gateway": {
+      "id": "tower-gateway",
+      "name": "Tower Gateway",
+      "zone": "1",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "shadwell": {
+      "id": "shadwell",
+      "name": "Shadwell",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "limehouse": {
+      "id": "limehouse",
+      "name": "Limehouse",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "westferry": {
+      "id": "westferry",
+      "name": "Westferry",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "poplar": {
+      "id": "poplar",
+      "name": "Poplar",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "blackwall": {
+      "id": "blackwall",
+      "name": "Blackwall",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "east-india": {
+      "id": "east-india",
+      "name": "East India",
+      "zone": "2/3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "canning-town": {
+      "id": "canning-town",
+      "name": "Canning Town",
+      "zone": "2/3",
+      "lines": [
+        "dlr",
+        "jubilee"
+      ]
+    },
+    "royal-victoria": {
+      "id": "royal-victoria",
+      "name": "Royal Victoria",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "custom-house-for-excel": {
+      "id": "custom-house-for-excel",
+      "name": "Custom House (for ExCel)",
+      "zone": "3",
+      "lines": [
+        "dlr",
+        "elizabeth"
+      ]
+    },
+    "prince-regent": {
+      "id": "prince-regent",
+      "name": "Prince Regent",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "royal-albert": {
+      "id": "royal-albert",
+      "name": "Royal Albert",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "beckton-park": {
+      "id": "beckton-park",
+      "name": "Beckton Park",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "cyprus": {
+      "id": "cyprus",
+      "name": "Cyprus",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "gallions-reach": {
+      "id": "gallions-reach",
+      "name": "Gallions Reach",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "beckton": {
+      "id": "beckton",
+      "name": "Beckton",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "canary-wharf": {
+      "id": "canary-wharf",
+      "name": "Canary Wharf",
+      "zone": "2",
+      "lines": [
+        "dlr",
+        "elizabeth",
+        "jubilee"
+      ]
+    },
+    "heron-quays": {
+      "id": "heron-quays",
+      "name": "Heron Quays",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "south-quay": {
+      "id": "south-quay",
+      "name": "South Quay",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "crossharbour": {
+      "id": "crossharbour",
+      "name": "Crossharbour",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "mudchute": {
+      "id": "mudchute",
+      "name": "Mudchute",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "island-gardens": {
+      "id": "island-gardens",
+      "name": "Island Gardens",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "cutty-sark-for-maritime-greenwich": {
+      "id": "cutty-sark-for-maritime-greenwich",
+      "name": "Cutty Sark (for Maritime Greenwich)",
+      "zone": "2+3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "greenwich": {
+      "id": "greenwich",
+      "name": "Greenwich",
+      "zone": "2+3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "deptford-bridge": {
+      "id": "deptford-bridge",
+      "name": "Deptford Bridge",
+      "zone": "2+3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "elverson-road": {
+      "id": "elverson-road",
+      "name": "Elverson Road",
+      "zone": "2+3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "lewisham": {
+      "id": "lewisham",
+      "name": "Lewisham",
+      "zone": "2+3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "west-silvertown": {
+      "id": "west-silvertown",
+      "name": "West Silvertown",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "pontoon-dock": {
+      "id": "pontoon-dock",
+      "name": "Pontoon Dock",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "london-city-airport": {
+      "id": "london-city-airport",
+      "name": "London City Airport",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "king-george-v": {
+      "id": "king-george-v",
+      "name": "King George V",
+      "zone": "3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "woolwich-arsenal": {
+      "id": "woolwich-arsenal",
+      "name": "Woolwich Arsenal",
+      "zone": "4",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "stratford-international": {
+      "id": "stratford-international",
+      "name": "Stratford International",
+      "zone": "2/3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "stratford-high-street": {
+      "id": "stratford-high-street",
+      "name": "Stratford High Street",
+      "zone": "2/3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "abbey-road": {
+      "id": "abbey-road",
+      "name": "Abbey Road",
+      "zone": "2/3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "star-lane": {
+      "id": "star-lane",
+      "name": "Star Lane",
+      "zone": "2/3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "pudding-mill-lane": {
+      "id": "pudding-mill-lane",
+      "name": "Pudding Mill Lane",
+      "zone": "2/3",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "bow-church": {
+      "id": "bow-church",
+      "name": "Bow Church",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "devons-road": {
+      "id": "devons-road",
+      "name": "Devons Road",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "langdon-park": {
+      "id": "langdon-park",
+      "name": "Langdon Park",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "all-saints": {
+      "id": "all-saints",
+      "name": "All Saints",
+      "zone": "2",
+      "lines": [
+        "dlr"
+      ]
+    },
+    "west-india-quay": {
+      "id": "west-india-quay",
+      "name": "West India Quay",
+      "zone": "2",
+      "lines": [
+        "dlr"
       ]
     },
     "shenfield": {
@@ -1490,23 +1833,6 @@
         "elizabeth"
       ]
     },
-    "custom-house": {
-      "id": "custom-house",
-      "name": "Custom House",
-      "zone": "3",
-      "lines": [
-        "elizabeth"
-      ]
-    },
-    "canary-wharf": {
-      "id": "canary-wharf",
-      "name": "Canary Wharf",
-      "zone": "2",
-      "lines": [
-        "elizabeth",
-        "jubilee"
-      ]
-    },
     "stanmore": {
       "id": "stanmore",
       "name": "Stanmore",
@@ -1660,14 +1986,6 @@
     "north-greenwich": {
       "id": "north-greenwich",
       "name": "North Greenwich",
-      "zone": "2/3",
-      "lines": [
-        "jubilee"
-      ]
-    },
-    "canning-town": {
-      "id": "canning-town",
-      "name": "Canning Town",
       "zone": "2/3",
       "lines": [
         "jubilee"
@@ -3828,6 +4146,14 @@
         ]
       },
       {
+        "to": "shadwell",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:bank-woolwich-arsenal"
+        ]
+      },
+      {
         "to": "london-bridge",
         "line": "northern",
         "branches": [
@@ -4053,6 +4379,28 @@
           "central:ealing-broadway-hainault",
           "central:epping-west-ruislip",
           "central:hainault-west-ruislip"
+        ]
+      },
+      {
+        "to": "pudding-mill-lane",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "stratford-high-street",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "stratford-international",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
         ]
       },
       {
@@ -6314,6 +6662,20 @@
         ]
       },
       {
+        "to": "abbey-road",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "star-lane",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
         "to": "bromley-by-bow",
         "line": "hammersmith-city",
         "branches": [
@@ -6810,6 +7172,834 @@
         "line": "district",
         "branches": [
           "district:edgware-road-circle-line-kensington-olympia"
+        ]
+      }
+    ],
+    "tower-gateway": [
+      {
+        "to": "shadwell",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "shadwell": [
+      {
+        "to": "limehouse",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "bank",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:bank-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "tower-gateway",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "limehouse": [
+      {
+        "to": "shadwell",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "westferry",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "westferry": [
+      {
+        "to": "west-india-quay",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham"
+        ]
+      },
+      {
+        "to": "limehouse",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "canary-wharf",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham"
+        ]
+      },
+      {
+        "to": "poplar",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "poplar": [
+      {
+        "to": "all-saints",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "west-india-quay",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "westferry",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "blackwall",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "blackwall": [
+      {
+        "to": "poplar",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "east-india",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "east-india": [
+      {
+        "to": "blackwall",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "canning-town",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "canning-town": [
+      {
+        "to": "east-india",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "royal-victoria",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "west-silvertown",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "star-lane",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "north-greenwich",
+        "line": "jubilee",
+        "branches": [
+          "jubilee:stanmore-stratford"
+        ]
+      },
+      {
+        "to": "west-ham",
+        "line": "jubilee",
+        "branches": [
+          "jubilee:stanmore-stratford"
+        ]
+      }
+    ],
+    "royal-victoria": [
+      {
+        "to": "canning-town",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "custom-house-for-excel",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "custom-house-for-excel": [
+      {
+        "to": "royal-victoria",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "prince-regent",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "woolwich",
+        "line": "elizabeth",
+        "branches": [
+          "elizabeth:abbey-wood-heathrow-terminal-4",
+          "elizabeth:abbey-wood-heathrow-terminal-5",
+          "elizabeth:abbey-wood-reading"
+        ]
+      },
+      {
+        "to": "canary-wharf",
+        "line": "elizabeth",
+        "branches": [
+          "elizabeth:abbey-wood-heathrow-terminal-4",
+          "elizabeth:abbey-wood-heathrow-terminal-5",
+          "elizabeth:abbey-wood-reading"
+        ]
+      }
+    ],
+    "prince-regent": [
+      {
+        "to": "custom-house-for-excel",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "royal-albert",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "royal-albert": [
+      {
+        "to": "prince-regent",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "beckton-park",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "beckton-park": [
+      {
+        "to": "royal-albert",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "cyprus",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "cyprus": [
+      {
+        "to": "beckton-park",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "gallions-reach",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "gallions-reach": [
+      {
+        "to": "cyprus",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      },
+      {
+        "to": "beckton",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "beckton": [
+      {
+        "to": "gallions-reach",
+        "line": "dlr",
+        "branches": [
+          "dlr:beckton-tower-gateway"
+        ]
+      }
+    ],
+    "canary-wharf": [
+      {
+        "to": "west-india-quay",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "heron-quays",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "westferry",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham"
+        ]
+      },
+      {
+        "to": "custom-house-for-excel",
+        "line": "elizabeth",
+        "branches": [
+          "elizabeth:abbey-wood-heathrow-terminal-4",
+          "elizabeth:abbey-wood-heathrow-terminal-5",
+          "elizabeth:abbey-wood-reading"
+        ]
+      },
+      {
+        "to": "whitechapel",
+        "line": "elizabeth",
+        "branches": [
+          "elizabeth:abbey-wood-heathrow-terminal-4",
+          "elizabeth:abbey-wood-heathrow-terminal-5",
+          "elizabeth:abbey-wood-reading"
+        ]
+      },
+      {
+        "to": "canada-water",
+        "line": "jubilee",
+        "branches": [
+          "jubilee:stanmore-stratford"
+        ]
+      },
+      {
+        "to": "north-greenwich",
+        "line": "jubilee",
+        "branches": [
+          "jubilee:stanmore-stratford"
+        ]
+      }
+    ],
+    "heron-quays": [
+      {
+        "to": "south-quay",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "canary-wharf",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "south-quay": [
+      {
+        "to": "crossharbour",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "heron-quays",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "crossharbour": [
+      {
+        "to": "mudchute",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "south-quay",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "mudchute": [
+      {
+        "to": "island-gardens",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "crossharbour",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "island-gardens": [
+      {
+        "to": "cutty-sark-for-maritime-greenwich",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "mudchute",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "cutty-sark-for-maritime-greenwich": [
+      {
+        "to": "greenwich",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "island-gardens",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "greenwich": [
+      {
+        "to": "deptford-bridge",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "cutty-sark-for-maritime-greenwich",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "deptford-bridge": [
+      {
+        "to": "elverson-road",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "greenwich",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "elverson-road": [
+      {
+        "to": "lewisham",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "deptford-bridge",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "lewisham": [
+      {
+        "to": "elverson-road",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "west-silvertown": [
+      {
+        "to": "canning-town",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "pontoon-dock",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      }
+    ],
+    "pontoon-dock": [
+      {
+        "to": "west-silvertown",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "london-city-airport",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      }
+    ],
+    "london-city-airport": [
+      {
+        "to": "pontoon-dock",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "king-george-v",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      }
+    ],
+    "king-george-v": [
+      {
+        "to": "london-city-airport",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "woolwich-arsenal",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      }
+    ],
+    "woolwich-arsenal": [
+      {
+        "to": "king-george-v",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-woolwich-arsenal",
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      }
+    ],
+    "stratford-international": [
+      {
+        "to": "stratford",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      }
+    ],
+    "stratford-high-street": [
+      {
+        "to": "stratford",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "abbey-road",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      }
+    ],
+    "abbey-road": [
+      {
+        "to": "stratford-high-street",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "west-ham",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      }
+    ],
+    "star-lane": [
+      {
+        "to": "west-ham",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      },
+      {
+        "to": "canning-town",
+        "line": "dlr",
+        "branches": [
+          "dlr:stratford-international-woolwich-arsenal"
+        ]
+      }
+    ],
+    "pudding-mill-lane": [
+      {
+        "to": "stratford",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "bow-church",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "bow-church": [
+      {
+        "to": "pudding-mill-lane",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "devons-road",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "devons-road": [
+      {
+        "to": "bow-church",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "langdon-park",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "langdon-park": [
+      {
+        "to": "devons-road",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "all-saints",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "all-saints": [
+      {
+        "to": "langdon-park",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "poplar",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      }
+    ],
+    "west-india-quay": [
+      {
+        "to": "poplar",
+        "line": "dlr",
+        "branches": [
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "canary-wharf",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham",
+          "dlr:canary-wharf-stratford",
+          "dlr:lewisham-stratford"
+        ]
+      },
+      {
+        "to": "westferry",
+        "line": "dlr",
+        "branches": [
+          "dlr:bank-lewisham"
         ]
       }
     ],
@@ -7420,66 +8610,12 @@
         ]
       },
       {
-        "to": "custom-house",
+        "to": "custom-house-for-excel",
         "line": "elizabeth",
         "branches": [
           "elizabeth:abbey-wood-heathrow-terminal-4",
           "elizabeth:abbey-wood-heathrow-terminal-5",
           "elizabeth:abbey-wood-reading"
-        ]
-      }
-    ],
-    "custom-house": [
-      {
-        "to": "woolwich",
-        "line": "elizabeth",
-        "branches": [
-          "elizabeth:abbey-wood-heathrow-terminal-4",
-          "elizabeth:abbey-wood-heathrow-terminal-5",
-          "elizabeth:abbey-wood-reading"
-        ]
-      },
-      {
-        "to": "canary-wharf",
-        "line": "elizabeth",
-        "branches": [
-          "elizabeth:abbey-wood-heathrow-terminal-4",
-          "elizabeth:abbey-wood-heathrow-terminal-5",
-          "elizabeth:abbey-wood-reading"
-        ]
-      }
-    ],
-    "canary-wharf": [
-      {
-        "to": "custom-house",
-        "line": "elizabeth",
-        "branches": [
-          "elizabeth:abbey-wood-heathrow-terminal-4",
-          "elizabeth:abbey-wood-heathrow-terminal-5",
-          "elizabeth:abbey-wood-reading"
-        ]
-      },
-      {
-        "to": "whitechapel",
-        "line": "elizabeth",
-        "branches": [
-          "elizabeth:abbey-wood-heathrow-terminal-4",
-          "elizabeth:abbey-wood-heathrow-terminal-5",
-          "elizabeth:abbey-wood-reading"
-        ]
-      },
-      {
-        "to": "canada-water",
-        "line": "jubilee",
-        "branches": [
-          "jubilee:stanmore-stratford"
-        ]
-      },
-      {
-        "to": "north-greenwich",
-        "line": "jubilee",
-        "branches": [
-          "jubilee:stanmore-stratford"
         ]
       }
     ],
@@ -7896,22 +9032,6 @@
       },
       {
         "to": "canning-town",
-        "line": "jubilee",
-        "branches": [
-          "jubilee:stanmore-stratford"
-        ]
-      }
-    ],
-    "canning-town": [
-      {
-        "to": "north-greenwich",
-        "line": "jubilee",
-        "branches": [
-          "jubilee:stanmore-stratford"
-        ]
-      },
-      {
-        "to": "west-ham",
         "line": "jubilee",
         "branches": [
           "jubilee:stanmore-stratford"
