@@ -10,6 +10,12 @@ export interface Station {
 export interface Edge {
   to: string;
   line: string;
+  /**
+   * Branch slugs for the services that traverse this edge. A trunk edge
+   * shared by multiple services lists all of them; a branch-exclusive
+   * edge lists exactly one. Always non-empty.
+   */
+  branches: string[];
 }
 
 /** The full tube graph as stored in tube-graph.json */
@@ -24,6 +30,8 @@ export interface RouteSegment {
   stops: number;
   endStationId: string;
   path: string[];
+  /** Human-readable terminus of the service for this segment, when known. */
+  towards?: string;
 }
 
 /** The hint shown to the player after a guess */

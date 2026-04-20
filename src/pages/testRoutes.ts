@@ -15,15 +15,14 @@ export const TEST_ROUTES: TestRoute[] = [
   { label: "OSI pair (Bank ↔ Monument)", from: "bank", to: "monument" },
   { label: "2 stops, same line", from: "victoria", to: "westminster" },
 
-  // --- Single-line, longer ---
-  { label: "Piccadilly end-to-end", from: "heathrow-terminal-5", to: "cockfosters" },
-  { label: "Central end-to-end", from: "west-ruislip", to: "epping" },
-  { label: "Jubilee end-to-end", from: "stanmore", to: "stratford" },
+  // --- Single-line end-to-end (some use Elizabeth line as a shortcut) ---
   { label: "Bakerloo end-to-end", from: "elephant-and-castle", to: "harrow-and-wealdstone" },
   { label: "Victoria end-to-end", from: "brixton", to: "walthamstow-central" },
-  { label: "District long haul", from: "richmond", to: "upminster" },
-  { label: "Northern (both branches)", from: "morden", to: "high-barnet" },
   { label: "Metropolitan far north", from: "aldgate", to: "amersham" },
+  { label: "Piccadilly end-to-end (via Elizabeth)", from: "heathrow-terminal-5", to: "cockfosters" },
+  { label: "Central end-to-end (via Elizabeth)", from: "west-ruislip", to: "epping" },
+  { label: "Jubilee end-to-end (via Elizabeth/Met)", from: "stanmore", to: "stratford" },
+  { label: "District long haul (via Elizabeth)", from: "richmond", to: "upminster" },
 
   // --- Parallel lines (multiple equally-optimal options) ---
   { label: "Parallel lines: Circle / District", from: "victoria", to: "embankment" },
@@ -44,5 +43,19 @@ export const TEST_ROUTES: TestRoute[] = [
 
   // --- Branching edge cases ---
   { label: "Northern via Bank branch", from: "london-bridge", to: "kings-cross-st-pancras" },
-  { label: "Central with split", from: "stratford", to: "ealing-broadway" },
+  { label: "Central with split (via Elizabeth)", from: "stratford", to: "ealing-broadway" },
+
+  // --- Same-line branch changes (different TfL through-routes) ---
+  { label: "Northern: change at Camden Town (Edgware → High Barnet)", from: "edgware", to: "high-barnet" },
+  { label: "Metropolitan: change at Harrow (Chesham → Uxbridge)", from: "chesham", to: "uxbridge" },
+  { label: "District: change at Turnham Green (Richmond → Ealing Broadway)", from: "richmond", to: "ealing-broadway" },
+  { label: "District: change at Earl's Court (Richmond → Wimbledon)", from: "richmond", to: "wimbledon" },
+  { label: "Piccadilly: change at Acton Town (T4 → Uxbridge)", from: "heathrow-terminal-4", to: "uxbridge" },
+  { label: "Piccadilly: change at Acton Town (T5 → Uxbridge)", from: "heathrow-terminal-5", to: "uxbridge" },
+  { label: "Central: change at Woodford (Epping → Roding Valley)", from: "epping", to: "roding-valley" },
+
+  // --- No branch change (same TfL through-route) ---
+  { label: "Northern: no change (Morden → High Barnet)", from: "morden", to: "high-barnet" },
+  { label: "Northern: no change (Mill Hill East → Morden)", from: "mill-hill-east", to: "morden" },
+  { label: "Central: Hainault loop (via Elizabeth)", from: "hainault", to: "ealing-broadway" },
 ];

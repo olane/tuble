@@ -27,3 +27,6 @@ footfall.csv
 
 # Visual regression test scratch output (actual + diff PNGs on mismatch)
 tests/visual/_out/
+
+# Cached TfL API responses (regenerate with: npx tsx scripts/fetch-tfl.ts)
+scripts/tfl-cache/
