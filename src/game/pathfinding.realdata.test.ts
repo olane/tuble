@@ -39,22 +39,15 @@ describe("branch changes on real data", () => {
       expect(route.segments.length).toBeGreaterThanOrEqual(2);
     });
 
-    it("District: Richmond → Wimbledon requires a branch transition at Earl's Court", () => {
-      const route = bestRoute("richmond", "wimbledon");
-      // May route via Piccadilly for the trunk section, but should show
-      // at least 2 segments (the Richmond spur is branch-exclusive).
-      expect(route.segments.length).toBeGreaterThanOrEqual(2);
-      // First segment should start on the Richmond branch
-      expect(route.segments[0].lines).toContain("district");
-      // The all-District variant (if present) should split at Earl's Court
+    it("District: Richmond → Wimbledon has an all-District route splitting at Earl's Court", () => {
       const routes = findRoute("richmond", "wimbledon");
       const allDistrict = routes.find((r) =>
         r.segments.every((s) => s.lines.includes("district"))
       );
-      if (allDistrict) {
-        expect(allDistrict.segments).toHaveLength(2);
-        expect(allDistrict.segments[0].endStationId).toBe("earls-court");
-      }
+      expect(allDistrict).toBeDefined();
+      expect(allDistrict!.segments).toHaveLength(2);
+      expect(allDistrict!.segments[0].endStationId).toBe("earls-court");
+      expect(allDistrict!.segments[1].endStationId).toBe("wimbledon");
     });
   });
 
