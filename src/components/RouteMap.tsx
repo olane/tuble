@@ -386,11 +386,8 @@ export function contrastingTextColor(hex: string): string {
 
 const LABEL_BOX_SIZE = 16;
 
-function buildSegmentKey(
-  fromId: string,
-  seg: { endStationId: string; lines: string[] }
-): string {
-  return `${fromId}->${seg.endStationId}:${[...seg.lines].sort().join(",")}`;
+function segmentKey(seg: { endStationId: string; lines: string[]; stops: number }): string {
+  return `${[...seg.lines].sort().join(",")}:${seg.stops}:${seg.endStationId}`;
 }
 
 interface RouteMapProps {
@@ -405,21 +402,27 @@ interface RouteMapProps {
 export function getRevealedSegments(
   guesses: { stationId: string; hint: { segments: RouteSegment[] } }[]
 ): Set<string> {
-  const keyCounts = new Map<string, number>();
-  const duplicates = new Set<string>();
+  const segGuessCount = new Map<string, Set<number>>();
 
-  for (const guess of guesses) {
-    let prevId = guess.stationId;
-    for (const seg of guess.hint.segments) {
-      const key = buildSegmentKey(prevId, seg);
-      const count = (keyCounts.get(key) ?? 0) + 1;
-      keyCounts.set(key, count);
-      if (count >= 2) duplicates.add(key);
-      prevId = seg.endStationId;
+  for (let gi = 0; gi < guesses.length; gi++) {
+    for (const seg of guesses[gi].hint.segments) {
+      const key = segmentKey(seg);
+      let set = segGuessCount.get(key);
+      if (!set) {
+        set = new Set();
+        segGuessCount.set(key, set);
+      }
+      set.add(gi);
     }
   }
 
-  return duplicates;
+  const shared = new Set<string>();
+  for (const [key, guessIndices] of segGuessCount) {
+    if (guessIndices.size >= 2) {
+      shared.add(key);
+    }
+  }
+  return shared;
 }
 
 export default function RouteMap({
@@ -441,9 +444,7 @@ export default function RouteMap({
         style={{ width: geo.width, maxWidth: "100%" }}
       >
         {segments.map((seg, j) => {
-          const fromId =
-            j === 0 ? guessId : segments[j - 1].endStationId;
-          const segKey = buildSegmentKey(fromId, seg);
+          const segKey = segmentKey(seg);
           const isLastSegment = j === segments.length - 1;
           const revealedByCross = revealMatchedSegments && !isLastSegment && revealedKeys.has(segKey);
           const revealedByGuess = revealMatchedSegments && isLastSegment && seg.lines.some(l => revealedTargetLines.has(l));

@@ -25,48 +25,13 @@ interface GuessListProps {
   revealedTargetLines: Set<string>;
 }
 
-/**
- * A segment key uniquely identifies a segment by its stop count,
- * end station, and sorted line set.
- */
 function segmentKey(seg: { lines: string[]; stops: number; endStationId: string }): string {
   return `${[...seg.lines].sort().join(",")}:${seg.stops}:${seg.endStationId}`;
-}
-
-/**
- * Find segments that appear in 2+ different guesses.
- * Returns a set of segment keys that are shared.
- */
-function buildSharedSegments(guesses: GuessResult[]): Set<string> {
-  const segGuessCount = new Map<string, Set<number>>();
-
-  for (let gi = 0; gi < guesses.length; gi++) {
-    const guess = guesses[gi];
-    if (guess.correct) continue;
-    for (const seg of guess.hint.segments) {
-      const key = segmentKey(seg);
-      let set = segGuessCount.get(key);
-      if (!set) {
-        set = new Set();
-        segGuessCount.set(key, set);
-      }
-      set.add(gi);
-    }
-  }
-
-  const shared = new Set<string>();
-  for (const [key, guessIndices] of segGuessCount) {
-    if (guessIndices.size >= 2) {
-      shared.add(key);
-    }
-  }
-  return shared;
 }
 
 export default function GuessList({ guesses, getStationName, revealStations, showLines, revealMatchedSegments, revealedTargetLines }: GuessListProps) {
   if (guesses.length === 0) return null;
 
-  const sharedSegments = useMemo(() => buildSharedSegments(guesses), [guesses]);
   const revealedKeys = useMemo(() => getRevealedSegments(guesses), [guesses]);
   const guessedStationIds = useMemo(
     () => new Set(guesses.map((g) => g.stationId)),
@@ -104,8 +69,9 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
               <div className="route-segments">
                 {guess.hint.segments.map((seg, j) => {
                   const isLastSegment = j === guess.hint.segments.length - 1;
+                  const segKey = segmentKey(seg);
                   const shouldShowLines = showLines
-                    || (revealMatchedSegments && !isLastSegment && sharedSegments.has(segmentKey(seg)));
+                    || (revealMatchedSegments && !isLastSegment && revealedKeys.has(segKey));
                   const perLineReveal = !shouldShowLines && revealMatchedSegments && isLastSegment;
 
                   const endRevealed = isLastSegment
