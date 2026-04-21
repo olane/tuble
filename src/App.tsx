@@ -17,11 +17,15 @@ import StationInput from "./components/StationInput";
 import GuessList from "./components/GuessList";
 import GameOver from "./components/GameOver";
 import Settings from "./components/Settings";
+import HowToPlay from "./components/HowToPlay";
 import RouteTestPage from "./pages/RouteTestPage";
 import RouteGalleryPage from "./pages/RouteGalleryPage";
 import "./App.css";
 
 const dateKey = getTodayKey();
+
+const isDevMode = import.meta.env.DEV ||
+  new URLSearchParams(window.location.search).has("dev");
 
 export default function App() {
   const path = window.location.pathname.replace(/\/$/, "");
@@ -92,7 +96,13 @@ function GamePage() {
   return (
     <div className="app">
       <header className="app-header">
-        <h1>Tuble</h1>
+        <div className="header-row">
+          <h1>Tuble</h1>
+          <div className="header-icons">
+            <HowToPlay />
+            <Settings difficulty={difficulty} onChangeDifficulty={handleDifficulty} />
+          </div>
+        </div>
         <p className="guess-counter">
           {gameState.guesses.length} / {gameState.maxGuesses}
         </p>
@@ -126,15 +136,16 @@ function GamePage() {
         targetRidership={targetRidership}
       />
 
-      <div className="bottom-buttons">
-        <Settings difficulty={difficulty} onChangeDifficulty={handleDifficulty} />
-        <button className="bottom-btn" onClick={handleReset}>
-          Reset
-        </button>
-        <button className="bottom-btn" onClick={handleNewStation}>
-          New station
-        </button>
-      </div>
+      {isDevMode && (
+        <div className="bottom-buttons">
+          <button className="bottom-btn" onClick={handleReset}>
+            Reset
+          </button>
+          <button className="bottom-btn" onClick={handleNewStation}>
+            New station
+          </button>
+        </div>
+      )}
 
       <footer className="app-footer">
         <p>Built by <a href="https://github.com/olane">Oli</a>. Inspired heavily by <a href="https://loconundrum.aaronc.cc/">Loconundrum</a>.</p>
