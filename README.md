@@ -23,7 +23,11 @@ npm run fetch-tfl -- --metadata           # also fetch coordinates & boroughs
 
 This caches TfL API responses into `scripts/tfl-cache/`. The `--metadata` flag fetches station coordinates and reverse-geocodes boroughs (slow — ~1 req/sec rate limit).
 
-**Step 2 — Build game data** from the cache (no network needed):
+**Step 2 — Get a footfall CSV** (for ridership data):
+
+Download the "Entry & exit by day" dataset from TfL's [rolling origin & destination data page](https://crowding.data.tfl.gov.uk). The CSV should have columns `TravelDate`, `DayOfWeek`, `Station`, `EntryTapCount`, `ExitTapCount`. Save it as `footfall.csv` in the repo root (it's gitignored).
+
+**Step 3 — Build game data** from the cache (no network needed):
 
 ```bash
 npm run build-data -- --graph-only        # graph + lines only
@@ -35,7 +39,7 @@ This reads from `scripts/tfl-cache/` and writes into `src/data/`:
 - `tube-graph.json` — station topology and adjacency graph
 - `lines.json` — line names and colours
 - `station-metadata.json` — lat/lon coordinates and borough (requires `--metadata` fetch)
-- `ridership.json` — average daily ridership per station (requires a footfall CSV)
+- `ridership.json` — average daily ridership per station (requires the footfall CSV)
 
 ## Development
 
