@@ -8,20 +8,38 @@ A Tube-themed puzzle game built with React and Vite.
 npm install
 ```
 
-### Generate graph data
+### Generate game data
 
-Before running or testing, you might need to generate the tube graph data from the TfL API:
+The game relies on four data files in `src/data/` that are checked in to the repo. You only need to regenerate them if the tube network topology changes or you want to refresh ridership numbers.
+
+Data generation is a two-step process:
+
+**Step 1 — Fetch raw TfL data** (requires network access):
 
 ```bash
-npm run build-graph
+npm run fetch-tfl                         # graph data only
+npm run fetch-tfl -- --metadata           # also fetch coordinates & boroughs
 ```
 
-This fetches London Underground topology and writes two files into `src/data/`:
+This caches TfL API responses into `scripts/tfl-cache/`. The `--metadata` flag fetches station coordinates and reverse-geocodes boroughs (slow — ~1 req/sec rate limit).
 
-- `tube-graph.json` — stations and adjacency graph
+**Step 2 — Get a footfall CSV** (for ridership data):
+
+Download the "Entry & exit by day" dataset from TfL's [rolling origin & destination data page](https://crowding.data.tfl.gov.uk). The CSV should have columns `TravelDate`, `DayOfWeek`, `Station`, `EntryTapCount`, `ExitTapCount`. Save it as `footfall.csv` in the repo root (it's gitignored).
+
+**Step 3 — Build game data** from the cache (no network needed):
+
+```bash
+npm run build-data -- --graph-only        # graph + lines only
+npm run build-data -- footfall.csv        # all four data files
+```
+
+This reads from `scripts/tfl-cache/` and writes into `src/data/`:
+
+- `tube-graph.json` — station topology and adjacency graph
 - `lines.json` — line names and colours
-
-These files are checked in, so you may not need to run this step, but if any topology has changed this shoud update it.
+- `station-metadata.json` — lat/lon coordinates and borough (requires `--metadata` fetch)
+- `ridership.json` — average daily ridership per station (requires the footfall CSV)
 
 ## Development
 

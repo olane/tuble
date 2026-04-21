@@ -13,6 +13,7 @@
     "test:all-pairs": "vitest run src/game/pathfinding.all-pairs.test.ts",
     "test:visual": "vitest run tests/visual",
     "test:visual:update": "UPDATE_VISUAL_BASELINES=1 vitest run tests/visual",
+    "fetch-tfl": "tsx scripts/fetch-tfl.ts",
     "build-data": "tsx scripts/build-data.ts"
   },
   "dependencies": {

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import type { GameState } from "../game/types";
 import type { Difficulty } from "../game/settings";
 import { getTodayKey } from "../game/game";
+import { formatRidership } from "../utils";
 
 interface GameOverProps {
   state: GameState;
@@ -10,11 +11,6 @@ interface GameOverProps {
   targetCode: string;
   targetZone: string;
   targetRidership: number;
-}
-
-function formatRidership(n: number): string {
-  if (n >= 1000) return Math.round(n / 1000) + "k";
-  return String(n);
 }
 
 function buildShareText(state: GameState, difficulty: Difficulty): string {

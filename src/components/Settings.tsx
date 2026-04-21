@@ -48,24 +48,15 @@ export default function Settings({ difficulty, onChangeDifficulty }: SettingsPro
               <li><strong>Hard</strong> — lines hidden until the game ends</li>
             </ul>
             <div className="difficulty-toggle">
-              <button
-                className={`difficulty-btn ${difficulty === "easy" ? "active" : ""}`}
-                onClick={() => onChangeDifficulty("easy")}
-              >
-                Easy
-              </button>
-              <button
-                className={`difficulty-btn ${difficulty === "medium" ? "active" : ""}`}
-                onClick={() => onChangeDifficulty("medium")}
-              >
-                Medium
-              </button>
-              <button
-                className={`difficulty-btn ${difficulty === "hard" ? "active" : ""}`}
-                onClick={() => onChangeDifficulty("hard")}
-              >
-                Hard
-              </button>
+              {(["easy", "medium", "hard"] as const).map((d) => (
+                <button
+                  key={d}
+                  className={`difficulty-btn ${difficulty === d ? "active" : ""}`}
+                  onClick={() => onChangeDifficulty(d)}
+                >
+                  {d[0].toUpperCase() + d.slice(1)}
+                </button>
+              ))}
             </div>
           </div>
         </div>

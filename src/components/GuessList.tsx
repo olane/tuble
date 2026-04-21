@@ -1,7 +1,8 @@
 import { useMemo } from "react";
 import type { GuessResult } from "../game/types";
 import linesData from "../data/lines.json";
-import RouteMap, { getRevealedSegments, contrastingTextColor } from "./RouteMap";
+import RouteMap, { getRevealedSegments, contrastingTextColor, segmentKey } from "./RouteMap";
+import { formatRidership } from "../utils";
 
 const lines = linesData as Record<string, { name: string; colour: string }>;
 
@@ -9,11 +10,6 @@ function comparisonArrow(c: "higher" | "lower" | "equal"): string {
   if (c === "higher") return "\u25BC";
   if (c === "lower") return "\u25B2";
   return "=";
-}
-
-function formatRidership(n: number): string {
-  if (n >= 1000) return Math.round(n / 1000) + "k";
-  return String(n);
 }
 
 interface GuessListProps {
@@ -25,8 +21,17 @@ interface GuessListProps {
   revealedTargetLines: Set<string>;
 }
 
-function segmentKey(seg: { lines: string[]; stops: number; endStationId: string }): string {
-  return `${[...seg.lines].sort().join(",")}:${seg.stops}:${seg.endStationId}`;
+function LineBadge({ lineId }: { lineId: string }) {
+  const colour = lines[lineId]?.colour ?? "#666";
+  return (
+    <span
+      className="line-badge"
+      style={{ backgroundColor: colour, color: contrastingTextColor(colour) }}
+      title={lines[lineId]?.name ?? lineId}
+    >
+      {lines[lineId]?.name ?? lineId}
+    </span>
+  );
 }
 
 export default function GuessList({ guesses, getStationName, revealStations, showLines, revealMatchedSegments, revealedTargetLines }: GuessListProps) {
@@ -90,14 +95,7 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                           seg.lines.map((lineId, k) => (
                             <>
                               {k > 0 && <span key={`sep-${k}`} className="line-separator">/</span>}
-                              <span
-                                key={lineId}
-                                className="line-badge"
-                                style={{ backgroundColor: lines[lineId]?.colour ?? "#666", color: contrastingTextColor(lines[lineId]?.colour ?? "#666") }}
-                                title={lines[lineId]?.name ?? lineId}
-                              >
-                                {lines[lineId]?.name ?? lineId}
-                              </span>
+                              <LineBadge key={lineId} lineId={lineId} />
                             </>
                           ))
                         ) : perLineReveal && seg.lines.some(l => revealedTargetLines.has(l)) ? (
@@ -105,14 +103,7 @@ export default function GuessList({ guesses, getStationName, revealStations, sho
                             <>
                               {k > 0 && <span key={`sep-${k}`} className="line-separator">/</span>}
                               {revealedTargetLines.has(lineId) ? (
-                                <span
-                                  key={lineId}
-                                  className="line-badge"
-                                  style={{ backgroundColor: lines[lineId]?.colour ?? "#666", color: contrastingTextColor(lines[lineId]?.colour ?? "#666") }}
-                                  title={lines[lineId]?.name ?? lineId}
-                                >
-                                  {lines[lineId]?.name ?? lineId}
-                                </span>
+                                <LineBadge key={lineId} lineId={lineId} />
                               ) : (
                                 <span key={`hidden-${k}`} className="line-badge line-badge-hidden">???</span>
                               )}

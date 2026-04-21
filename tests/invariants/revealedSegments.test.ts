@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { getRevealedSegments } from "../../src/components/RouteMap";
+import { getRevealedSegments, segmentKey } from "../../src/components/RouteMap";
 import type { RouteSegment } from "../../src/game/types";
 
 function seg(
@@ -89,5 +89,21 @@ describe("getRevealedSegments", () => {
 
     const revealed = getRevealedSegments(guesses);
     expect(revealed.size).toBe(0);
+  });
+});
+
+describe("segmentKey", () => {
+  it("produces lines:stops:endStationId format", () => {
+    expect(segmentKey(seg(["central"], 3, "bank"))).toBe("central:3:bank");
+  });
+
+  it("sorts lines alphabetically", () => {
+    expect(segmentKey(seg(["northern", "central"], 2, "b"))).toBe("central,northern:2:b");
+  });
+
+  it("does not mutate the original lines array", () => {
+    const s = seg(["northern", "central"], 2, "b");
+    segmentKey(s);
+    expect(s.lines).toEqual(["northern", "central"]);
   });
 });
