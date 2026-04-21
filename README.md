@@ -17,8 +17,8 @@ Data generation is a two-step process:
 **Step 1 — Fetch raw TfL data** (requires network access):
 
 ```bash
-npx tsx scripts/fetch-tfl.ts              # graph data only
-npx tsx scripts/fetch-tfl.ts --metadata   # also fetch coordinates & boroughs
+npm run fetch-tfl                         # graph data only
+npm run fetch-tfl -- --metadata           # also fetch coordinates & boroughs
 ```
 
 This caches TfL API responses into `scripts/tfl-cache/`. The `--metadata` flag fetches station coordinates and reverse-geocodes boroughs (slow — ~1 req/sec rate limit).
