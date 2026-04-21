@@ -9,6 +9,7 @@ import {
   randomGame,
   getStationCode,
 } from "./game/game";
+import type { GameState } from "./game/types";
 import { loadDifficulty, saveDifficulty, type Difficulty } from "./game/settings";
 import { getStationName, graph } from "./game/pathfinding";
 import ridershipData from "./data/ridership.json";
@@ -56,17 +57,18 @@ function GamePage() {
     saveDifficulty(d);
   }, []);
 
-  const handleReset = useCallback(() => {
-    const fresh = createGame(dateKey);
-    setGameState(fresh);
-    saveGame(dateKey, fresh);
+  const startGame = useCallback((state: GameState) => {
+    setGameState(state);
+    saveGame(dateKey, state);
   }, []);
 
+  const handleReset = useCallback(() => {
+    startGame(createGame(dateKey));
+  }, [startGame]);
+
   const handleNewStation = useCallback(() => {
-    const fresh = randomGame();
-    setGameState(fresh);
-    saveGame(dateKey, fresh);
-  }, []);
+    startGame(randomGame());
+  }, [startGame]);
 
   const revealedTargetLines = useMemo(() => {
     const revealed = new Set<string>();

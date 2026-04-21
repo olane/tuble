@@ -102,7 +102,7 @@ export function computeRouteGeometry(guessId: string, segments: RouteSegment[]) 
     const end = pts[pts.length - 1];
     const dx = end.x - start.x;
     const dy = end.y - start.y;
-    const segLen = Math.sqrt(dx * dx + dy * dy);
+    const segLen = Math.hypot(dx, dy);
     if (segLen > 0 && segLen < MIN_SEGMENT_LENGTH) {
       const scale = MIN_SEGMENT_LENGTH / segLen;
       for (let i = 1; i < pts.length; i++) {
@@ -168,14 +168,14 @@ function polylineMidpoint(pts: Point[]): { point: Point; angle: number } {
   for (let i = 1; i < pts.length; i++) {
     const dx = pts[i].x - pts[i - 1].x;
     const dy = pts[i].y - pts[i - 1].y;
-    totalLen += Math.sqrt(dx * dx + dy * dy);
+    totalLen += Math.hypot(dx, dy);
   }
 
   let remaining = totalLen / 2;
   for (let i = 1; i < pts.length; i++) {
     const dx = pts[i].x - pts[i - 1].x;
     const dy = pts[i].y - pts[i - 1].y;
-    const len = Math.sqrt(dx * dx + dy * dy);
+    const len = Math.hypot(dx, dy);
     if (remaining <= len || i === pts.length - 1) {
       const t = len > 0 ? remaining / len : 0;
       return {
@@ -202,7 +202,7 @@ function offsetPolyline(pts: Point[], offset: number): Point[] {
   for (let i = 1; i < pts.length; i++) {
     const dx = pts[i].x - pts[i - 1].x;
     const dy = pts[i].y - pts[i - 1].y;
-    const len = Math.sqrt(dx * dx + dy * dy);
+    const len = Math.hypot(dx, dy);
     if (len === 0) {
       normals.push({ x: 0, y: 0 });
     } else {
@@ -235,7 +235,7 @@ function offsetPolyline(pts: Point[], offset: number): Point[] {
       const nNext = normals[i];
       const mx = nPrev.x + nNext.x;
       const my = nPrev.y + nNext.y;
-      const mLen = Math.sqrt(mx * mx + my * my);
+      const mLen = Math.hypot(mx, my);
       if (mLen < 1e-6) {
         nx = nPrev.x;
         ny = nPrev.y;
@@ -269,8 +269,8 @@ function edgeAngle(a: Point, b: Point): number {
 function perpDist(a: Point, b: Point, p: Point): number {
   const dx = b.x - a.x;
   const dy = b.y - a.y;
-  const len = Math.sqrt(dx * dx + dy * dy);
-  if (len === 0) return Math.sqrt((p.x - a.x) ** 2 + (p.y - a.y) ** 2);
+  const len = Math.hypot(dx, dy);
+  if (len === 0) return Math.hypot(p.x - a.x, p.y - a.y);
   return Math.abs(dy * (p.x - a.x) - dx * (p.y - a.y)) / len;
 }
 
@@ -301,7 +301,7 @@ function edgesOverlap(a1: Point, a2: Point, b1: Point, b2: Point): boolean {
   // Overlap along parallel direction — project onto direction of edge A
   const dx = a2.x - a1.x;
   const dy = a2.y - a1.y;
-  const len = Math.sqrt(dx * dx + dy * dy);
+  const len = Math.hypot(dx, dy);
   if (len === 0) return false;
   const ux = dx / len;
   const uy = dy / len;
@@ -386,7 +386,7 @@ export function contrastingTextColor(hex: string): string {
 
 const LABEL_BOX_SIZE = 16;
 
-function segmentKey(seg: { endStationId: string; lines: string[]; stops: number }): string {
+export function segmentKey(seg: { endStationId: string; lines: string[]; stops: number }): string {
   return `${[...seg.lines].sort().join(",")}:${seg.stops}:${seg.endStationId}`;
 }
 

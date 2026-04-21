@@ -49,16 +49,20 @@ export function getTargetForDate(dateKey: string): string {
   return ids[index];
 }
 
-/**
- * Create a fresh game state for a given date.
- */
-export function createGame(dateKey: string): GameState {
+function createGameState(targetId: string): GameState {
   return {
-    targetId: getTargetForDate(dateKey),
+    targetId,
     guesses: [],
     maxGuesses: MAX_GUESSES,
     status: "playing",
   };
+}
+
+/**
+ * Create a fresh game state for a given date.
+ */
+export function createGame(dateKey: string): GameState {
+  return createGameState(getTargetForDate(dateKey));
 }
 
 /**
@@ -67,12 +71,7 @@ export function createGame(dateKey: string): GameState {
 export function randomGame(): GameState {
   const ids = getAllStationIds();
   const targetId = ids[Math.floor(Math.random() * ids.length)];
-  return {
-    targetId,
-    guesses: [],
-    maxGuesses: MAX_GUESSES,
-    status: "playing",
-  };
+  return createGameState(targetId);
 }
 
 /**
