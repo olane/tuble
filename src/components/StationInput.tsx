@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 
 interface StationOption {
   id: string;
@@ -64,6 +64,8 @@ export default function StationInput({ stations, guessedIds, onGuess, guessNumbe
     ? filterAndRank(stations, query, guessedIds)
     : [];
 
+  const dropdownVisible = isOpen && visible.length > 0;
+
   useEffect(() => {
     setHighlightIndex(0);
   }, [query]);
@@ -74,6 +76,16 @@ export default function StationInput({ stations, guessedIds, onGuess, guessNumbe
       el?.scrollIntoView({ block: "nearest" });
     }
   }, [highlightIndex]);
+
+  const dropdownRef = useCallback((node: HTMLUListElement | null) => {
+    listRef.current = node;
+    if (node) {
+      // Brief delay to let the browser's native focus-scroll settle first
+      setTimeout(() => {
+        node.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }, 50);
+    }
+  }, []);
 
   function submit(station: StationOption) {
     onGuess(station.id);
@@ -130,8 +142,8 @@ export default function StationInput({ stations, guessedIds, onGuess, guessNumbe
         onKeyDown={handleKeyDown}
         autoComplete="off"
       />
-      {isOpen && visible.length > 0 && (
-        <ul className="station-dropdown" ref={listRef}>
+      {dropdownVisible && (
+        <ul className="station-dropdown" ref={dropdownRef}>
           {visible.map((s, i) => (
             <li
               key={s.id}
