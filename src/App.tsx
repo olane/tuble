@@ -92,6 +92,7 @@ function GamePage() {
   const targetCode = getStationCode(gameState.targetId) ?? "???";
   const targetZone = graph.stations[gameState.targetId]?.zone ?? "?";
   const targetRidership = (ridershipData as Record<string, number>)[gameState.targetId] ?? 0;
+  const targetLines = graph.stations[gameState.targetId]?.lines ?? [];
 
   return (
     <div className="app">
@@ -134,6 +135,7 @@ function GamePage() {
         targetCode={targetCode}
         targetZone={targetZone}
         targetRidership={targetRidership}
+        targetLines={targetLines}
       />
 
       {isDevMode && (

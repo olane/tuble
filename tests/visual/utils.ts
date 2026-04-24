@@ -141,3 +141,56 @@ export function compareToBaseline(
 function ensureDir(dir: string) {
   if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
 }
+
+/**
+ * Render a React element to static HTML markup. Used for components that
+ * render HTML+CSS rather than inline SVG, where a rasterised PNG compare
+ * (via resvg) isn't possible.
+ */
+export function renderMarkup(element: ReactElement): string {
+  return renderToStaticMarkup(element);
+}
+
+export interface MarkupDiffResult {
+  matched: boolean;
+  message?: string;
+}
+
+/**
+ * Compare rendered markup against a baseline `.html` file on disk.
+ *
+ * Follows the same semantics as compareToBaseline: writes the baseline the
+ * first time (and under UPDATE_VISUAL_BASELINES=1), otherwise does a strict
+ * string compare and writes `_out/<name>.actual.html` on mismatch.
+ */
+export function compareMarkupToBaseline(
+  name: string,
+  markup: string,
+): MarkupDiffResult {
+  ensureDir(BASELINE_DIR);
+  const baselinePath = resolve(BASELINE_DIR, `${name}.html`);
+
+  if (!existsSync(baselinePath) || UPDATE_BASELINES) {
+    writeFileSync(baselinePath, markup);
+    return {
+      matched: true,
+      message: UPDATE_BASELINES
+        ? `Updated baseline ${name}.html`
+        : `Wrote new baseline ${name}.html`,
+    };
+  }
+
+  const baseline = readFileSync(baselinePath, "utf8");
+  if (baseline === markup) {
+    return { matched: true };
+  }
+
+  ensureDir(OUT_DIR);
+  writeFileSync(resolve(OUT_DIR, `${name}.actual.html`), markup);
+  return {
+    matched: false,
+    message:
+      `Markup differs from baseline. ` +
+      `See tests/visual/_out/${name}.actual.html`,
+  };
+}
