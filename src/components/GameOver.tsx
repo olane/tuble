@@ -3,6 +3,10 @@ import type { GameState } from "../game/types";
 import type { Difficulty } from "../game/settings";
 import { getTodayKey } from "../game/game";
 import { formatRidership } from "../utils";
+import { contrastingTextColor } from "./RouteMap";
+import linesData from "../data/lines.json";
+
+const lines = linesData as Record<string, { name: string; colour: string }>;
 
 interface GameOverProps {
   state: GameState;
@@ -11,6 +15,7 @@ interface GameOverProps {
   targetCode: string;
   targetZone: string;
   targetRidership: number;
+  targetLines: string[];
 }
 
 function buildShareText(state: GameState, difficulty: Difficulty): string {
@@ -43,7 +48,7 @@ function buildShareText(state: GameState, difficulty: Difficulty): string {
   return `Tuble ${dateKey}\n${rows.join("\n")}\n${diffLabel} ${difficulty} mode`;
 }
 
-export default function GameOver({ state, difficulty, targetName, targetCode, targetZone, targetRidership }: GameOverProps) {
+export default function GameOver({ state, difficulty, targetName, targetCode, targetZone, targetRidership, targetLines }: GameOverProps) {
   const [copied, setCopied] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -86,6 +91,24 @@ export default function GameOver({ state, difficulty, targetName, targetCode, ta
         <span>Zone {targetZone}</span>
         <span>{formatRidership(targetRidership)} riders/day</span>
       </div>
+      {targetLines.length > 0 && (
+        <div className="game-over-lines">
+          {targetLines.map((lineId) => {
+            const colour = lines[lineId]?.colour ?? "#666";
+            const name = lines[lineId]?.name ?? lineId;
+            return (
+              <span
+                key={lineId}
+                className="line-badge"
+                style={{ backgroundColor: colour, color: contrastingTextColor(colour) }}
+                title={name}
+              >
+                {name}
+              </span>
+            );
+          })}
+        </div>
+      )}
       <button className="share-btn" onClick={handleShare}>
         {copied ? "Copied!" : "Share"}
       </button>
