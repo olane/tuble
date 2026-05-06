@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /test
+Disallow: /gallery
+
+Sitemap: https://tuble.olane.dev/sitemap.xml
