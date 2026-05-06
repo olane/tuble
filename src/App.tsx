@@ -150,7 +150,7 @@ function GamePage() {
       )}
 
       <footer className="app-footer">
-        <p>Built by <a href="https://github.com/olane">Oli</a>. Inspired heavily by <a href="https://loconundrum.aaronc.cc/">Loconundrum</a>.</p>
+        <p>Built by <a href="https://olane.dev">Oli</a>. Inspired heavily by <a href="https://loconundrum.aaronc.cc/">Loconundrum</a>.</p>
         <p>Powered by TfL Open Data. Contains OS data &copy; Crown copyright and database rights 2016 and Geomni UK Map data &copy; and database rights [2019].</p>
       </footer>
     </div>
