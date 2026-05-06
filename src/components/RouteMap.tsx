@@ -484,6 +484,7 @@ export default function RouteMap({
               />
               {isDLR && (
                 <path
+                  className="route-dlr-gap"
                   d={d}
                   fill="none"
                   stroke="#fff"
@@ -525,6 +526,7 @@ export default function RouteMap({
           const tickLen = 11;
           return (
             <line
+              className="route-start-tick"
               x1={p.x + Math.cos(angle) * tickLen}
               y1={p.y + Math.sin(angle) * tickLen}
               x2={p.x - Math.cos(angle) * tickLen}
@@ -543,6 +545,7 @@ export default function RouteMap({
           return (
             <circle
               key={`int-${j}`}
+              className="route-node"
               cx={p.x}
               cy={p.y}
               r={NODE_RADIUS}
@@ -561,6 +564,7 @@ export default function RouteMap({
           return (
             <g>
               <circle
+                className="route-node"
                 cx={p.x}
                 cy={p.y}
                 r={TARGET_RADIUS}
