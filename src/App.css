@@ -37,43 +37,43 @@
   justify-content: center;
   background: none;
   border: none;
-  color: #999;
+  color: var(--text-faint);
   cursor: pointer;
   padding: 0.25rem;
 }
 
 .header-icon-btn:hover {
-  color: #555;
+  color: var(--text-muted);
 }
 
 .guess-counter {
   margin: 0.25rem 0 0;
   font-size: 0.9rem;
-  color: #666;
+  color: var(--text-muted);
 }
 
 /* Bottom bar buttons (shared style) */
 .bottom-btn {
   padding: 0.3rem 0.75rem;
   font-size: 0.8rem;
-  color: #666;
+  color: var(--text-muted);
   background: none;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 6px;
   cursor: pointer;
   font-family: inherit;
 }
 
 .bottom-btn:hover {
-  color: #333;
-  border-color: #999;
+  color: var(--text-strong);
+  border-color: var(--border-strong);
 }
 
 /* Settings modal */
 .settings-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.4);
+  background: var(--modal-backdrop);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,15 +82,15 @@
 
 .settings-modal {
   position: relative;
-  background: #fff;
+  background: var(--surface);
   border-radius: 12px;
   padding: 1.5rem 1.5rem 1.25rem;
   max-width: 400px;
   width: 90%;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 32px var(--modal-shadow);
   text-align: left;
   font-size: 0.9rem;
-  color: #333;
+  color: var(--text-strong);
   line-height: 1.5;
 }
 
@@ -116,14 +116,14 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #999;
+  color: var(--text-faint);
   cursor: pointer;
   line-height: 1;
   padding: 0;
 }
 
 .settings-close:hover {
-  color: #333;
+  color: var(--text-strong);
 }
 
 .difficulty-key {
@@ -162,7 +162,7 @@
 /* Difficulty toggle */
 .difficulty-toggle {
   display: inline-flex;
-  border: 1px solid #ccc;
+  border: 1px solid var(--border);
   border-radius: 6px;
   overflow: hidden;
   margin-top: 0.5rem;
@@ -172,19 +172,19 @@
   padding: 0.3rem 0.75rem;
   font-size: 0.8rem;
   border: none;
-  background: #fff;
-  color: #666;
+  background: var(--surface);
+  color: var(--text-muted);
   cursor: pointer;
   font-family: inherit;
   font-weight: 500;
 }
 
 .difficulty-btn + .difficulty-btn {
-  border-left: 1px solid #ccc;
+  border-left: 1px solid var(--border);
 }
 
 .difficulty-btn.active {
-  background: #0098d4;
+  background: var(--accent);
   color: #fff;
 }
 
@@ -198,14 +198,16 @@
   width: 100%;
   padding: 0.75rem 1rem;
   font-size: 1rem;
-  border: 2px solid #ccc;
+  border: 2px solid var(--border);
   border-radius: 8px;
   outline: none;
   font-family: inherit;
+  background: var(--surface);
+  color: var(--text);
 }
 
 .station-input input:focus {
-  border-color: #0098d4;
+  border-color: var(--accent);
 }
 
 .station-dropdown {
@@ -216,14 +218,15 @@
   margin: 0;
   padding: 0;
   list-style: none;
-  background: #fff;
-  border: 1px solid #ccc;
+  background: var(--surface);
+  color: var(--text);
+  border: 1px solid var(--border);
   border-top: none;
   border-radius: 0 0 8px 8px;
   max-height: 240px;
   overflow-y: auto;
   z-index: 10;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px var(--dropdown-shadow);
 }
 
 .station-dropdown li {
@@ -232,7 +235,7 @@
 }
 
 .station-dropdown li.highlighted {
-  background: #e8f4fd;
+  background: var(--highlight-bg);
 }
 
 /* Guess list */
@@ -243,15 +246,15 @@
 }
 
 .guess-row {
-  background: #fff;
+  background: var(--surface);
   border-radius: 8px;
   padding: 0.75rem 1rem;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px var(--surface-shadow);
 }
 
 .guess-row.correct {
-  background: #e6f9e6;
-  border: 2px solid #2ecc71;
+  background: var(--success-bg);
+  border: 2px solid var(--success);
 }
 
 .guess-header {
@@ -297,7 +300,7 @@
 }
 
 .guess-correct-label {
-  color: #2ecc71;
+  color: var(--success);
   font-weight: 600;
 }
 
@@ -324,7 +327,33 @@
   font-size: 13px;
   font-weight: 700;
   font-family: sans-serif;
-  fill: #333;
+  fill: var(--route-target-text);
+}
+
+/* Theme-aware route map nodes (override SVG presentation attributes) */
+.route-svg .route-node {
+  fill: var(--route-node-fill);
+  stroke: var(--route-node-stroke);
+}
+
+.route-svg .route-start-tick {
+  stroke: var(--route-node-stroke);
+}
+
+.route-svg .route-dlr-gap {
+  stroke: var(--route-node-fill);
+}
+
+.route-svg .route-hidden-segment > path {
+  stroke: var(--hidden-line-bg);
+}
+
+.route-svg .route-hidden-segment > rect {
+  fill: var(--hidden-line-bg);
+}
+
+.route-svg .route-hidden-segment > text {
+  fill: var(--hidden-line-text);
 }
 
 .guess-hint {
@@ -360,28 +389,28 @@
 }
 
 .line-badge-hidden {
-  background-color: #D4C5A9;
+  background-color: var(--hidden-line-bg);
   font-family: sans-serif;
   letter-spacing: 0.05em;
 }
 
 .line-separator {
-  color: #999;
+  color: var(--text-faint);
   font-size: 0.8rem;
 }
 
 .segment-chevron {
-  color: #999;
+  color: var(--text-faint);
   text-align: center;
 }
 
 .segment-stops {
-  color: #666;
+  color: var(--text-muted);
   white-space: nowrap;
 }
 
 .segment-end {
-  color: #444;
+  color: var(--text-strong);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -397,14 +426,14 @@
 
 .guess-total {
   font-weight: 600;
-  color: #333;
+  color: var(--text-strong);
 }
 
 .guess-stats {
   display: flex;
   gap: 0.75rem;
   font-size: 0.8rem;
-  color: #888;
+  color: var(--text-subtle);
 }
 
 .guess-zone {
@@ -417,12 +446,12 @@
 
 /* Game over card */
 .game-over-card {
-  background: #fff;
+  background: var(--surface);
   border-radius: 8px;
   padding: 1.25rem 1rem;
   margin-top: 0.75rem;
   text-align: center;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 1px 3px var(--surface-shadow);
 }
 
 .game-over-card h2 {
@@ -442,7 +471,7 @@
   gap: 1rem;
   font-size: 1rem;
   font-weight: 600;
-  color: #555;
+  color: var(--text-strong);
   margin-bottom: 0.5rem;
 }
 
@@ -462,18 +491,18 @@
   font-weight: 600;
   font-family: inherit;
   color: #fff;
-  background: #0098d4;
+  background: var(--accent);
   border: none;
   border-radius: 6px;
   cursor: pointer;
 }
 
 .share-btn:hover {
-  background: #007ab3;
+  background: var(--accent-hover);
 }
 
 .game-over-comeback {
-  color: #666;
+  color: var(--text-muted);
   margin: 0;
   font-size: 0.9rem;
 }
@@ -490,7 +519,7 @@
   margin-top: 2rem;
   text-align: center;
   font-size: 0.7rem;
-  color: #999;
+  color: var(--text-faint);
 }
 
 .app-footer p {
@@ -498,7 +527,7 @@
 }
 
 .app-footer a {
-  color: #999;
+  color: var(--text-faint);
   text-decoration: underline;
 }
 
@@ -509,10 +538,10 @@
 
 .route-test-error {
   padding: 0.75rem 1rem;
-  border: 1px solid #e0b0b0;
-  background: #fbeaea;
+  border: 1px solid var(--error-border);
+  background: var(--error-bg);
   border-radius: 6px;
-  color: #802020;
+  color: var(--error-text);
   font-size: 0.9rem;
   margin-bottom: 1rem;
 }
@@ -520,11 +549,11 @@
 .route-test-hint {
   margin: 0.5rem 0 0;
   font-size: 0.85rem;
-  color: #555;
+  color: var(--text-muted);
 }
 
 .route-test-hint-block {
-  border: 1px solid #eee;
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -532,13 +561,13 @@
 
 .route-test-hint-label {
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-muted);
   margin-bottom: 0.5rem;
 }
 
 .route-test-segments {
   font-size: 0.85rem;
-  color: #444;
+  color: var(--text-strong);
   margin: 0.75rem 0 0;
   padding-left: 1.25rem;
 }
@@ -551,11 +580,11 @@
   margin-top: 1.5rem;
   text-align: center;
   font-size: 0.85rem;
-  color: #666;
+  color: var(--text-muted);
 }
 
 .route-test-nav a {
-  color: #666;
+  color: var(--text-muted);
 }
 
 .route-gallery-grid {
@@ -565,7 +594,7 @@
 }
 
 .route-gallery-card {
-  border: 1px solid #eee;
+  border: 1px solid var(--border-subtle);
   border-radius: 8px;
   padding: 0.75rem;
   display: flex;
@@ -582,12 +611,12 @@
 .route-gallery-card-label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #333;
+  color: var(--text-strong);
 }
 
 .route-gallery-card-link {
   font-size: 0.75rem;
-  color: #666;
+  color: var(--text-muted);
   text-decoration: none;
 }
 
@@ -597,6 +626,5 @@
 
 .route-gallery-card-meta {
   font-size: 0.75rem;
-  color: #888;
+  color: var(--text-subtle);
 }
-

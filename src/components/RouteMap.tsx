@@ -443,6 +443,14 @@ export default function RouteMap({
         className="route-svg"
         style={{ width: geo.width, maxWidth: "100%" }}
       >
+        {/* Light-mode defaults; .route-svg.* rules in App.css override for dark mode */}
+        <style>{`
+          .route-node { fill: #fff; stroke: #000; }
+          .route-start-tick { stroke: #000; }
+          .route-dlr-gap { stroke: #fff; }
+          .route-hidden-segment > path { stroke: #D4C5A9; }
+          .route-hidden-segment > rect { fill: #D4C5A9; }
+        `}</style>
         {segments.map((seg, j) => {
           const segKey = segmentKey(seg);
           const isLastSegment = j === segments.length - 1;
@@ -473,7 +481,7 @@ export default function RouteMap({
           const isDLR = revealed && seg.lines[0] === "dlr";
 
           return (
-            <g key={j}>
+            <g key={j} className={revealed ? undefined : "route-hidden-segment"}>
               <path
                 d={d}
                 fill="none"
@@ -484,9 +492,9 @@ export default function RouteMap({
               />
               {isDLR && (
                 <path
+                  className="route-dlr-gap"
                   d={d}
                   fill="none"
-                  stroke="#fff"
                   strokeWidth={DLR_GAP_THICKNESS}
                   strokeLinecap="butt"
                   strokeLinejoin="round"
@@ -506,7 +514,7 @@ export default function RouteMap({
                 textAnchor="middle"
                 dominantBaseline="central"
                 className="route-stops-text"
-                style={{ fill: textColor }}
+                style={revealed ? { fill: textColor } : undefined}
               >
                 {seg.stops}
               </text>
@@ -525,11 +533,11 @@ export default function RouteMap({
           const tickLen = 11;
           return (
             <line
+              className="route-start-tick"
               x1={p.x + Math.cos(angle) * tickLen}
               y1={p.y + Math.sin(angle) * tickLen}
               x2={p.x - Math.cos(angle) * tickLen}
               y2={p.y - Math.sin(angle) * tickLen}
-              stroke="#000"
               strokeWidth={4}
               strokeLinecap="round"
             />
@@ -543,11 +551,10 @@ export default function RouteMap({
           return (
             <circle
               key={`int-${j}`}
+              className="route-node"
               cx={p.x}
               cy={p.y}
               r={NODE_RADIUS}
-              fill="#fff"
-              stroke="#000"
               strokeWidth={2.5}
             />
           );
@@ -561,11 +568,10 @@ export default function RouteMap({
           return (
             <g>
               <circle
+                className="route-node"
                 cx={p.x}
                 cy={p.y}
                 r={TARGET_RADIUS}
-                fill="#fff"
-                stroke="#000"
                 strokeWidth={2.5}
               />
               <text
