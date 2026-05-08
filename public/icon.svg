@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Tuble">
+  <rect width="64" height="64" rx="12" fill="#1b1723"/>
+  <circle cx="32" cy="32" r="22" fill="none" stroke="#0098d4" stroke-width="7"/>
+  <g transform = " rotate(-12 32 32)">
+    <rect x="4" y="27" width="56" height="10" fill="#0098d4"/>
+  </g>
+</svg>

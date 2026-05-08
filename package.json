@@ -14,7 +14,8 @@
     "test:visual": "vitest run tests/visual",
     "test:visual:update": "UPDATE_VISUAL_BASELINES=1 vitest run tests/visual",
     "fetch-tfl": "tsx scripts/fetch-tfl.ts",
-    "build-data": "tsx scripts/build-data.ts"
+    "build-data": "tsx scripts/build-data.ts",
+    "build-icons": "tsx scripts/build-icons.ts"
   },
   "dependencies": {
     "react": "^19.1.0",
