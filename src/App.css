@@ -344,6 +344,18 @@
   stroke: var(--route-node-fill);
 }
 
+.route-svg .route-hidden-segment > path {
+  stroke: var(--hidden-line-bg);
+}
+
+.route-svg .route-hidden-segment > rect {
+  fill: var(--hidden-line-bg);
+}
+
+.route-svg .route-hidden-segment > text {
+  fill: var(--hidden-line-text);
+}
+
 .guess-hint {
   font-size: 0.85rem;
 }

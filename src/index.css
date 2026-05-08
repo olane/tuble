@@ -28,6 +28,7 @@
   --error-border: #e0b0b0;
   --error-text: #802020;
   --hidden-line-bg: #D4C5A9;
+  --hidden-line-text: #000;
   --route-node-fill: #fff;
   --route-node-stroke: #000;
   --route-target-text: #333;
@@ -61,6 +62,7 @@
     --error-border: #6a3030;
     --error-text: #f0a0a0;
     --hidden-line-bg: #6a5d44;
+    --hidden-line-text: #fff;
     --route-node-fill: #2b2b3b;
     --route-node-stroke: #e8e8ec;
     --route-target-text: #e8e8ec;
