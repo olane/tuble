@@ -45,7 +45,7 @@ function buildShareText(state: GameState, difficulty: Difficulty): string {
     rows[rows.length - 1] += "\u274C";
   }
 
-  return `Tuble ${dateKey}\n${rows.join("\n")}\n${diffLabel} ${difficulty} mode\nhttps://tuble.olane.dev`;
+  return `Tuble ${dateKey}\n${rows.join("\n")}\n${diffLabel} ${difficulty} mode\n\nhttps://tuble.olane.dev`;
 }
 
 export default function GameOver({ state, difficulty, targetName, targetCode, targetZone, targetRidership, targetLines }: GameOverProps) {
